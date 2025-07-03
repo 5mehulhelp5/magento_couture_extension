@@ -1,0 +1,18 @@
+{
+  "name": "couturecustomsearch/search-api",
+  "description": "Overrides Magento search with custom API",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": "proprietary",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "CoutureSearch\\SearchAPI\\": ""
+    }
+  },
+  "require": {
+    "php": ">=7.4"
+  }
+}

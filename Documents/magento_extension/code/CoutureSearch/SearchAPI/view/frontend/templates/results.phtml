@@ -1,0 +1,157 @@
+<div id="search-result-container">
+
+    <div class="sort-container">
+        <label for="sort-by">Sort by:</label>
+        <select id="sort-by">
+            <option value="relevance">Relevance</option>
+            <option value="discount">Discount</option>
+            <option value="price asc">Price (Lowest First)</option>
+            <option value="price">Price (Highest First)</option>
+            <option value="ratings">Ratings</option>
+        </select>
+    </div>
+
+
+
+    <div class="search-result-grid"></div>
+    <div class="pagination-controls" style="margin-top: 20px; text-align: center;">
+        <button id="prev-page" disabled>Previous</button>
+        <span id="current-page">Page 1</span>
+        <button id="next-page">Next</button>
+    </div>
+</div>
+
+<style>
+    .search-result-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .search-result-grid .product-item {
+        border: 1px solid #ccc;
+        padding: 10px;
+        background: #fff;
+        text-align: center;
+    }
+
+    .search-result-grid img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .sort-container {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 10px;
+        gap: 10px;
+        font-size: 14px;
+    }
+
+    .sort-container select {
+        padding: 5px 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+</style>
+
+<script>
+    // Clear on unrelated pages
+    if (!window.location.pathname.startsWith('/search-results')) {
+        localStorage.removeItem('search_results');
+        localStorage.removeItem('last_query');
+        localStorage.removeItem('current_page');
+        localStorage.removeItem('sort_by');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const container = document.querySelector('.search-result-grid');
+        const prevBtn = document.getElementById('prev-page');
+        const nextBtn = document.getElementById('next-page');
+        const pageIndicator = document.getElementById('current-page');
+        const sortByDropdown = document.getElementById('sort-by');
+
+        let currentPage = parseInt(localStorage.getItem('current_page') || '1');
+        const query = localStorage.getItem('last_query') || '';
+        let sortBy = localStorage.getItem('sort_by') || 'relevance';
+
+        // Set dropdown to saved value
+        sortByDropdown.value = sortBy;
+
+        async function fetchPage(page, sort_by_value = sortBy) {
+            const apiUrl = `http://localhost:8000/api/search-redirector?query=${encodeURIComponent(query)}&page_number=${page}&sort_by=${encodeURIComponent(sort_by_value)}`;
+
+            try {
+                document.body.classList.add('loading');
+
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                if (data.docs) {
+                    localStorage.setItem('search_results', JSON.stringify(data.docs));
+                    localStorage.setItem('current_page', page.toString());
+                    localStorage.setItem('sort_by', sort_by_value);
+                    renderProducts(data.docs);
+                    currentPage = page;
+                    sortBy = sort_by_value;
+                    pageIndicator.textContent = `Page ${currentPage}`;
+                    prevBtn.disabled = currentPage <= 1;
+                    nextBtn.disabled = data.docs.length === 0;
+                }
+            } catch (err) {
+                console.error("Pagination fetch failed:", err);
+            } finally {
+                document.body.classList.remove('loading');
+            }
+        }
+
+        function renderProducts(products) {
+            if (!products || products.length === 0) {
+                container.innerHTML = '<p>No products found.</p>';
+                return;
+            }
+
+            let html = '';
+            products.forEach(p => {
+                html += `
+                    <div class="product-item">
+                        <img src="${p['img-174Wx218H_string']}" alt="${p['name_text_en']}" />
+                        <h3>${p['name_text_en']}</h3>
+                        <p>${p['brandName_text_en_mv']?.[0] || ''}</p>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        if (!window.paginationBound) {
+            window.paginationBound = true;
+
+            prevBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    fetchPage(currentPage - 1);
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                fetchPage(currentPage + 1);
+            });
+
+            sortByDropdown.addEventListener('change', () => {
+                const selectedSort = sortByDropdown.value;
+                fetchPage(1, selectedSort); // Reset to page 1
+            });
+        }
+
+        const products = JSON.parse(localStorage.getItem('search_results') || '[]');
+        renderProducts(products);
+        pageIndicator.textContent = `Page ${currentPage}`;
+        prevBtn.disabled = currentPage <= 1;
+    });
+</script>
+
