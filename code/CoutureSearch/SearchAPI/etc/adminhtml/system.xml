@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="couturesearch" translate="label" sortOrder="100">
+            <label>Couture Search</label>
+        </tab>
+        <section id="couturesearch_api" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>API Endpoints</label>
+            <tab>couturesearch</tab>
+            <resource>CoutureSearch_SearchAPI::config</resource>
+            <group id="endpoints" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Endpoint URLs</label>
+                <field id="top_results_api_url" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Top Results API URL</label>
+                    <comment>Variable: COUTURE_TOP_RESULTS_API</comment>
+                </field>
+                <field id="similar_products_api_url" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Similar Products API URL</label>
+                    <comment>Base URL, e.g., http://api.service/get-similar-product-ids. The ?product_id=X part will be added automatically. Variable: COUTURE_SIMILAR_PRODUCTS_API</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

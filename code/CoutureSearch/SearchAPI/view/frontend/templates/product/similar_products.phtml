@@ -1,0 +1,99 @@
+<?php
+/**
+ * @var \CoutureSearch\SearchAPI\Block\Product\SimilarProducts $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<?php
+$_productCollection = $block->getLoadedProductCollection();
+?>
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$logger = $objectManager->get(\Psr\Log\LoggerInterface::class);
+$logger->info('ProductCollection Count: '. $_productCollection->count()) 
+?>
+<?php if ($_productCollection && $_productCollection->count()): ?>
+<div class="block widget block-products-list">
+    <div class="block-title content-heading">
+        <h2 class="title"><?= $escaper->escapeHtml(__('Similar products')) ?></h2>
+        <p class="info"><?= $escaper->escapeHtml(__('Products you might like')) ?></p>
+    </div>
+    <div class="block-content">
+        <div class="products-grid grid">
+            <ol class="product-items widget-product-grid">
+                <?php foreach ($_productCollection as $_product): ?>
+
+                    <?php
+                    // --- START: SWATCH DEBUG LOG ---
+                    if ($_product->getTypeId() === 'configurable') {
+                        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                        $configurableHelper = $objectManager->get(\Magento\ConfigurableProduct\Helper\Data::class);
+                        $configurableAttributes = $configurableHelper->getOptions($_product, []);
+                        $logger = $objectManager->get(\Psr\Log\LoggerInterface::class);
+                        $logger->info('--- [Similar Products] Swatch Data Check ---');
+                        $logger->info('Product ID: ' . $_product->getId() . ' | SKU: ' . $_product->getSku());
+                        $logger->info('Configurable Attribute Count: ' . count($configurableAttributes['attributes'] ?? []));
+                        $logger->info('------------------------------------------');
+                    }
+                    // --- END: SWATCH DEBUG LOG ---
+                    ?>
+
+                    <li class="product-item">
+                        <div class="product-item-info">
+                            <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>" class="product-item-photo">
+                                <?= $block->getImage($_product, 'category_page_grid')->toHtml() ?>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="<?= $escaper->escapeHtml($_product->getName()) ?>"
+                                       href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>"
+                                       class="product-item-link">
+                                        <?= $escaper->escapeHtml($_product->getName()) ?>
+                                    </a>
+                                </strong>
+                                <?= $block->getProductPriceHtml($_product, \Magento\Catalog\Pricing\Price\FinalPrice::PRICE_CODE) ?>
+                                <?= $block->getReviewsSummaryHtml($_product, 'short', true) ?>
+                                
+                                <?= $block->getProductDetailsHtml($_product) ?>
+    
+                                <div class="product-item-actions">
+                                    <div class="actions-primary">
+                                        <?php if ($_product->isSaleable()): ?>
+                                            <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                                            <?php // This is the definitive fix: check if $postParams is a valid array ?>
+                                            <?php if (is_array($postParams) && isset($postParams['action'])): ?>
+                                                <form data-role="tocart-form" data-product-sku="<?= $escaper->escapeHtmlAttr($_product->getSku()) ?>" action="<?= $escaper->escapeUrl($postParams['action']) ?>" method="post">
+                                                    <input type="hidden" name="product" value="<?= $escaper->escapeHtmlAttr($postParams['data']['product']) ?>">
+                                                    <input type="hidden" name="<?= /* @noEscape */ \Magento\Framework\App\Action\Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @noEscape */ $postParams['data'][\Magento\Framework\App\Action\Action::PARAM_NAME_URL_ENCODED] ?>">
+                                                    <?= $block->getBlockHtml('formkey') ?>
+                                                    <button type="submit"
+                                                            title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
+                                                            class="action tocart primary">
+                                                        <span><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
+                                                    </button>
+                                                </form>
+                                            <?php else: ?>
+                                                <button class="action tocart primary"
+                                                        data-mage-init='{"redirectUrl": {"url": "<?= $escaper->escapeUrl($_product->getProductUrl()) ?>"}}'
+                                                        type="button"
+                                                        title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>">
+                                                    <span><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
+                                                </button>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div data-role="add-to-links" class="actions-secondary">
+                                        <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                                            <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

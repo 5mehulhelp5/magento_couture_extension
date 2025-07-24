@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="standard">
-        <route id="searchresults" frontName="search-results">
-            <module name="CoutureSearch_SearchAPI"/>
+        <route id="searchapi" frontName="top-results">
+            <module name="CoutureSearch_SearchAPI" />
         </route>
     </router>
 </config>

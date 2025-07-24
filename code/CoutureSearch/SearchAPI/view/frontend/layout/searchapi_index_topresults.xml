@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="catalogsearch_result_index"/>
+
+    <body>
+        <attribute name="html_class" value="search-results-page"/>
+
+        <referenceBlock name="search.result" remove="true" />
+        <referenceBlock name="search_result_list" remove="true" />
+        <referenceBlock name="catalogsearch.leftnav" remove="true" />
+
+        <referenceContainer name="content">
+            <block class="CoutureSearch\SearchAPI\Block\Product\ListProduct"
+                   name="searchapi_product_list"
+                   template="Magento_Catalog::product/list.phtml">
+                
+                <arguments>
+                    <argument name="couturesearch_list_view_model" xsi:type="object">CoutureSearch\SearchAPI\ViewModel\ListProduct</argument>
+                    <argument name="viewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\OptionsData</argument>
+                    <argument name="is_product_list" xsi:type="boolean">true</argument>
+                    </arguments>
+
+                <block class="Magento\Catalog\Block\Product\ProductList\Toolbar"
+                       name="product_list_toolbar"
+                       as="toolbar"
+                       template="Magento_Catalog::product/list/toolbar.phtml">
+                    <block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+                </block>
+                <action method="setToolbarBlockName">
+                    <argument name="name" xsi:type="string">product_list_toolbar</argument>
+                </action>
+
+                <block class="Magento\Framework\View\Element\RendererList" name="searchapi.product.type.details.renderers" as="details.renderers">
+                    <block class="Magento\Framework\View\Element\Template" as="default" />
+                    <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" as="configurable" template="Magento_Swatches::product/listing/renderer.phtml">
+                        <arguments>
+                            <argument name="configurable_view_model" xsi:type="object">Magento\Swatches\ViewModel\Product\Renderer\Configurable</argument>
+                        </arguments>
+                    </block>
+                </block>
+                <action method="setDetailsRendererList">
+                     <argument name="rendererList" xsi:type="string">searchapi.product.type.details.renderers</argument>
+                </action>
+
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="sidebar.main">
+            <block class="CoutureSearch\SearchAPI\Block\Navigation" name="catalogsearch.leftnav.custom" before="-" template="Magento_LayeredNavigation::layer/view.phtml">
+                <arguments>
+                    <argument name="filterable_in_search" xsi:type="boolean">true</argument>
+                </arguments>
+                <block class="Magento\LayeredNavigation\Block\Navigation\State" name="catalogsearch.navigation.state.custom" as="state" />
+                <block class="Magento\LayeredNavigation\Block\Navigation\FilterRenderer" name="catalogsearch.navigation.renderer" as="renderer" template="Magento_LayeredNavigation::layer/filter.phtml">
+                    <arguments>
+                        <argument name="product_layer_view_model" xsi:type="object">Magento\LayeredNavigation\ViewModel\Layer\Filter</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

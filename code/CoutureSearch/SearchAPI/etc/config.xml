@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <couturesearch_api>
+            <endpoints>
+                <top_results_api_url>http://host.docker.internal:8000/api/search-redirector</top_results_api_url>
+                <similar_products_api_url>http://host.docker.internal:8000/api/get-similar-product-ids</similar_products_api_url>
+            </endpoints>
+        </couturesearch_api>
+    </default>
+</config>
