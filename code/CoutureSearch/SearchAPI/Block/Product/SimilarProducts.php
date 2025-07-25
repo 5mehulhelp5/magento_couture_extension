@@ -16,12 +16,12 @@ use Magento\Catalog\Model\Product\Attribute\Source\Status;
 use Magento\Framework\HTTP\Client\Curl;
 use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\Registry;
+use CoutureSearch\SearchAPI\Helper\Data as CoutureHelper;
 
 class SimilarProducts extends ListProduct
 {
     protected $productCollectionFactory;
     protected $_productCollection;
-    protected $coutureHelper; 
     
     /**
      * @var Curl
@@ -37,6 +37,7 @@ class SimilarProducts extends ListProduct
      * @var Registry
      */
     protected $_coreRegistry;
+    protected $coutureHelper; 
 
     public function __construct(
         Context $context,
@@ -92,8 +93,8 @@ class SimilarProducts extends ListProduct
             $allowedProductIds = [];
 
             try {
-                // Note: Changed localhost to host.docker.internal for Docker compatibility
                 if($baseUrl){
+                    // Note: Changed localhost to host.docker.internal for Docker compatibility
                     $apiUrl = $baseUrl . '?product_id=' . $currentProductId;
                     $this->_logger->info('Calling Similar Products API: ' . $apiUrl);
                     

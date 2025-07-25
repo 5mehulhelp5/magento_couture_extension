@@ -10,8 +10,20 @@ use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Catalog\Model\Layer\Resolver;
 use CoutureSearch\SearchAPI\Helper\Data as CoutureHelper;
 
-class TopResults extends AbstractResults
+class Recommended extends AbstractResults
 {
+    /**
+     * Explicitly defining the constructor to ensure correct dependency injection.
+     *
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
+     * @param LoggerInterface $logger
+     * @param Registry $registry
+     * @param Curl $curlClient
+     * @param Json $jsonSerializer
+     * @param Resolver $layerResolver
+     * @param CoutureHelper $coutureHelper
+     */
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory,
@@ -22,7 +34,6 @@ class TopResults extends AbstractResults
         Resolver $layerResolver,
         CoutureHelper $coutureHelper
     ) {
-        // Pass all arguments to the parent constructor to ensure it's initialized correctly.
         parent::__construct(
             $context,
             $resultPageFactory,
@@ -40,8 +51,9 @@ class TopResults extends AbstractResults
      */
     protected function getApiUrl(): string
     {
-        // Use the helper to get the specific URL for Top Results
-        return $this->coutureHelper->getTopResultsApiUrl();
+        // For now, we are hardcoding the URL as requested.
+        // Later, this can be replaced with the helper method.
+        return 'http://host.docker.internal:8000/api/recommended-products';
     }
 
     /**
@@ -49,6 +61,6 @@ class TopResults extends AbstractResults
      */
     protected function getPageTitle(): \Magento\Framework\Phrase
     {
-        return __('Top Results Products');
+        return __('Recommended For You');
     }
 }

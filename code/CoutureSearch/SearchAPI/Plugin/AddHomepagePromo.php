@@ -28,6 +28,8 @@ class AddHomepagePromo
     // Change the type hint from Footer to Page
     public function afterToHtml(Page $subject, string $result): string
     {
+        $this->logger->info('--- Plugin Debug: afterToHtml triggered on Cms\Block\Page ---');
+
         if ($this->request->getFullActionName() !== 'cms_index_index' || self::$blockCreated) {
             return $result;
         }

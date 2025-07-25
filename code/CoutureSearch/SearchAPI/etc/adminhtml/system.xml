@@ -19,6 +19,10 @@
                     <label>Similar Products API URL</label>
                     <comment>Base URL, e.g., http://api.service/get-similar-product-ids. The ?product_id=X part will be added automatically. Variable: COUTURE_SIMILAR_PRODUCTS_API</comment>
                 </field>
+                <field id="search_api_url" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Search API URL</label>
+                    <comment>Variable: COUTURE_SEARCH_API_URL</comment>
+                </field>
             </group>
         </section>
     </system>

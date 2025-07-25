@@ -45,33 +45,27 @@ class Navigation extends \Magento\LayeredNavigation\Block\Navigation
     public function canShowBlock()
     {
         $currentFullActionName = $this->getRequest()->getFullActionName();
-        $isTopResultsPage = $currentFullActionName === 'searchapi_index_topresults';
-
         $this->logger->info('CoutureSearch_SearchAPI: Custom Navigation Block: canShowBlock called. Current Full Action Name: ' . $currentFullActionName);
 
-        if ($isTopResultsPage) {
-            // --- START: CRUCIAL DEBUG LOGGING ---
-            try {
-                /** @var \Magento\Catalog\Model\ResourceModel\Product\Collection $layerCollection */
-                $layerCollection = $this->getLayer()->getProductCollection();
-                $collectionSize = $layerCollection->getSize();
-                $sqlQuery = (string)$layerCollection->getSelect();
-            } catch (\Exception $e) {
-                $this->logger->error('CoutureSearch_SearchAPI: Error during debug logging: ' . $e->getMessage());
-            }
-            // --- END: CRUCIAL DEBUG LOGGING ---
-            
+        // Define a list of all controller actions that should show this block.
+        $allowedActionNames = [
+            'searchapi_index_topresults',   // Your original page
+            'couturesearch_index_recommended' // Your new page
+        ];
+
+        // Check if the current page is one of our allowed pages.
+        if (in_array($currentFullActionName, $allowedActionNames)) {
             $filters = $this->getFilters();
             if (count($filters)) {
-                $this->logger->info('CoutureSearch_SearchAPI: canShowBlock returning TRUE. Filters found: ' . count($filters));
+                $this->logger->info('CoutureSearch_SearchAPI: canShowBlock returning TRUE for a custom page. Filters found: ' . count($filters));
                 return true;
             } else {
-                $this->logger->warning('CoutureSearch_SearchAPI: canShowBlock returning FALSE because no filters were generated from the layer.');
+                $this->logger->warning('CoutureSearch_SearchAPI: canShowBlock returning FALSE for a custom page because no filters were generated from the layer.');
                 return false;
             }
         }
 
-        // Defer to parent for any other page
+        // Defer to parent for any other page (e.g., standard category or search pages)
         return parent::canShowBlock();
     }
 

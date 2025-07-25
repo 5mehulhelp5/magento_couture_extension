@@ -4,5 +4,8 @@
         <route id="searchapi" frontName="top-results">
             <module name="CoutureSearch_SearchAPI" />
         </route>
+        <route id="couturesearch" frontName="recommended-products">
+            <module name="CoutureSearch_SearchAPI" />
+        </route>
     </router>
 </config>

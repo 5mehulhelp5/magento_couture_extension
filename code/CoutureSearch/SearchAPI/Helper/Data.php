@@ -9,6 +9,7 @@ class Data extends AbstractHelper
 {
     const XML_PATH_TOP_RESULTS_API = 'couturesearch_api/endpoints/top_results_api_url';
     const XML_PATH_SIMILAR_PRODUCTS_API = 'couturesearch_api/endpoints/similar_products_api_url';
+    const XML_PATH_SEARCH_API_URL = 'couturesearch_api/endpoints/search_api_url';
 
     public function __construct(Context $context)
     {
@@ -23,5 +24,10 @@ class Data extends AbstractHelper
     public function getSimilarProductsApiUrl(): ?string
     {
         return $this->scopeConfig->getValue(self::XML_PATH_SIMILAR_PRODUCTS_API, ScopeInterface::SCOPE_STORE);
+    }
+
+    public function getSearchApiUrl(): ?string
+    {
+        return $this->scopeConfig->getValue(self::XML_PATH_SEARCH_API_URL, ScopeInterface::SCOPE_STORE);
     }
 }
