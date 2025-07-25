@@ -1,7 +1,10 @@
 <?xml version="1.0"?>
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<!--
+This is a shared, reusable layout handle. It is not loaded automatically.
+Other layout files will call it using <update handle="couturesearch_api_base" />.
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <update handle="catalogsearch_result_index"/>
-
     <body>
         <attribute name="html_class" value="search-results-page"/>
 
@@ -11,15 +14,13 @@
 
         <referenceContainer name="content">
             <block class="CoutureSearch\SearchAPI\Block\Product\ListProduct"
-                   name="searchapi_product_list"
+                   name="couture_product_list"
                    template="Magento_Catalog::product/list.phtml">
-                
                 <arguments>
                     <argument name="couturesearch_list_view_model" xsi:type="object">CoutureSearch\SearchAPI\ViewModel\ListProduct</argument>
                     <argument name="viewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\OptionsData</argument>
                     <argument name="is_product_list" xsi:type="boolean">true</argument>
-                    </arguments>
-
+                </arguments>
                 <block class="Magento\Catalog\Block\Product\ProductList\Toolbar"
                        name="product_list_toolbar"
                        as="toolbar"
@@ -29,8 +30,7 @@
                 <action method="setToolbarBlockName">
                     <argument name="name" xsi:type="string">product_list_toolbar</argument>
                 </action>
-
-                <block class="Magento\Framework\View\Element\RendererList" name="searchapi.product.type.details.renderers" as="details.renderers">
+                <block class="Magento\Framework\View\Element\RendererList" name="couture.product.type.details.renderers" as="details.renderers">
                     <block class="Magento\Framework\View\Element\Template" as="default" />
                     <block class="Magento\Swatches\Block\Product\Renderer\Listing\Configurable" as="configurable" template="Magento_Swatches::product/listing/renderer.phtml">
                         <arguments>
@@ -39,9 +39,8 @@
                     </block>
                 </block>
                 <action method="setDetailsRendererList">
-                     <argument name="rendererList" xsi:type="string">searchapi.product.type.details.renderers</argument>
+                     <argument name="rendererList" xsi:type="string">couture.product.type.details.renderers</argument>
                 </action>
-
             </block>
         </referenceContainer>
 
@@ -59,4 +58,4 @@
             </block>
         </referenceContainer>
     </body>
-</page>
+</layout>

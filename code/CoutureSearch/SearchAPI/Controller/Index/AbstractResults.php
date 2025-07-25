@@ -116,6 +116,10 @@ abstract class AbstractResults extends Action
                 $this->logger->warning('CoutureSearch_SearchAPI: [AbstractResults] API URL is empty. Cannot fetch products.');
             } else {
                 try {
+
+                    // Add this line right at the beginning of the method
+                    $this->logger->info('CoutureSearch_SearchAPI: Full Action Name is: ' . $this->getRequest()->getFullActionName());
+                    
                     $this->curlClient->get($apiUrl);
                     $responseBody = $this->curlClient->getBody();
                     $responseData = $this->jsonSerializer->unserialize($responseBody);
