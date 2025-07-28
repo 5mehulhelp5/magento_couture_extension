@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <!-- This section includes our custom CSS file -->
+    <head>
+        <css src="CoutureSearch_SearchAPI::css/autocomplete.css"/>
+    </head>
+    <body>
+        <referenceContainer name="header.panel">
+            <block class="Magento\Framework\View\Element\Template" name="couturesearch.autocomplete.init" template="CoutureSearch_SearchAPI::autocomplete/init.phtml">
+                <arguments>
+                    <argument name="viewModel" xsi:type="object">CoutureSearch\SearchAPI\ViewModel\Autocomplete</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,31 @@
+<?php
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \CoutureSearch\SearchAPI\ViewModel\Autocomplete $viewModel
+ */
+
+// CORRECTED: Use getData('viewModel') which is a more reliable way to fetch the argument
+// we defined in the layout XML file.
+$viewModel = $block->getData('viewModel');
+
+$config = [];
+// Add a check to ensure the viewModel exists before trying to use it.
+if ($viewModel) {
+    $config = [
+        'searchApiUrl' => $viewModel->getSearchApiUrl(),
+        'productDataUrl' => $viewModel->getProductDataUrl(),
+        'searchResultsUrl' => $viewModel->getSearchResultsUrl()
+    ];
+}
+?>
+
+<!-- This is the container for our custom autocomplete results. It will be positioned by CSS. -->
+<div id="couture-autocomplete-popup" class="couture-autocomplete-popup" style="display: none;"></div>
+
+<script type="text/x-magento-init">
+{
+    "#search_mini_form": {
+        "CoutureSearch_SearchAPI/js/autocomplete": <?= /* @noEscape */ json_encode($config) ?>
+    }
+}
+</script>
