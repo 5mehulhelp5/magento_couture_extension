@@ -38,22 +38,19 @@
             <label>Recommendations Config</label>
             <tab>couturesearch</tab>
             <resource>CoutureSearch_SearchAPI::config</resource>
-            <group id="feature_flags" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Feature Flags</label>
-                
-                <!-- Field 1: Example for enabling a feature -->
-                <field id="enable_custom_suggestions" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Enable Custom Suggestions</label>
-                    <!-- This source model provides the "Yes" and "No" options -->
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>If set to "Yes", the custom suggestions will be shown in the autocomplete.</comment>
-                </field>
 
-                <!-- Field 2: Another example -->
-                <field id="log_api_requests" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Log All API Requests</label>
+            <group id="banners_configuration_options" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Banner View Options</label>
+                
+                <field id="top_trending_products" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Top Trending Products</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Set to "Yes" for debugging purposes only. This can create large log files.</comment>
+                    <comment>Set to "Yes" for showing "Trending products" banner on the homepage</comment>
+                </field>
+                <field id="recommended_products" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Recommed Products</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set to "Yes" to see a "Recommended Products" banner on the homepage</comment>
                 </field>
             </group>
         </section> 
