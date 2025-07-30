@@ -24,6 +24,40 @@
                     <comment>Variable: COUTURE_SEARCH_API_URL</comment>
                 </field>
             </group>
+            <group id="api_keys" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>API Keys</label>
+                <field id="api_key" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API KEY</label>
+                    <comment>Universal API Key required for all the requests</comment>
+                </field>
+            </group>
         </section>
+
+        <section  id="couturesearch_recommendations_options" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1"> 
+            <class>separator-top</class>
+            <label>Recommendations Config</label>
+            <tab>couturesearch</tab>
+            <resource>CoutureSearch_SearchAPI::config</resource>
+            <group id="feature_flags" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Feature Flags</label>
+                
+                <!-- Field 1: Example for enabling a feature -->
+                <field id="enable_custom_suggestions" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Custom Suggestions</label>
+                    <!-- This source model provides the "Yes" and "No" options -->
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If set to "Yes", the custom suggestions will be shown in the autocomplete.</comment>
+                </field>
+
+                <!-- Field 2: Another example -->
+                <field id="log_api_requests" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Log All API Requests</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set to "Yes" for debugging purposes only. This can create large log files.</comment>
+                </field>
+            </group>
+        </section> 
+
+
     </system>
 </config>

@@ -7,6 +7,9 @@
                 <similar_products_api_url>http://host.docker.internal:8000/api/get-similar-product-ids</similar_products_api_url>
                 <search_api_url>http://host.docker.internal:8000/api/get-similar-product-ids</search_api_url>
             </endpoints>
+            <api_keys>
+                <api_key>DEFAULT_API_KEY</api_key>
+            </api_keys>
         </couturesearch_api>
     </default>
 </config>

@@ -116,11 +116,19 @@ abstract class AbstractResults extends Action
                 $this->logger->warning('CoutureSearch_SearchAPI: [AbstractResults] API URL is empty. Cannot fetch products.');
             } else {
                 try {
+                    // 1. Get the universal API key from the helper.
+                    $apiKey = $this->coutureHelper->getUniversalApiKey();
 
-                    // Add this line right at the beginning of the method
-                    $this->logger->info('CoutureSearch_SearchAPI: Full Action Name is: ' . $this->getRequest()->getFullActionName());
-                    
+                    // 2. If the key exists, add it as a header.
+                    //    Replace 'X-Api-Key' with the actual header name your API expects.
+                    if (!empty($apiKey)) {
+                        $this->logger->info('Found API Key: ' . $apiKey);
+                        $this->curlClient->addHeader('X-Api-Key', $apiKey);
+                    }
+
+                    // 3. Make the GET request.
                     $this->curlClient->get($apiUrl);
+                    
                     $responseBody = $this->curlClient->getBody();
                     $responseData = $this->jsonSerializer->unserialize($responseBody);
                     
