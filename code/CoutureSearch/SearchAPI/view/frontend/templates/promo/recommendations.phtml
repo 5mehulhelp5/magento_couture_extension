@@ -3,6 +3,8 @@
  * @var \Magento\Framework\View\Element\Template $block
  * @var \Magento\Framework\Escaper $escaper
  */
+
+$visibleBanners = $block->getVisibleBanners();
 ?>
 <style>
     /* New wrapper to control width and centering */
@@ -78,6 +80,7 @@
     /* --- END OF CHANGES --- */
 </style>
 
+<?php if (!empty($visibleBanners)): ?>
 <div class="recommendations-wrapper">
     <div class="recommendations-section">
         <div class="block-title content-heading">
@@ -85,22 +88,13 @@
             <p class="info"><?= $escaper->escapeHtml(__('By considering user preferences, and historical trends by')) ?> <strong>Couture ❤️</strong></p>
         </div>
 
-        <div class="promo-banner-wrapper text-align-left" style="background-image: url('https://img.freepik.com/free-photo/shopping-concept-close-up-portrait-young-beautiful-attractive-redhair-girl-smiling-looking-camera_1258-118763.jpg?semt=ais_hybrid&w=740');">
-            <a href="<?= $escaper->escapeUrl($block->getUrl('couture/index/topresults')) ?>" class="promo-banner-link">
-                <div class="promo-banner-content">
-                    <h2 class="promo-banner-title"><?= $escaper->escapeHtml(__('Top Trending products')) ?></h2>
-                    <p class="promo-banner-subtitle"><?= $escaper->escapeHtml(__('Discover what\'s popular right now.')) ?></p>
-                </div>
-            </a>
-        </div>
-
-        <div class="promo-banner-wrapper text-align-right" style="background-image: url('https://t3.ftcdn.net/jpg/03/20/68/66/360_F_320686681_Ur6vdYQgDC9WiijiVfxlRyQffxOgfeFz.jpg');">
-            <a href="<?= $escaper->escapeUrl($block->getUrl('couture/index/recommended')) ?>" class="promo-banner-link">
-                <div class="promo-banner-content">
-                    <h2 class="promo-banner-title"><?= $escaper->escapeHtml(__('Recommended products')) ?></h2>
-                    <p class="promo-banner-subtitle"><?= $escaper->escapeHtml(__('Curated picks just for you.')) ?></p>
-                </div>
-            </a>
-        </div>
+        <?php foreach ($visibleBanners as $banner): ?>
+            <?= $block->getLayout()->createBlock(\Magento\Framework\View\Element\Template::class)
+                ->setTemplate('CoutureSearch_SearchAPI::promo/banner_item.phtml')
+                ->setData('banner', $banner)
+                ->toHtml()
+            ?>
+        <?php endforeach; ?>
     </div>
 </div>
+<?php endif; ?>

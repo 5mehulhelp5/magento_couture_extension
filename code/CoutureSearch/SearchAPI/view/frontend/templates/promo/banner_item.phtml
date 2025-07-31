@@ -1,0 +1,18 @@
+<?php
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$banner = $block->getData('banner');
+?>
+
+<?php if ($banner): ?>
+<div class="promo-banner-wrapper <?= $escaper->escapeHtmlAttr($banner['text_align_class']) ?>" style="background-image: url('<?= $escaper->escapeUrl($banner['image_url']) ?>');">
+    <a href="<?= $escaper->escapeUrl($banner['link_url']) ?>" class="promo-banner-link">
+        <div class="promo-banner-content">
+            <h2 class="promo-banner-title"><?= $escaper->escapeHtml($banner['title']) ?></h2>
+            <p class="promo-banner-subtitle"><?= $escaper->escapeHtml($banner['subtitle']) ?></p>
+        </div>
+    </a>
+</div>
+<?php endif; ?>

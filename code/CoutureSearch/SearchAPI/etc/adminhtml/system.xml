@@ -48,10 +48,15 @@
                     <comment>Set to "Yes" for showing "Trending products" banner on the homepage</comment>
                 </field>
                 <field id="recommended_products" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Recommed Products</label>
+                    <label>Recommended Products</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Set to "Yes" to see a "Recommended Products" banner on the homepage</comment>
                 </field>
+                <!-- <field id="new_products" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>New Products</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set to "Yes" to see a "Recommended Products" banner on the homepage</comment>
+                </field> -->
             </group>
         </section> 
 
