@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- 
+    This plugin intercepts the core CSRF validator and uses our custom class 
+    to skip the check for our specific controller.
+    -->
+    <type name="Magento\Framework\App\Request\CsrfValidator">
+        <plugin name="couturesearch_csrf_validator_skip" type="CoutureSearch\SearchAPI\Plugin\CsrfValidatorSkip" />
+    </type>
+</config>

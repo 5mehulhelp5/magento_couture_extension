@@ -13,7 +13,7 @@ class Data extends AbstractHelper
     const XML_PATH_SEARCH_API_URL       = 'couturesearch_api/endpoints/search_api_url';
     const XML_PATH_UNIVERSAL_API_KEY    = 'couturesearch_api/api_keys/api_key';
 
-    // configuration files
+    // configuration files for banners
     const XML_PATH_ENABLE_TOP_TRENDING = 'couturesearch_recommendations_options/banners_configuration_options/top_trending_products';
     const XML_PATH_ENABLE_RECOMMENDED  = 'couturesearch_recommendations_options/banners_configuration_options/recommended_products';
     const XML_PATH_ENABLE_NEW_PRODUCTS = 'couturesearch_recommendations_options/banners_configuration_options/new_products';

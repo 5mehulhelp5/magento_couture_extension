@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="couture_sync_history" resource="default" engine="innodb" comment="Couture Sync History">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="varchar" name="request_id" nullable="false" length="255" comment="Unique Request ID"/>
+        <column xsi:type="varchar" name="status" nullable="false" length="50" comment="Sync Status (e.g., Queued, Processing, Success, Failed)"/>
+        <column xsi:type="text" name="message" nullable="true" comment="Status Message or Error Details"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <column xsi:type="timestamp" name="finished_at" on_update="false" nullable="true" comment="Completion Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+</schema>

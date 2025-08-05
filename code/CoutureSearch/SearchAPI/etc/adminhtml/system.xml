@@ -60,6 +60,30 @@
             </group>
         </section> 
 
+        <!-- sync catalogue! -->
+        <tab id="couture_sync" translate="label" sortOrder="110">
+            <label>Catalogue Sync</label>
+        </tab>
+
+        <section id="couture_catalogue_sync" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+            <class>separator-top</class>
+            <label>Manual Sync</label>
+            <tab>couture_sync</tab>
+            <resource>CoutureSearch_SearchAPI::config</resource>
+            
+            <!-- This group will contain our custom button and table -->
+            <group id="manual_sync" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Sync Controls</label>
+                <!-- 
+                This is the key part. We use a custom block (frontend_model)
+                to render our complex UI instead of a simple form field.
+                -->
+                <field id="sync_button" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Actions</label>
+                    <frontend_model>CoutureSearch\SearchAPI\Block\Adminhtml\System\Config\Sync</frontend_model>
+                </field>
+            </group>
+        </section>
 
     </system>
 </config>

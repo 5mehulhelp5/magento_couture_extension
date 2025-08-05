@@ -1,0 +1,87 @@
+<?php
+/**
+ * @var \CoutureSearch\SearchAPI\Block\Adminhtml\System\Config\Sync $block
+ */
+?>
+
+<div style="margin-bottom: 20px;">
+    <?= $block->getButtonHtml() ?>
+    <p class="note">
+        <span>Click this button to start a full catalogue sync. This process runs in the background.</span>
+    </p>
+</div>
+
+<div class="sync-status-container">
+    <h4>Previous Sync Requests</h4>
+    <button id="couture_refresh_button" class="action-secondary">Refresh</button>
+    <table id="sync_status_table" class="data-grid">
+        <thead>
+            <tr>
+                <th>Request ID</th>
+                <th>Status</th>
+                <th>Message</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="4">Click "Refresh" to see the latest sync status.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+require(['jquery'], function($){
+    // Function to start the sync
+    window.check = function() {
+        $.ajax({
+            url: '<?= $block->escapeUrl($block->getAjaxUrl()) ?>',
+            type: 'GET', // <-- CORRECTED: Changed from POST to GET
+            showLoader: true,
+            success: function(response) {
+                alert(response.message || 'Request sent.');
+                refreshStatus(); // Refresh the table after starting
+            },
+            error: function(jqXHR) {
+                alert('An error occurred. Check the browser console (F12) for details.');
+                console.error('AJAX Error:', jqXHR.responseText);
+            }
+        });
+    };
+
+    // Function to refresh the status table
+    function refreshStatus() {
+        $.ajax({
+            url: '<?= $block->escapeUrl($block->getRefreshUrl()) ?>',
+            type: 'GET',
+            showLoader: true,
+            success: function(response) {
+                var tableBody = $('#sync_status_table tbody');
+                tableBody.empty();
+                if (response.history && response.history.length) {
+                    response.history.forEach(function(item) {
+                        var row = '<tr>' +
+                            '<td>' + item.request_id + '</td>' +
+                            '<td>' + item.status + '</td>' +
+                            '<td>' + (item.message || '') + '</td>' +
+                            '<td>' + item.created_at + '</td>' +
+                            '</tr>';
+                        tableBody.append(row);
+                    });
+                } else {
+                    tableBody.html('<tr><td colspan="4">No sync requests found.</td></tr>');
+                }
+            }
+        });
+    }
+
+    // Attach click handler to the refresh button
+    $('#couture_refresh_button').on('click', function() {
+        refreshStatus();
+    });
+
+    // Initial load of the status
+    refreshStatus();
+});
+</script>

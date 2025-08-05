@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <!-- Use the admin router -->
+    <router id="admin">
+        <!-- 
+        Define a unique route with a frontName. 
+        This tells Magento that any URL starting with /admin/couture/... 
+        should be handled by this module.
+        -->
+        <route id="couture" frontName="couture">
+            <module name="CoutureSearch_SearchAPI" />
+        </route>
+    </router>
+</config>
