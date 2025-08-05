@@ -12,7 +12,8 @@ use Magento\Framework\Serialize\Serializer\Json;
 
 class Consumer
 {
-    const BATCH_SIZE = 100;
+
+    const BATCH_SIZE = 10;
     const TOTAL_LIMIT = 10000;
     const API_ENDPOINT = 'http://host.docker.internal:8000/api/catalogue-sync'; // Use docker internal host
 
@@ -49,12 +50,6 @@ class Consumer
         $this->json = $json;
     }
 
-    /**
-     * Process the message from the queue
-     *
-     * @param int $syncHistoryId
-     * @return void
-     */
     public function process($syncHistoryId)
     {
         $this->logger->info('--- Starting catalogue sync for history ID: ' . $syncHistoryId);
@@ -67,27 +62,37 @@ class Consumer
         }
 
         try {
-            // 1. Update status to "Processing"
             $syncHistory->setStatus('Processing');
             $syncHistory->setMessage('Sync started. Preparing to export products.');
             $this->syncHistoryResource->save($syncHistory);
 
-            // 2. Prepare the product collection
             $collection = $this->productCollectionFactory->create();
             $collection->addAttributeToSelect('*')
                 ->addAttributeToFilter('status', ProductStatus::STATUS_ENABLED)
                 ->setVisibility($this->productVisibility->getVisibleInSiteIds())
-                ->setPageSize(self::BATCH_SIZE)
-                ->setCurPage(1); // Start with page 1
+                ->setPageSize(self::BATCH_SIZE);
 
-            // Apply the total limit for this example
             $collection->getSelect()->limit(self::TOTAL_LIMIT);
             $totalPages = ceil(self::TOTAL_LIMIT / self::BATCH_SIZE);
 
             $this->logger->info('Total products to sync: ' . self::TOTAL_LIMIT . ' in ' . $totalPages . ' batches.');
 
-            // 3. Loop through pages and send batches
             for ($currentPage = 1; $currentPage <= $totalPages; $currentPage++) {
+                // --- CORRECTED CANCELLATION CHECK ---
+                // Create a fresh model instance to guarantee a clean read from the database.
+                $currentStatusModel = $this->syncHistoryFactory->create();
+                $this->syncHistoryResource->load($currentStatusModel, $syncHistoryId);
+                
+                $this->logger->info('Status: '. $currentStatusModel->getStatus());
+
+                if ($currentStatusModel->getStatus() === 'Cancelled') {
+                    $this->logger->info('Sync for history ID ' . $syncHistoryId . ' was cancelled by user. Stopping process.');
+                    // Update the original model's status as well so the final check works
+                    $syncHistory->setStatus('Cancelled');
+                    break; // Exit the loop
+                }
+                // --- END CANCELLATION CHECK ---
+
                 $collection->setCurPage($currentPage);
                 $this->logger->info('Processing batch ' . $currentPage . ' of ' . $totalPages);
 
@@ -101,36 +106,31 @@ class Consumer
                     continue;
                 }
 
-                // Send the batch to your API
                 $this->sendBatchToApi(['payload' => $payload, 'page' => $currentPage]);
-                // sleep(5);
                 $collection->clear();
             }
 
-            // 4. Update status to "Success"
-            $syncHistory->setStatus('Success');
-            $syncHistory->setMessage('Catalogue sync completed successfully.');
-            $this->syncHistoryResource->save($syncHistory);
-            $this->logger->info('--- Catalogue sync finished successfully for history ID: ' . $syncHistoryId);
+            // Final status update: only set to Success if it wasn't cancelled
+            if ($syncHistory->getStatus() !== 'Cancelled') {
+                $syncHistory->setStatus('Success');
+                $syncHistory->setMessage('Catalogue sync completed successfully.');
+                $this->syncHistoryResource->save($syncHistory);
+                $this->logger->info('--- Catalogue sync finished successfully for history ID: ' . $syncHistoryId);
+            }
 
         } catch (\Exception $e) {
             $this->logger->error('Error during catalogue sync: ' . $e->getMessage());
-            // 5. Update status to "Failed"
+            $this->syncHistoryResource->load($syncHistory, $syncHistoryId);
             $syncHistory->setStatus('Failed');
             $syncHistory->setMessage('Error: ' . $e->getMessage());
             $this->syncHistoryResource->save($syncHistory);
         }
     }
 
-    /**
-     * Sends a batch of product data to the external API
-     * @param array $payload
-     */
     private function sendBatchToApi(array $payload)
     {
         $this->curl->addHeader("Content-Type", "application/json");
         $this->curl->post(self::API_ENDPOINT, $this->json->serialize($payload));
-
         $this->logger->info('API Response: ' . $this->curl->getBody());
     }
 }

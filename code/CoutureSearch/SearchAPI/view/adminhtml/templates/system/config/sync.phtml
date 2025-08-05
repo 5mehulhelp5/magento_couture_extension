@@ -21,11 +21,12 @@
                 <th>Status</th>
                 <th>Message</th>
                 <th>Created At</th>
+                <th>Actions</th> <!-- New Column -->
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td colspan="4">Click "Refresh" to see the latest sync status.</td>
+                <td colspan="5">Click "Refresh" to see the latest sync status.</td>
             </tr>
         </tbody>
     </table>
@@ -37,11 +38,11 @@ require(['jquery'], function($){
     window.check = function() {
         $.ajax({
             url: '<?= $block->escapeUrl($block->getAjaxUrl()) ?>',
-            type: 'GET', // <-- CORRECTED: Changed from POST to GET
+            type: 'GET',
             showLoader: true,
             success: function(response) {
                 alert(response.message || 'Request sent.');
-                refreshStatus(); // Refresh the table after starting
+                refreshStatus();
             },
             error: function(jqXHR) {
                 alert('An error occurred. Check the browser console (F12) for details.');
@@ -49,6 +50,26 @@ require(['jquery'], function($){
             }
         });
     };
+
+    // Function to cancel a sync
+    function cancelSync(syncId) {
+        if (!confirm('Are you sure you want to cancel this sync request?')) {
+            return;
+        }
+        $.ajax({
+            url: '<?= $block->escapeUrl($block->getCancelUrl()) ?>', // New URL
+            type: 'POST',
+            data: { id: syncId },
+            showLoader: true,
+            success: function(response) {
+                alert(response.message || 'Cancellation request sent.');
+                refreshStatus();
+            },
+            error: function() {
+                alert('An error occurred while trying to cancel the sync.');
+            }
+        });
+    }
 
     // Function to refresh the status table
     function refreshStatus() {
@@ -61,16 +82,23 @@ require(['jquery'], function($){
                 tableBody.empty();
                 if (response.history && response.history.length) {
                     response.history.forEach(function(item) {
+                        var actionsHtml = '';
+                        // If the status is Queued or Processing, show a cancel button
+                        if (item.status === 'Queued' || item.status === 'Processing') {
+                            actionsHtml = '<button class="action-secondary cancel-sync-btn" data-id="' + item.entity_id + '">Cancel</button>';
+                        }
+
                         var row = '<tr>' +
                             '<td>' + item.request_id + '</td>' +
                             '<td>' + item.status + '</td>' +
                             '<td>' + (item.message || '') + '</td>' +
                             '<td>' + item.created_at + '</td>' +
+                            '<td>' + actionsHtml + '</td>' + // Add actions cell
                             '</tr>';
                         tableBody.append(row);
                     });
                 } else {
-                    tableBody.html('<tr><td colspan="4">No sync requests found.</td></tr>');
+                    tableBody.html('<tr><td colspan="5">No sync requests found.</td></tr>');
                 }
             }
         });
@@ -79,6 +107,12 @@ require(['jquery'], function($){
     // Attach click handler to the refresh button
     $('#couture_refresh_button').on('click', function() {
         refreshStatus();
+    });
+
+    // Attach a delegated click handler for the cancel buttons
+    $('#sync_status_table').on('click', '.cancel-sync-btn', function() {
+        var syncId = $(this).data('id');
+        cancelSync(syncId);
     });
 
     // Initial load of the status

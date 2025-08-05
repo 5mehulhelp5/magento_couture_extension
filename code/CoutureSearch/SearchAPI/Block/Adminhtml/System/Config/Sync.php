@@ -12,65 +12,42 @@ class Sync extends Field
      */
     protected $_template = 'CoutureSearch_SearchAPI::system/config/sync.phtml';
 
-    /**
-     * @param Context $context
-     * @param array $data
-     */
-    public function __construct(
-        Context $context,
-        array $data = []
-    ) {
+    public function __construct(Context $context, array $data = [])
+    {
         parent::__construct($context, $data);
     }
 
-    /**
-     * Remove scope label
-     *
-     * @param  AbstractElement $element
-     * @return string
-     */
     public function render(AbstractElement $element)
     {
         $element->unsScope()->unsCanUseWebsiteValue()->unsCanUseDefaultValue();
         return parent::render($element);
     }
 
-    /**
-     * Return element html
-     *
-     * @param  AbstractElement $element
-     * @return string
-     */
     protected function _getElementHtml(AbstractElement $element)
     {
         return $this->_toHtml();
     }
 
-    /**
-     * Return AJAX URL for sync button
-     *
-     * @return string
-     */
     public function getAjaxUrl()
     {
         return $this->getUrl('couture/sync/start');
     }
 
-    /**
-     * Return AJAX URL for refresh button
-     *
-     * @return string
-     */
     public function getRefreshUrl()
     {
         return $this->getUrl('couture/sync/status');
     }
 
     /**
-     * Generate button html
+     * Return AJAX URL for cancel button
      *
      * @return string
      */
+    public function getCancelUrl()
+    {
+        return $this->getUrl('couture/sync/cancel');
+    }
+
     public function getButtonHtml()
     {
         $button = $this->getLayout()->createBlock(
