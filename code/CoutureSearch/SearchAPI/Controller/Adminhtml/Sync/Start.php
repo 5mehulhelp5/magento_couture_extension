@@ -5,22 +5,29 @@ use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\JsonFactory;
 use CoutureSearch\SearchAPI\Model\SyncHistoryFactory;
+use Magento\Framework\MessageQueue\PublisherInterface;
 use Magento\Framework\Exception\LocalizedException;
 
 class Start extends Action
 {
+    const TOPIC_NAME = 'couture.catalogue.sync';
+
     /** @var JsonFactory */
     protected $resultJsonFactory;
     /** @var SyncHistoryFactory */
     protected $syncHistoryFactory;
+    /** @var PublisherInterface */
+    protected $publisher;
 
     public function __construct(
         Context $context,
         JsonFactory $jsonFactory,
-        SyncHistoryFactory $syncHistoryFactory
+        SyncHistoryFactory $syncHistoryFactory,
+        PublisherInterface $publisher
     ) {
         $this->resultJsonFactory = $jsonFactory;
         $this->syncHistoryFactory = $syncHistoryFactory;
+        $this->publisher = $publisher;
         parent::__construct($context);
     }
 
@@ -28,7 +35,6 @@ class Start extends Action
     {
         $result = $this->resultJsonFactory->create();
         try {
-            // Create a new record in our history table
             $syncHistory = $this->syncHistoryFactory->create();
             $syncHistory->setData([
                 'request_id' => uniqid('SYNC-'),
@@ -37,13 +43,14 @@ class Start extends Action
             ]);
             $syncHistory->save();
 
-            // In the future, this is where you would publish a message to the queue.
+            // Publish the ID of the new record to the message queue
+            $this->publisher->publish(self::TOPIC_NAME, $syncHistory->getId());
 
-            return $result->setData(['message' => 'Sync request successfully queued.']);
+            return $result->setData(['message' => 'Sync request successfully queued. Check status with Refresh.']);
         } catch (LocalizedException $e) {
             return $result->setData(['error' => true, 'message' => $e->getMessage()]);
         } catch (\Exception $e) {
-            return $result->setData(['error' => true, 'message' => 'An unexpected error occurred.']);
+            return $result->setData(['error' => true, 'message' => 'An unexpected error occurred while queueing the sync.']);
         }
     }
 }

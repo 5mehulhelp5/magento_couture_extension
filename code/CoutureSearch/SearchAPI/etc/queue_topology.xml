@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/topology.xsd">
+    <!-- 
+    This defines the exchange (the central message hub) that our publisher uses.
+    It should match the exchange name in your queue_publisher.xml.
+    -->
+    <exchange name="magento" type="topic" connection="amqp">
+        <!-- 
+        This binding connects our topic to the queue. It tells the exchange
+        that any message published to 'couture.catalogue.sync' should be
+        sent to the 'couture.catalogue.sync.queue'.
+        -->
+        <binding id="coutureCatalogueSyncBinding"
+                 topic="couture.catalogue.sync"
+                 destinationType="queue"
+                 destination="couture.catalogue.sync.queue"/>
+    </exchange>
+</config>
