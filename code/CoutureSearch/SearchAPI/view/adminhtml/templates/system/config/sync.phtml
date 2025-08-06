@@ -4,32 +4,111 @@
  */
 ?>
 
-<div style="margin-bottom: 20px;">
-    <?= $block->getButtonHtml() ?>
-    <p class="note">
-        <span>Click this button to start a full catalogue sync. This process runs in the background.</span>
-    </p>
-</div>
+<!-- Add a <style> block to inject our custom CSS for a better UI -->
+<style>
+    /* --- Main Container Fix --- */
+    /* This forces the container to take up the full width and adds padding */
+    .sync-controls-wrapper {
+        width: 100%;
+        padding: 20px; /* ADDED: Overall padding for the entire component */
+        box-sizing: border-box; /* Ensures padding doesn't break the layout */
+    }
 
-<div class="sync-status-container">
-    <h4>Previous Sync Requests</h4>
-    <button id="couture_refresh_button" class="action-secondary">Refresh</button>
-    <table id="sync_status_table" class="data-grid">
-        <thead>
-            <tr>
-                <th>Request ID</th>
-                <th>Status</th>
-                <th>Message</th>
-                <th>Created At</th>
-                <th>Actions</th> <!-- New Column -->
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td colspan="5">Click "Refresh" to see the latest sync status.</td>
-            </tr>
-        </tbody>
-    </table>
+    /* --- Header Styling (Title and Refresh Button) --- */
+    .sync-status-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .sync-status-header h4 {
+        font-size: 16px;
+        margin: 0; /* Remove default margin */
+    }
+
+    /* --- Main Sync Button --- */
+    #couture_sync_button {
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+        border-radius: 5px;
+        padding: 10px 15px;
+        font-size: 14px;
+        border: none;
+    }
+    #couture_sync_button:hover {
+        background-color: #0056b3;
+    }
+
+    /* --- Table Styling --- */
+    .sync-status-container {
+        margin-top: 20px;
+    }
+    #sync_status_table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    #sync_status_table th, #sync_status_table td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+    /* FIX: Make table headers visible */
+    #sync_status_table th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* --- Status Colors --- */
+    .status-badge {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 12px;
+        color: white;
+        font-weight: bold;
+        font-size: 12px;
+    }
+    .status-success { background-color: #28a745; }
+    .status-failed { background-color: #dc3545; }
+    .status-processing { background-color: #17a2b8; }
+    .status-queued { background-color: #ffc107; color: #333; }
+    .status-cancelled { background-color: #6c757d; }
+
+</style>
+
+<!-- Add a wrapper div to help with full-width layout -->
+<div class="sync-controls-wrapper">
+    <div style="margin-bottom: 20px;">
+        <?= $block->getButtonHtml() ?>
+        <p class="note">
+            <span>Click this button to start a full catalogue sync. This process runs in the background.</span>
+        </p>
+    </div>
+
+    <div class="sync-status-container">
+        <!-- Add a header div for flexbox layout -->
+        <div class="sync-status-header">
+            <h4>Previous Sync Requests</h4>
+            <button id="couture_refresh_button" class="action-secondary">Refresh</button>
+        </div>
+        <table id="sync_status_table" class="data-grid">
+            <thead>
+                <tr>
+                    <th>Request ID</th>
+                    <th>Status</th>
+                    <th>Message</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="5">Click "Refresh" to see the latest sync status.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <script>
@@ -41,7 +120,11 @@ require(['jquery'], function($){
             type: 'GET',
             showLoader: true,
             success: function(response) {
-                alert(response.message || 'Request sent.');
+                if (response.error) {
+                    alert(response.message);
+                } else {
+                    alert(response.message || 'Request sent.');
+                }
                 refreshStatus();
             },
             error: function(jqXHR) {
@@ -57,9 +140,9 @@ require(['jquery'], function($){
             return;
         }
         $.ajax({
-            url: '<?= $block->escapeUrl($block->getCancelUrl()) ?>', // New URL
+            url: '<?= $block->escapeUrl($block->getCancelUrl()) ?>',
             type: 'POST',
-            data: { id: syncId },
+            data: { id: syncId, form_key: window.FORM_KEY }, // Send form_key for POST requests
             showLoader: true,
             success: function(response) {
                 alert(response.message || 'Cancellation request sent.');
@@ -69,6 +152,18 @@ require(['jquery'], function($){
                 alert('An error occurred while trying to cancel the sync.');
             }
         });
+    }
+
+    // Helper to get the correct CSS class for each status
+    function getStatusClass(status) {
+        switch(status.toLowerCase()) {
+            case 'success': return 'status-success';
+            case 'failed': return 'status-failed';
+            case 'processing': return 'status-processing';
+            case 'queued': return 'status-queued';
+            case 'cancelled': return 'status-cancelled';
+            default: return '';
+        }
     }
 
     // Function to refresh the status table
@@ -83,17 +178,19 @@ require(['jquery'], function($){
                 if (response.history && response.history.length) {
                     response.history.forEach(function(item) {
                         var actionsHtml = '';
-                        // If the status is Queued or Processing, show a cancel button
                         if (item.status === 'Queued' || item.status === 'Processing') {
                             actionsHtml = '<button class="action-secondary cancel-sync-btn" data-id="' + item.entity_id + '">Cancel</button>';
                         }
 
+                        // Use the helper to create a styled status badge
+                        var statusHtml = '<span class="status-badge ' + getStatusClass(item.status) + '">' + item.status + '</span>';
+
                         var row = '<tr>' +
                             '<td>' + item.request_id + '</td>' +
-                            '<td>' + item.status + '</td>' +
+                            '<td>' + statusHtml + '</td>' +
                             '<td>' + (item.message || '') + '</td>' +
                             '<td>' + item.created_at + '</td>' +
-                            '<td>' + actionsHtml + '</td>' + // Add actions cell
+                            '<td>' + actionsHtml + '</td>' +
                             '</tr>';
                         tableBody.append(row);
                     });

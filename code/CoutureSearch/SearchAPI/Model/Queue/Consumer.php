@@ -50,6 +50,25 @@ class Consumer
         $this->json = $json;
     }
 
+
+    /**
+    * Finds and cancels all other jobs that are still in the 'Queued' state.
+    * @param int $currentJobId The ID of the job that is about to start.
+    */
+    private function cancelOutdatedJobs(int $currentJobId)
+    {
+        $collection = $this->syncHistoryFactory->create()->getCollection();
+        $collection->addFieldToFilter('status', ['eq' => 'Queued']);
+        $collection->addFieldToFilter('entity_id', ['neq' => $currentJobId]); // Exclude the current job
+
+        foreach ($collection as $outdatedJob) {
+            $outdatedJob->setStatus('Cancelled');
+            $outdatedJob->setMessage('Cancelled because a newer sync request was started.');
+            $this->syncHistoryResource->save($outdatedJob);
+            $this->logger->info('Cancelled outdated sync request ID: ' . $outdatedJob->getId());
+        }
+    }
+
     public function process($syncHistoryId)
     {
         $this->logger->info('--- Starting catalogue sync for history ID: ' . $syncHistoryId);
@@ -59,6 +78,13 @@ class Consumer
         if (!$syncHistory->getId()) {
             $this->logger->error('Sync history record not found for ID: ' . $syncHistoryId);
             return;
+        }
+
+        // --- FIX #1: IMMEDIATE CANCELLATION CHECK ---
+        // Check the status right away. If it's already cancelled, stop immediately.
+        if ($syncHistory->getStatus() === 'Cancelled') {
+            $this->logger->info('Sync for history ID ' . $syncHistoryId . ' was already cancelled. Discarding job.');
+            return; // Stop processing
         }
 
         try {
