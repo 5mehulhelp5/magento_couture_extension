@@ -60,15 +60,10 @@
             </group>
         </section> 
 
-        <!-- sync catalogue! -->
-        <tab id="couture_sync" translate="label" sortOrder="110">
-            <label>Catalogue Sync</label>
-        </tab>
-
         <section id="couture_catalogue_sync" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
             <class>separator-top</class>
-            <label>Manual Sync</label>
-            <tab>couture_sync</tab>
+            <label>Catalogue Sync</label>
+            <tab>couturesearch</tab>
             <resource>CoutureSearch_SearchAPI::config</resource>
             
             <!-- This group will contain our custom button and table -->

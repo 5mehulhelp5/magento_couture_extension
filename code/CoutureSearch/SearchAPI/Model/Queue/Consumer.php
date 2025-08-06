@@ -13,8 +13,8 @@ use Magento\Framework\Serialize\Serializer\Json;
 class Consumer
 {
 
-    const BATCH_SIZE = 10;
-    const TOTAL_LIMIT = 10000;
+    const BATCH_SIZE = 100;
+    const TOTAL_LIMIT = 100000000;
     const API_ENDPOINT = 'http://host.docker.internal:8000/api/catalogue-sync'; // Use docker internal host
 
     /** @var LoggerInterface */
@@ -72,10 +72,16 @@ class Consumer
                 ->setVisibility($this->productVisibility->getVisibleInSiteIds())
                 ->setPageSize(self::BATCH_SIZE);
 
-            $collection->getSelect()->limit(self::TOTAL_LIMIT);
-            $totalPages = ceil(self::TOTAL_LIMIT / self::BATCH_SIZE);
+            // 2. Get the actual size of the collection
+            $totalProductsInStore = $collection->getSize();
 
-            $this->logger->info('Total products to sync: ' . self::TOTAL_LIMIT . ' in ' . $totalPages . ' batches.');
+            // 3. Determine the real number of products to sync
+            $productsToSync = min($totalProductsInStore, self::TOTAL_LIMIT);
+
+            // 4. Calculate the correct number of pages based on the real count
+            $totalPages = ceil($productsToSync / self::BATCH_SIZE);
+            
+            $this->logger->info('Total products to sync: ' . $productsToSync . ' in ' . $totalPages . ' batches.');
 
             for ($currentPage = 1; $currentPage <= $totalPages; $currentPage++) {
                 // --- CORRECTED CANCELLATION CHECK ---
