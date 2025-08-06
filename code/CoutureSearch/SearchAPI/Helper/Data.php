@@ -18,6 +18,9 @@ class Data extends AbstractHelper
     const XML_PATH_ENABLE_RECOMMENDED  = 'couturesearch_recommendations_options/banners_configuration_options/recommended_products';
     const XML_PATH_ENABLE_NEW_PRODUCTS = 'couturesearch_recommendations_options/banners_configuration_options/new_products';
 
+    // catalogue sync constraints
+    const XML_PATH_SYNC_ENDPOINT_URL = 'couture_catalogue_sync/api_settings/sync_endpoint_url';
+
     public function __construct(Context $context)
     {
         parent::__construct($context);
@@ -42,6 +45,27 @@ class Data extends AbstractHelper
     {
         return $this->scopeConfig->getValue(self::XML_PATH_UNIVERSAL_API_KEY, ScopeInterface::SCOPE_STORE);
     }
+
+    // sync configs
+    /**
+     * Gets the Catalogue Sync Endpoint URL from config.
+     * @return string|null
+     */
+    public function getSyncEndpointUrl(): ?string
+    {
+        return $this->scopeConfig->getValue(self::XML_PATH_SYNC_ENDPOINT_URL, ScopeInterface::SCOPE_STORE);
+    }
+
+    /**
+     * Gets the store's Base URL to use as a unique identifier.
+     * @return string
+     */
+    public function getStoreIdentifier(): string
+    {
+        return $this->scopeConfig->getValue('web/unsecure/base_url', ScopeInterface::SCOPE_STORE);
+    }
+
+
 
     // admin config -- to see if the flag (banner option) is enabled or not
     public function isSetFlag(string $xmlPath): bool

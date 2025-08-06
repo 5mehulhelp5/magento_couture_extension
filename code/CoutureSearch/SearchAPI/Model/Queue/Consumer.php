@@ -9,13 +9,13 @@ use Magento\Catalog\Model\Product\Attribute\Source\Status as ProductStatus;
 use Magento\Catalog\Model\Product\Visibility as ProductVisibility;
 use Magento\Framework\HTTP\Client\Curl;
 use Magento\Framework\Serialize\Serializer\Json;
+use CoutureSearch\SearchAPI\Helper\Data as CoutureHelper; 
 
 class Consumer
 {
 
     const BATCH_SIZE = 100;
     const TOTAL_LIMIT = 100000000;
-    const API_ENDPOINT = 'http://host.docker.internal:8000/api/catalogue-sync'; // Use docker internal host
 
     /** @var LoggerInterface */
     protected $logger;
@@ -31,6 +31,7 @@ class Consumer
     protected $curl;
     /** @var Json */
     protected $json;
+    protected $coutureHelper; 
 
     public function __construct(
         LoggerInterface $logger,
@@ -39,7 +40,8 @@ class Consumer
         ProductCollectionFactory $productCollectionFactory,
         ProductVisibility $productVisibility,
         Curl $curl,
-        Json $json
+        Json $json,
+        CoutureHelper $coutureHelper
     ) {
         $this->logger = $logger;
         $this->syncHistoryFactory = $syncHistoryFactory;
@@ -48,6 +50,7 @@ class Consumer
         $this->productVisibility = $productVisibility;
         $this->curl = $curl;
         $this->json = $json;
+        $this->coutureHelper = $coutureHelper;
     }
 
 
@@ -88,6 +91,9 @@ class Consumer
         }
 
         try {
+            // Cancel any older "Queued" jobs
+            $this->cancelOutdatedJobs($syncHistoryId);
+
             $syncHistory->setStatus('Processing');
             $syncHistory->setMessage('Sync started. Preparing to export products.');
             $this->syncHistoryResource->save($syncHistory);
@@ -109,6 +115,8 @@ class Consumer
             
             $this->logger->info('Total products to sync: ' . $productsToSync . ' in ' . $totalPages . ' batches.');
 
+            $syncSucceeded = true; // Flag to track overall success
+            
             for ($currentPage = 1; $currentPage <= $totalPages; $currentPage++) {
                 // --- CORRECTED CANCELLATION CHECK ---
                 // Create a fresh model instance to guarantee a clean read from the database.
@@ -121,6 +129,7 @@ class Consumer
                     $this->logger->info('Sync for history ID ' . $syncHistoryId . ' was cancelled by user. Stopping process.');
                     // Update the original model's status as well so the final check works
                     $syncHistory->setStatus('Cancelled');
+                    $syncSucceeded = false; // Mark as not successful
                     break; // Exit the loop
                 }
                 // --- END CANCELLATION CHECK ---
@@ -138,12 +147,19 @@ class Consumer
                     continue;
                 }
 
-                $this->sendBatchToApi(['payload' => $payload, 'page' => $currentPage]);
+                if (!$this->sendBatchToApi(['payload' => $payload, 'page' => $currentPage])) {
+                    $syncSucceeded = false; // Mark as failed
+                    $syncHistory->setStatus('Failed');
+                    $syncHistory->setMessage('API request failed on batch ' . $currentPage . '. Check logs for details.');
+                    $this->syncHistoryResource->save($syncHistory);
+                    break; // Stop processing further batches
+                }
+
                 $collection->clear();
             }
 
             // Final status update: only set to Success if it wasn't cancelled
-            if ($syncHistory->getStatus() !== 'Cancelled') {
+            if ($syncSucceeded && $syncHistory->getStatus() !== 'Cancelled') {
                 $syncHistory->setStatus('Success');
                 $syncHistory->setMessage('Catalogue sync completed successfully.');
                 $this->syncHistoryResource->save($syncHistory);
@@ -153,16 +169,46 @@ class Consumer
         } catch (\Exception $e) {
             $this->logger->error('Error during catalogue sync: ' . $e->getMessage());
             $this->syncHistoryResource->load($syncHistory, $syncHistoryId);
-            $syncHistory->setStatus('Failed');
-            $syncHistory->setMessage('Error: ' . $e->getMessage());
-            $this->syncHistoryResource->save($syncHistory);
+            // Only update if it wasn't cancelled
+            if ($syncHistory->getStatus() !== 'Cancelled') {
+                $syncHistory->setStatus('Failed');
+                $syncHistory->setMessage('Error: ' . $e->getMessage());
+                $this->syncHistoryResource->save($syncHistory);
+            }
         }
     }
 
-    private function sendBatchToApi(array $payload)
+    private function sendBatchToApi(array $payload): bool
     {
-        $this->curl->addHeader("Content-Type", "application/json");
-        $this->curl->post(self::API_ENDPOINT, $this->json->serialize($payload));
-        $this->logger->info('API Response: ' . $this->curl->getBody());
+        try {
+            $apiUrl = $this->coutureHelper->getSyncEndpointUrl();
+            if (empty($apiUrl)) {
+                throw new LocalizedException(__('Sync API Endpoint URL is not configured.'));
+            }
+
+            $apiKey = $this->coutureHelper->getUniversalApiKey();
+            $storeIdentifier = $this->coutureHelper->getStoreIdentifier();
+
+            $this->curl->addHeader("Content-Type", "application/json");
+            $this->curl->addHeader("X-Api-Key", $apiKey ?? '');
+            $this->curl->addHeader("X-Store-Identifier", $storeIdentifier);
+
+            $this->curl->post($apiUrl, $this->json->serialize($payload));
+
+            $statusCode = $this->curl->getStatus();
+            if ($statusCode >= 300) {
+                $responseBody = $this->curl->getBody();
+                $this->logger->error('API Error: Received HTTP status ' . $statusCode);
+                $this->logger->error('API Response Body: ' . $responseBody);
+                return false; // Indicate failure
+            }
+
+            $this->logger->info('API Response: ' . $this->curl->getBody());
+            return true; // Indicate success
+
+        } catch (\Exception $e) {
+            $this->logger->error('Exception in sendBatchToApi: ' . $e->getMessage());
+            return false; // Indicate failure
+        }
     }
 }

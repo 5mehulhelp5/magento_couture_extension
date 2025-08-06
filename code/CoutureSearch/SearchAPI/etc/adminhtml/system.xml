@@ -66,6 +66,14 @@
             <tab>couturesearch</tab>
             <resource>CoutureSearch_SearchAPI::config</resource>
             
+             <group id="api_settings" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>API Configuration</label>
+                <field id="sync_endpoint_url" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Sync Endpoint URL</label>
+                    <comment>The full URL for the catalogue sync API endpoint.</comment>
+                </field>
+            </group>
+
             <!-- This group will contain our custom button and table -->
             <group id="manual_sync" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>Sync Controls</label>
