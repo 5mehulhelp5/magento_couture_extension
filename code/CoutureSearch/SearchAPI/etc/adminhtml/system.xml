@@ -88,5 +88,28 @@
             </group>
         </section>
 
+        <tab id="couture_banner_management" translate="label" sortOrder="120">
+            <label>Banner Management</label>
+        </tab>
+
+        <!-- dynamic banners section -->
+        <section id="couture_dynamic_banners" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Homepage Banners</label>
+            <tab>couture_banner_management</tab>
+            <resource>CoutureSearch_SearchAPI::config</resource>
+            
+            <!-- 3. This group will render our entire custom UI -->
+            <group id="settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Banner Visibility</label>
+                <!-- 4. Use a custom block to render the dynamic fields -->
+                <field id="banner_visibility" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Banners</label>
+                    <frontend_model>CoutureSearch\SearchAPI\Block\Adminhtml\System\Config\Banners</frontend_model>
+                    <backend_model>CoutureSearch\SearchAPI\Model\Config\Backend\Banners</backend_model>
+                </field>
+            </group>
+        </section>
+
     </system>
 </config>

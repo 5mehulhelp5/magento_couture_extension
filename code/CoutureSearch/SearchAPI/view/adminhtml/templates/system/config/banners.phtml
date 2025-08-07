@@ -1,0 +1,70 @@
+<?php
+/**
+ * @var \CoutureSearch\SearchAPI\Block\Adminhtml\System\Config\Banners $block
+ */
+?>
+<style>
+    .banner-config-container { padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+    .banner-config-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .banner-config-table { width: 100%; }
+    .banner-config-table td { padding: 8px 0; }
+</style>
+
+<div class="banner-config-container">
+    <div class="banner-config-header">
+        <div>
+            <h4>Available Banners</h4>
+            <p class="note">Fetch the latest available banners from the central configuration.</p>
+        </div>
+        <button id="couture_banner_sync_button" class="action-secondary">Sync Config</button>
+    </div>
+
+    <table class="banner-config-table">
+        <tbody>
+            <?php foreach ($block->getAvailableBanners() as $banner): ?>
+                <tr>
+                    <td>
+                        <label for="banner_<?= $escaper->escapeHtmlAttr($banner->getBannerCode()) ?>">
+                            <?= $escaper->escapeHtml($banner->getBannerName()) ?>
+                        </label>
+                    </td>
+                    <td>
+                        <?php
+                            // The name must match the key our backend model expects
+                            $fieldName = 'groups[settings][fields][banner_visibility][value][' . $banner->getBannerCode() . '_enabled]';
+                            $fieldId = 'banner_' . $banner->getBannerCode();
+                            $isEnabled = $block->getBannerValue($banner->getBannerCode());
+                        ?>
+                        <select id="<?= $escaper->escapeHtmlAttr($fieldId) ?>" name="<?= $escaper->escapeHtmlAttr($fieldName) ?>">
+                            <option value="1" <?= $isEnabled ? 'selected' : '' ?>>Yes</option>
+                            <option value="0" <?= !$isEnabled ? 'selected' : '' ?>>No</option>
+                        </select>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+
+<script>
+require(['jquery'], function($){
+    $('#couture_banner_sync_button').on('click', function() {
+        if (!confirm('This will fetch the latest banner configuration. Are you sure?')) {
+            return;
+        }
+        $.ajax({
+            url: '<?= $block->escapeUrl($block->getSyncConfigUrl()) ?>',
+            type: 'POST',
+            data: { form_key: window.FORM_KEY },
+            showLoader: true,
+            success: function(response) {
+                alert(response.message || 'Sync complete. Please refresh the page to see new banners.');
+                window.location.reload();
+            },
+            error: function() {
+                alert('An error occurred during sync.');
+            }
+        });
+    });
+});
+</script>
