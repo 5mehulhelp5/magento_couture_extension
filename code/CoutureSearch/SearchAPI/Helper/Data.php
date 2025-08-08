@@ -8,6 +8,7 @@ use Magento\Store\Model\ScopeInterface;
 class Data extends AbstractHelper
 {
     // API required fields
+    const XML_PATH_SIMILAR_PRODUCTS_API = 'couturesearch_api/endpoints/similar_products_api_url';
     const XML_PATH_SEARCH_API_URL       = 'couturesearch_api/endpoints/search_api_url';
     const XML_PATH_UNIVERSAL_API_KEY    = 'couturesearch_api/api_keys/api_key';
 
@@ -27,6 +28,11 @@ class Data extends AbstractHelper
     public function getSearchApiUrl(): ?string
     {
         return $this->scopeConfig->getValue(self::XML_PATH_SEARCH_API_URL, ScopeInterface::SCOPE_STORE);
+    }
+
+    public function  getSimilarProductsApiUrl(): ?string
+    {
+        return $this->scopeConfig->getValue(self::XML_PATH_SIMILAR_PRODUCTS_API, ScopeInterface::SCOPE_STORE);
     }
 
     public function getUniversalApiKey(): ?string
@@ -55,6 +61,7 @@ class Data extends AbstractHelper
         return $this->scopeConfig->getValue('web/unsecure/base_url', ScopeInterface::SCOPE_STORE);
     }
 
+
     // admin config -- to see if the flag (banner option) is enabled or not
     public function isSetFlag(string $xmlPath): bool
     {
@@ -65,6 +72,7 @@ class Data extends AbstractHelper
 
         // Log both the path and the raw value found
         $logger->info('--- Config Debug ---');
+        $logger->info('Path: ' . $xmlPath);
         $logger->info('Raw Value Found: ' . json_encode($rawValue)); // Use json_encode to see nulls
 
         $isSet = $this->scopeConfig->isSetFlag($xmlPath, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
