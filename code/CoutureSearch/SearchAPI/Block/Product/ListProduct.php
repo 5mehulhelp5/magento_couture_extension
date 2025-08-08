@@ -46,7 +46,7 @@ class ListProduct extends MagentoListProduct
         if ($this->_productCollection === null) {
             // This will fetch the collection prepared by the Layer and our LayerPlugin
             $this->_productCollection = parent::_getProductCollection();
-            $this->logger->info('CoutureSearch_SearchAPI: TopResults ListProduct block initialized collection from layer.');
+            // $this->logger->info('CoutureSearch_SearchAPI: TopResults ListProduct block initialized collection from layer.');
         }
         return $this->_productCollection;
     }
@@ -61,7 +61,7 @@ class ListProduct extends MagentoListProduct
     public function setProductCollection(Collection $collection)
     {
         $this->_productCollection = $collection;
-        $this->logger->info('CoutureSearch_SearchAPI: TopResults ListProduct: Collection was set directly.');
+        $this->logger->info('CoutureSearch_SearchAPI: ListProduct: Collection was set directly.');
         return $this;
     }
 }

@@ -1,10 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="standard">
-        <!-- 
-        Use a single frontName for all controllers in this module.
-        This makes the URLs consistent and easier to manage.
-        -->
         <route id="couturesearch" frontName="couture">
             <module name="CoutureSearch_SearchAPI" />
         </route>

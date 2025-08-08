@@ -8,32 +8,20 @@ use Magento\Store\Model\ScopeInterface;
 class Data extends AbstractHelper
 {
     // API required fields
-    const XML_PATH_TOP_RESULTS_API      = 'couturesearch_api/endpoints/top_results_api_url';
-    const XML_PATH_SIMILAR_PRODUCTS_API = 'couturesearch_api/endpoints/similar_products_api_url';
     const XML_PATH_SEARCH_API_URL       = 'couturesearch_api/endpoints/search_api_url';
     const XML_PATH_UNIVERSAL_API_KEY    = 'couturesearch_api/api_keys/api_key';
 
-    // configuration files for banners
-    const XML_PATH_ENABLE_TOP_TRENDING = 'couturesearch_recommendations_options/banners_configuration_options/top_trending_products';
-    const XML_PATH_ENABLE_RECOMMENDED  = 'couturesearch_recommendations_options/banners_configuration_options/recommended_products';
-    const XML_PATH_ENABLE_NEW_PRODUCTS = 'couturesearch_recommendations_options/banners_configuration_options/new_products';
-
+    // configuration files for banners -- now became API
+    const XML_PATH_RECO_CONFIG_URL = 'couture_dynamic_banners/api_settings/reco_config_endpoint_url';
+    
     // catalogue sync constraints
     const XML_PATH_SYNC_ENDPOINT_URL = 'couture_catalogue_sync/api_settings/sync_endpoint_url';
+
+
 
     public function __construct(Context $context)
     {
         parent::__construct($context);
-    }
-
-    public function getTopResultsApiUrl(): ?string
-    {
-        return $this->scopeConfig->getValue(self::XML_PATH_TOP_RESULTS_API, ScopeInterface::SCOPE_STORE);
-    }
-
-    public function getSimilarProductsApiUrl(): ?string
-    {
-        return $this->scopeConfig->getValue(self::XML_PATH_SIMILAR_PRODUCTS_API, ScopeInterface::SCOPE_STORE);
     }
 
     public function getSearchApiUrl(): ?string
@@ -47,13 +35,15 @@ class Data extends AbstractHelper
     }
 
     // sync configs
-    /**
-     * Gets the Catalogue Sync Endpoint URL from config.
-     * @return string|null
-     */
     public function getSyncEndpointUrl(): ?string
     {
         return $this->scopeConfig->getValue(self::XML_PATH_SYNC_ENDPOINT_URL, ScopeInterface::SCOPE_STORE);
+    }
+
+    // to get the recommendation options
+    public function getRecoConfigEndpointUrl(): string
+    {
+        return $this->scopeConfig->getValue(self::XML_PATH_RECO_CONFIG_URL, ScopeInterface::SCOPE_STORE);
     }
 
     /**
@@ -65,8 +55,6 @@ class Data extends AbstractHelper
         return $this->scopeConfig->getValue('web/unsecure/base_url', ScopeInterface::SCOPE_STORE);
     }
 
-
-
     // admin config -- to see if the flag (banner option) is enabled or not
     public function isSetFlag(string $xmlPath): bool
     {
@@ -77,7 +65,6 @@ class Data extends AbstractHelper
 
         // Log both the path and the raw value found
         $logger->info('--- Config Debug ---');
-        $logger->info('Path: ' . $xmlPath);
         $logger->info('Raw Value Found: ' . json_encode($rawValue)); // Use json_encode to see nulls
 
         $isSet = $this->scopeConfig->isSetFlag($xmlPath, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);

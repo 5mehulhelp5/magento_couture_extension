@@ -44,7 +44,7 @@ class Banners extends Field
     public function getAvailableBanners()
     {
         $collection = $this->collectionFactory->create()->setOrder('banner_name', 'ASC');
-        $this->logger->info('--- Banners UI Block: Found ' . $collection->getSize() . ' banners in the DB to render. ---');
+        // $this->logger->info('--- Banners UI Block: Found ' . $collection->getSize() . ' banners in the DB to render. ---');
         return $collection;
     }
 
@@ -60,10 +60,10 @@ class Banners extends Field
         $values = $this->getElement()->getValue();
         $key = $bannerCode . '_enabled';
         
-        $this->logger->info("--- Banners UI Block: Getting value for {$key} ---");
+        // $this->logger->info("--- Banners UI Block: Getting value for {$key} ---");
         
         if (isset($values[$key])) {
-            $this->logger->info("Value found in loaded data: '{$values[$key]}'");
+            // $this->logger->info("Value found in loaded data: '{$values[$key]}'");
             return (bool)$values[$key];
         }
 

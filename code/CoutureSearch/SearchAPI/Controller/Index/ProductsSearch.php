@@ -49,6 +49,12 @@ class ProductsSearch extends AbstractResults
      */
     protected function getPageTitle(): \Magento\Framework\Phrase
     {
-        return __('Search V2 Results by Couture');
+       // Get the search query from the URL to use in the title
+        $query = $this->getRequest()->getParam('q');
+        if ($query) {
+            return __('Search results for: ' . $query);
+            // return __('Search results for: \'%1\'', $this->escapeHtml($query));
+        }
+        return __('Search Results');
     }
 }

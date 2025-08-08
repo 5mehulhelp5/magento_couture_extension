@@ -94,7 +94,6 @@ class SimilarProducts extends ListProduct
 
             try {
                 if($baseUrl){
-                    // Note: Changed localhost to host.docker.internal for Docker compatibility
                     $apiUrl = $baseUrl . '?product_id=' . $currentProductId;
                     $this->_logger->info('Calling Similar Products API: ' . $apiUrl);
                     

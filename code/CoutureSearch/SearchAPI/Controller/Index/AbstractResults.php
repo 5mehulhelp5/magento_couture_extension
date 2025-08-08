@@ -10,6 +10,7 @@ use Magento\Framework\HTTP\Client\Curl;
 use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Catalog\Model\Layer\Resolver;
 use CoutureSearch\SearchAPI\Helper\Data as CoutureHelper;
+use Magento\Framework\App\RequestInterface;
 
 /**
  * Abstract controller for displaying products from an API endpoint.
@@ -50,7 +51,7 @@ abstract class AbstractResults extends Action
      * @var CoutureHelper
      */
     protected $coutureHelper;
-
+    protected $request;
     /**
      * Gets the specific API URL for the page.
      * Must be implemented by the child class.
@@ -85,7 +86,8 @@ abstract class AbstractResults extends Action
         Curl $curlClient,
         Json $jsonSerializer,
         Resolver $layerResolver,
-        CoutureHelper $coutureHelper
+        CoutureHelper $coutureHelper,
+        RequestInterface $request = null
     ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
@@ -95,6 +97,7 @@ abstract class AbstractResults extends Action
         $this->jsonSerializer = $jsonSerializer;
         $this->layerResolver = $layerResolver;
         $this->coutureHelper = $coutureHelper;
+        $this->request = $request ?: $context->getRequest();
     }
 
     /**
@@ -116,14 +119,24 @@ abstract class AbstractResults extends Action
                 $this->logger->warning('CoutureSearch_SearchAPI: [AbstractResults] API URL is empty. Cannot fetch products.');
             } else {
                 try {
+
+                    // 1. Check for a search query in the URL
+                    $searchQuery = $this->request->getParam('q');
+                    if ($searchQuery) {
+                        // Append the query to the API endpoint
+                        $apiUrl .= '?query=' . urlencode($searchQuery);
+                    }
+
                     // 1. Get the universal API key from the helper.
                     $apiKey = $this->coutureHelper->getUniversalApiKey();
+                    $storeIdentifier = $this->coutureHelper->getStoreIdentifier();
 
                     // 2. If the key exists, add it as a header.
                     //    Replace 'X-Api-Key' with the actual header name your API expects.
                     if (!empty($apiKey)) {
                         $this->logger->info('Found API Key: ' . $apiKey);
                         $this->curlClient->addHeader('X-Api-Key', $apiKey);
+                        $this->curlClient->addHeader('X-Store-Identifier', $storeIdentifier);
                     }
 
                     // 3. Make the GET request.

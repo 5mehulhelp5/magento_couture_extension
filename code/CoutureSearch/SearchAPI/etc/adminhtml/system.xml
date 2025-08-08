@@ -1,115 +1,84 @@
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
-    <system>
-        <tab id="couturesearch" translate="label" sortOrder="100">
-            <label>Couture Search</label>
-        </tab>
-        <section id="couturesearch_api" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-            <class>separator-top</class>
-            <label>API Endpoints</label>
-            <tab>couturesearch</tab>
-            <resource>CoutureSearch_SearchAPI::config</resource>
-            <group id="endpoints" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Endpoint URLs</label>
-                <field id="top_results_api_url" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Top Results API URL</label>
-                    <comment>Variable: COUTURE_TOP_RESULTS_API</comment>
-                </field>
-                <field id="similar_products_api_url" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Similar Products API URL</label>
-                    <comment>Base URL, e.g., http://api.service/get-similar-product-ids. The ?product_id=X part will be added automatically. Variable: COUTURE_SIMILAR_PRODUCTS_API</comment>
-                </field>
-                <field id="search_api_url" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Search API URL</label>
-                    <comment>Variable: COUTURE_SEARCH_API_URL</comment>
-                </field>
-            </group>
-            <group id="api_keys" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>API Keys</label>
-                <field id="api_key" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>API KEY</label>
-                    <comment>Universal API Key required for all the requests</comment>
-                </field>
-            </group>
-        </section>
+<config
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<tab id="couturesearch" translate="label" sortOrder="100">
+			<label>Couture Search</label>
+		</tab>
 
-        <section  id="couturesearch_recommendations_options" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1"> 
-            <class>separator-top</class>
-            <label>Recommendations Config</label>
-            <tab>couturesearch</tab>
-            <resource>CoutureSearch_SearchAPI::config</resource>
 
-            <group id="banners_configuration_options" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Banner View Options</label>
-                
-                <field id="top_trending_products" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Top Trending Products</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Set to "Yes" for showing "Trending products" banner on the homepage</comment>
+		<section id="couturesearch_api" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+			<class>separator-top</class>
+			<label>API Endpoints</label>
+			<tab>couturesearch</tab>
+			<resource>CoutureSearch_SearchAPI::config</resource>
+			<group id="endpoints" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Endpoint URLs</label>
+				<field id="top_results_api_url" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Top Results API URL</label>
+					<comment>Variable: COUTURE_TOP_RESULTS_API</comment>
+				</field>
+				<field id="similar_products_api_url" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Similar Products API URL</label>
+					<comment>Base URL, e.g., http://api.service/get-similar-product-ids. The ?product_id=X part will be added automatically. Variable: COUTURE_SIMILAR_PRODUCTS_API</comment>
+				</field>
+				<field id="search_api_url" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Search API URL</label>
+					<comment>Variable: COUTURE_SEARCH_API_URL</comment>
+				</field>
+			</group>
+			<group id="api_keys" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>API Keys</label>
+				<field id="api_key" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>API KEY</label>
+					<comment>Universal API Key required for all the requests</comment>
+				</field>
+			</group>
+		</section>
+
+
+		<section id="couture_catalogue_sync" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+			<class>separator-top</class>
+			<label>Catalogue Sync</label>
+			<tab>couturesearch</tab>
+			<resource>CoutureSearch_SearchAPI::config</resource>
+			<group id="api_settings" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+				<label>API Configuration</label>
+				<field id="sync_endpoint_url" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+					<label>Sync Endpoint URL</label>
+					<comment>The full URL for the catalogue sync API endpoint.</comment>
+				</field>
+			</group>
+			<group id="manual_sync" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+				<label>Sync Controls</label>
+				<field id="sync_button" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+					<label>Actions</label>
+					<frontend_model>CoutureSearch\SearchAPI\Block\Adminhtml\System\Config\Sync</frontend_model>
+				</field>
+			</group>
+		</section>
+
+
+		<section id="couture_dynamic_banners" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+			<class>separator-top</class>
+			<label>Recommendations Banners</label>
+			<tab>couturesearch</tab>
+			<resource>CoutureSearch_SearchAPI::config</resource>
+			<group id="settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Banner Visibility</label>
+				<field id="banner_visibility" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<label>Enable Banners</label>
+					<frontend_model>CoutureSearch\SearchAPI\Block\Adminhtml\System\Config\Banners</frontend_model>
+					<backend_model>CoutureSearch\SearchAPI\Model\Config\Backend\Banners</backend_model>
+				</field>
+			</group>
+			<group id="api_settings" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>API Configuration</label>
+                <field id="reco_config_endpoint_url" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Recommendations Config Endpoint URL</label>
+                    <comment>The API endpoint to fetch the list of available banners.</comment>
                 </field>
-                <field id="recommended_products" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Recommended Products</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Set to "Yes" to see a "Recommended Products" banner on the homepage</comment>
-                </field>
-                <!-- <field id="new_products" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>New Products</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <comment>Set to "Yes" to see a "Recommended Products" banner on the homepage</comment>
-                </field> -->
-            </group>
-        </section> 
-
-        <section id="couture_catalogue_sync" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
-            <class>separator-top</class>
-            <label>Catalogue Sync</label>
-            <tab>couturesearch</tab>
-            <resource>CoutureSearch_SearchAPI::config</resource>
-            
-             <group id="api_settings" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
-                <label>API Configuration</label>
-                <field id="sync_endpoint_url" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Sync Endpoint URL</label>
-                    <comment>The full URL for the catalogue sync API endpoint.</comment>
-                </field>
-            </group>
-
-            <!-- This group will contain our custom button and table -->
-            <group id="manual_sync" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
-                <label>Sync Controls</label>
-                <!-- 
-                This is the key part. We use a custom block (frontend_model)
-                to render our complex UI instead of a simple form field.
-                -->
-                <field id="sync_button" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Actions</label>
-                    <frontend_model>CoutureSearch\SearchAPI\Block\Adminhtml\System\Config\Sync</frontend_model>
-                </field>
-            </group>
-        </section>
-
-        <tab id="couture_banner_management" translate="label" sortOrder="120">
-            <label>Banner Management</label>
-        </tab>
-
-        <!-- dynamic banners section -->
-        <section id="couture_dynamic_banners" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-            <class>separator-top</class>
-            <label>Homepage Banners</label>
-            <tab>couture_banner_management</tab>
-            <resource>CoutureSearch_SearchAPI::config</resource>
-            
-            <!-- 3. This group will render our entire custom UI -->
-            <group id="settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Banner Visibility</label>
-                <!-- 4. Use a custom block to render the dynamic fields -->
-                <field id="banner_visibility" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Enable Banners</label>
-                    <frontend_model>CoutureSearch\SearchAPI\Block\Adminhtml\System\Config\Banners</frontend_model>
-                    <backend_model>CoutureSearch\SearchAPI\Model\Config\Backend\Banners</backend_model>
-                </field>
-            </group>
-        </section>
-
-    </system>
+			</group>
+		</section>
+	</system>
 </config>

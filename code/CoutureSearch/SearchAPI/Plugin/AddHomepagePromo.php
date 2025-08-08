@@ -32,13 +32,31 @@ class AddHomepagePromo
         }
 
         // Use our new, smart container block
-        $promoBlock = $this->layout->createBlock(
-            \CoutureSearch\SearchAPI\Block\Promo\Banners::class, // <-- Use the new block class
-            'couturesearch.recommendations.container.from.plugin'
-        )->setTemplate('CoutureSearch_SearchAPI::promo/recommendations.phtml');
+        // $promoBlock = $this->layout->createBlock(
+        //     \CoutureSearch\SearchAPI\Block\Promo\Banners::class, // <-- Use the new block class
+        //     'couturesearch.recommendations.container.from.plugin'
+        // )->setTemplate('CoutureSearch_SearchAPI::promo/recommendations.phtml');
         
+        // self::$blockCreated = true;
+
+        // return $result . $promoBlock->toHtml();
+
+
+        
+
+        // Create an instance of our new, smart container block
+        $dynamicBannersBlock = $this->layout->createBlock(
+            \CoutureSearch\SearchAPI\Block\Promo\DynamicBanners::class,
+            'couturesearch.dynamic.banners.from.plugin'
+        )->setTemplate('CoutureSearch_SearchAPI::promo/dynamic_banners.phtml');
+        
+        $dynamicBannersHtml = $dynamicBannersBlock->toHtml();
+        // --- END: DYNAMIC BANNERS INJECTION ---
+
         self::$blockCreated = true;
 
-        return $result . $promoBlock->toHtml();
+        // Append the new dynamic banners HTML to the page content
+        return $result . $dynamicBannersHtml;
+
     }
 }

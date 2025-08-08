@@ -10,13 +10,17 @@ use Magento\Framework\Model\ResourceModel\AbstractResource;
 use Magento\Framework\Data\Collection\AbstractDb;
 use CoutureSearch\SearchAPI\Model\ResourceModel\BannerConfig\CollectionFactory;
 use Psr\Log\LoggerInterface;
+use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\App\RequestInterface;
+use Magento\Backend\Model\Session;
 
 class Banners extends Value
 {
     protected $collectionFactory;
     protected $logger;
+    protected $configWriter;
     protected $request;
+    protected $session;
 
     public function __construct(
         Context $context,
@@ -25,14 +29,19 @@ class Banners extends Value
         TypeListInterface $cacheTypeList,
         CollectionFactory $collectionFactory,
         LoggerInterface $logger,
+        WriterInterface $configWriter,
         RequestInterface $request,
+        Session $session,
         AbstractResource $resource = null,
         AbstractDb $resourceCollection = null,
         array $data = []
     ) {
         $this->collectionFactory = $collectionFactory;
         $this->logger = $logger;
+        $this->configWriter = $configWriter;
         $this->request = $request;
+        $this->session = $session; 
+
         parent::__construct($context, $registry, $config, $cacheTypeList, $resource, $resourceCollection, $data);
     }
 
@@ -75,9 +84,38 @@ class Banners extends Value
     }
 
     /**
-     * The beforeSave method has been removed.
-     * Magento's default save controller will handle saving the values from the
-     * correctly named form fields we created in the banners.phtml template.
-     * This prevents the race condition where our sync was being overwritten.
+     * This is the key fix. This method is called before the config data is saved.
+     * We manually save each of our dynamic fields.
      */
+    public function beforeSave()
+    {
+        if ($this->session->getIsBannerSyncJustCompleted()) {
+            // If it exists, clear it and skip the save process for this one page load.
+            $this->session->unsIsBannerSyncJustCompleted();
+            $this->logger->info('--- Backend Model: Skipping beforeSave due to recent sync completion. ---');
+            return $this;
+        }
+
+        $this->logger->info('--- Backend Model: beforeSave triggered ---');
+        // The field name from the template is 'groups[settings][fields][banner_visibility][value]'
+        $values = $this->getData('groups/settings/fields/banner_visibility/value');
+
+        if (is_array($values)) {
+            foreach ($values as $key => $value) {
+                $configPath = 'couture_dynamic_banners/settings/' . $key;
+                $this->logger->info("Saving config value. Path: {$configPath}, Value: {$value}");
+                
+                // Use the config writer to save each value individually
+                $this->configWriter->save(
+                    $configPath,
+                    $value,
+                    $this->getScope(),
+                    $this->getScopeId()
+                );
+            }
+        }
+        
+        // We don't call the parent::beforeSave() because we are handling the save ourselves.
+        return $this;
+    }
 }
