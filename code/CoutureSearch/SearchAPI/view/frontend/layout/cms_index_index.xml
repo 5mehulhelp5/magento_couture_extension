@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <!-- This single line pulls in all the code from our base file -->
-    <update handle="couturesearch_api_base"/>
+    <head>
+        <!-- This line tells Magento to load our new CSS file on the homepage -->
+        <css src="CoutureSearch_SearchAPI::css/dynamic_banners.css"/>
+    </head>
 </page>

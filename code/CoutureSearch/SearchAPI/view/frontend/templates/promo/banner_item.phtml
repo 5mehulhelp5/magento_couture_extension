@@ -7,6 +7,7 @@ $banner = $block->getData('banner');
 ?>
 
 <?php if ($banner): ?>
+<!-- The text_align_class is now correctly applied here -->
 <div class="promo-banner-wrapper <?= $escaper->escapeHtmlAttr($banner['text_align_class']) ?>" style="background-image: url('<?= $escaper->escapeUrl($banner['image_url']) ?>');">
     <a href="<?= $escaper->escapeUrl($banner['link_url']) ?>" class="promo-banner-link">
         <div class="promo-banner-content">

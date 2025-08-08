@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="couture_sync_history" resource="default" engine="innodb" comment="Couture Sync History">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="varchar" name="request_id" nullable="false" length="255" comment="Unique Request ID"/>
+        <column xsi:type="varchar" name="status" nullable="false" length="50" comment="Sync Status (e.g., Queued, Processing, Success, Failed)"/>
+        <column xsi:type="text" name="message" nullable="true" comment="Status Message or Error Details"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+        <column xsi:type="timestamp" name="finished_at" on_update="false" nullable="true" comment="Completion Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+
+    <!-- Updated table to store the full banner configurations fetched from your API -->
+    <table name="couture_banner_configuration" resource="default" engine="innodb" comment="Couture Banner Configuration">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="varchar" name="banner_code" nullable="false" length="255" comment="Unique Banner Code (e.g., new_products)"/>
+        <column xsi:type="varchar" name="banner_name" nullable="false" length="255" comment="Display Name (e.g., New Products)"/>
+        <column xsi:type="text" name="endpoint" nullable="true" comment="API Endpoint for this banner"/>
+        <column xsi:type="smallint" name="is_enabled_default" unsigned="true" nullable="false" default="0" comment="Default enabled state from API (1=Yes, 0=No)"/>
+        
+        <!-- ADDED: New columns for frontend rendering -->
+        <column xsi:type="text" name="caption" nullable="true" comment="Banner Subtitle/Caption"/>
+        <column xsi:type="text" name="img_link" nullable="true" comment="Banner Background Image URL"/>
+        <column xsi:type="varchar" name="orientation" length="50" nullable="true" comment="Text Orientation (e.g., left, right)"/>
+        
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="COUTURE_BANNER_CONFIGURATION_BANNER_CODE">
+            <column name="banner_code"/>
+        </constraint>
+    </table>
+
+</schema>

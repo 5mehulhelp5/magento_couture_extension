@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/publisher.xsd">
+    <!-- This defines the "topic" our controller will publish messages to -->
+    <publisher topic="couture.catalogue.sync">
+        <!-- CORRECTED: Use the 'amqp' connection to match your env.php -->
+        <connection name="amqp" exchange="magento"/>
+    </publisher>
+</config>

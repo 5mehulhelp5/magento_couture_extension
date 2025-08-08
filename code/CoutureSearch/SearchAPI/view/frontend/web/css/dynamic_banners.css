@@ -1,0 +1,71 @@
+/* --- Dynamic Banner Styling --- */
+
+/* Main wrapper to control width and centering */
+.recommendations-wrapper {
+    max-width: 100%;
+    margin: 40px auto; /* Adds space and centers the block */
+}
+
+/* Styles for the main heading */
+.recommendations-section .content-heading {
+    margin-bottom: 20px;
+}
+.recommendations-section .content-heading .title {
+    font-size: 28px;
+    font-weight: 300;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.recommendations-section .content-heading .info {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* General styles for the promo banners */
+.promo-banner-wrapper {
+    background-size: cover;
+    background-position: center;
+    min-height: 300px;
+    margin-bottom: 20px;
+}
+.promo-banner-wrapper a.promo-banner-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    padding: 20px 5%;
+    text-decoration: none;
+    color: #ffffff;
+    box-sizing: border-box;
+}
+.promo-banner-wrapper .promo-banner-content {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    max-width: 45%;
+    border-radius: 5px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    box-sizing: border-box;
+}
+.promo-banner-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 0 0 10px 0;
+}
+.promo-banner-subtitle {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+/* Alignment specific styles */
+.promo-banner-wrapper.text-align-left a.promo-banner-link {
+    justify-content: flex-start;
+}
+.promo-banner-wrapper.text-align-right a.promo-banner-link {
+    justify-content: flex-end;
+}
+.promo-banner-wrapper.text-align-right .promo-banner-content {
+    text-align: right;
+}
