@@ -33,4 +33,21 @@
         </constraint>
     </table>
 
+    <!-- for the product configuration in the homepage -->
+    <table name="couture_reco_configuration" resource="default" engine="innodb" comment="Couture Product Reco Configuration">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity ID"/>
+        <column xsi:type="varchar" name="reco_code" nullable="false" length="255" comment="Unique Reco Code (e.g., top_finds_for_you)"/>
+        <column xsi:type="varchar" name="reco_name" nullable="false" length="255" comment="Display Name (e.g., Top Finds For You)"/>
+        <column xsi:type="text" name="caption" nullable="true" comment="Carousel Subtitle/Caption"/>
+        <column xsi:type="text" name="endpoint" nullable="true" comment="API Endpoint for this carousel's product IDs"/>
+        <column xsi:type="smallint" name="is_enabled_default" unsigned="true" nullable="false" default="0" comment="Default enabled state from API (1=Yes, 0=No)"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="COUTURE_RECO_CONFIGURATION_RECO_CODE">
+            <column name="reco_code"/>
+        </constraint>
+    </table>
+
+
 </schema>

@@ -1,0 +1,32 @@
+<?php
+/**
+ * @var \CoutureSearch\SearchAPI\Block\Adminhtml\System\Config\SyncBanners $block
+ */
+?>
+<div class="sync-banner-container" style="padding: 10px 0;">
+    <button id="couture_common_sync_button" class="action-secondary">Sync All Configurations</button>
+    <p class="note">Click to fetch the latest Marketing Banners and Product Carousels from the central API.</p>
+</div>
+
+<script>
+require(['jquery'], function($){
+    $('#couture_common_sync_button').on('click', function() {
+        if (!confirm('This will fetch the latest banner and carousel configurations. Are you sure?')) {
+            return;
+        }
+        $.ajax({
+            url: '<?= $block->escapeUrl($block->getSyncConfigUrl()) ?>',
+            type: 'POST',
+            data: { form_key: window.FORM_KEY },
+            showLoader: true,
+            success: function(response) {
+                alert(response.message || 'Sync complete. Please refresh the page.');
+                window.location.reload();
+            },
+            error: function() {
+                alert('An error occurred during sync.');
+            }
+        });
+    });
+});
+</script>

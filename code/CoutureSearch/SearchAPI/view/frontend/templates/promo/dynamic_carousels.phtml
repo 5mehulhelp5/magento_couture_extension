@@ -1,0 +1,33 @@
+<?php
+/**
+ * @var \CoutureSearch\SearchAPI\Block\Promo\DynamicCarousels $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$logger = $objectManager->get(\Psr\Log\LoggerInterface::class);
+// --- DEBUG LOG ---
+$logger->info('--- dynamic_carousels.phtml: Container template has been loaded. ---');
+
+$visibleCarousels = $block->getVisibleCarousels();
+
+// --- DEBUG LOG ---
+$logger->info('Container template received ' . count($visibleCarousels) . ' carousels to render.');
+?>
+
+<?php if (!empty($visibleCarousels)): ?>
+    <?php foreach ($visibleCarousels as $carouselData): ?>
+        <?php
+            // --- DEBUG LOG ---
+            // $block->getLogger()->info('Looping for carousel: ' . $carouselData['title']);
+
+            echo $block->getLayout()->createBlock(\Magento\Framework\View\Element\Template::class)
+                ->setTemplate('CoutureSearch_SearchAPI::promo/product_carousel.phtml')
+                ->setData('renderer', $block)
+                ->setData('title', $carouselData['title'])
+                ->setData('caption', $carouselData['caption'])
+                ->setData('product_collection', $carouselData['product_collection'])
+                ->toHtml();
+        ?>
+    <?php endforeach; ?>
+<?php endif; ?>

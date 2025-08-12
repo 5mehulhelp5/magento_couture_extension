@@ -1,0 +1,45 @@
+<?php
+/**
+ * @var \CoutureSearch\SearchAPI\Block\Adminhtml\System\Config\Recos $block
+ */
+?>
+<style>
+    .reco-config-container { padding: 20px; border: 1px solid #ccc; border-radius: 5px; }
+    .reco-config-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .reco-config-table { width: 100%; }
+    .reco-config-table td { padding: 8px 0; }
+</style>
+
+<div class="reco-config-container">
+    <div class="reco-config-header">
+        <div>
+            <h4>Available Product Carousels</h4>
+            <p class="note">These carousels are available based on the last sync. Enable or disable them for the homepage.</p>
+        </div>
+    </div>
+
+    <table class="reco-config-table">
+        <tbody>
+            <?php foreach ($block->getAvailableRecos() as $reco): ?>
+                <tr>
+                    <td>
+                        <label for="reco_<?= $escaper->escapeHtmlAttr($reco->getRecoCode()) ?>">
+                            <?= $escaper->escapeHtml($reco->getRecoName()) ?>
+                        </label>
+                    </td>
+                    <td>
+                        <?php
+                            $fieldName = 'groups[settings][fields][reco_visibility][value][' . $reco->getRecoCode() . '_enabled]';
+                            $fieldId = 'reco_' . $reco->getRecoCode();
+                            $isEnabled = $block->getRecoValue($reco->getRecoCode());
+                        ?>
+                        <select id="<?= $escaper->escapeHtmlAttr($fieldId) ?>" name="<?= $escaper->escapeHtmlAttr($fieldName) ?>">
+                            <option value="1" <?= $isEnabled ? 'selected' : '' ?>>Yes</option>
+                            <option value="0" <?= !$isEnabled ? 'selected' : '' ?>>No</option>
+                        </select>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

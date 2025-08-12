@@ -1,0 +1,1915 @@
+<body data-container="body" id="html-body" class="cms-home cms-index-index page-layout-1column" aria-busy="false">
+        
+
+
+<div class="cookie-status-message" id="cookie-status" style="display: none;">
+    The store will not work correctly when cookies are disabled.</div>
+<script type="text/javascript">document.querySelector("#cookie-status").style.display = "none";</script>
+
+
+
+    <noscript>
+        <div class="message global noscript">
+            <div class="content">
+                <p>
+                    <strong>JavaScript seems to be disabled in your browser.</strong>
+                    <span>
+                        For the best experience on our site, be sure to turn on Javascript in your browser.                    </span>
+                </p>
+            </div>
+        </div>
+    </noscript>
+
+<script>
+    window.cookiesConfig = window.cookiesConfig || {};
+    window.cookiesConfig.secure = true;
+</script><script>    require.config({
+        map: {
+            '*': {
+                wysiwygAdapter: 'mage/adminhtml/wysiwyg/tiny_mce/tinymceAdapter'
+            }
+        }
+    });</script><script>    require.config({
+        paths: {
+            googleMaps: 'https\u003A\u002F\u002Fmaps.googleapis.com\u002Fmaps\u002Fapi\u002Fjs\u003Fv\u003D3.56\u0026key\u003D'
+        },
+        config: {
+            'Magento_PageBuilder/js/utils/map': {
+                style: '',
+            },
+            'Magento_PageBuilder/js/content-type/map/preview': {
+                apiKey: '',
+                apiKeyErrorMessage: 'You\u0020must\u0020provide\u0020a\u0020valid\u0020\u003Ca\u0020href\u003D\u0027https\u003A\u002F\u002Fmagento.test\u002Fadminhtml\u002Fsystem_config\u002Fedit\u002Fsection\u002Fcms\u002F\u0023cms_pagebuilder\u0027\u0020target\u003D\u0027_blank\u0027\u003EGoogle\u0020Maps\u0020API\u0020key\u003C\u002Fa\u003E\u0020to\u0020use\u0020a\u0020map.'
+            },
+            'Magento_PageBuilder/js/form/element/map': {
+                apiKey: '',
+                apiKeyErrorMessage: 'You\u0020must\u0020provide\u0020a\u0020valid\u0020\u003Ca\u0020href\u003D\u0027https\u003A\u002F\u002Fmagento.test\u002Fadminhtml\u002Fsystem_config\u002Fedit\u002Fsection\u002Fcms\u002F\u0023cms_pagebuilder\u0027\u0020target\u003D\u0027_blank\u0027\u003EGoogle\u0020Maps\u0020API\u0020key\u003C\u002Fa\u003E\u0020to\u0020use\u0020a\u0020map.'
+            },
+        }
+    });</script><script>
+    require.config({
+        shim: {
+            'Magento_PageBuilder/js/utils/map': {
+                deps: ['googleMaps']
+            }
+        }
+    });</script><div class="page-wrapper"><header class="page-header"><div class="panel wrapper"><div class="panel header"><a class="action skip contentarea" href="#contentarea">
+    <span>
+        Skip to Content    </span>
+</a>
+
+<!-- This is the container for our custom autocomplete results. It will be positioned by CSS. -->
+
+
+
+<ul class="header links">    <li class="greet welcome" data-bind="scope: 'customer'">
+        <!-- ko if: customer().fullname  --><!-- /ko -->
+        <!-- ko ifnot: customer().fullname  -->
+        <span class="not-logged-in" data-bind="text: 'Default welcome msg!'">Default welcome msg!</span>
+                <!-- /ko -->
+    </li>
+        
+<!-- BLOCK customer --><!-- /BLOCK customer --><li class="link authorization-link" data-label="or">
+    <a href="https://magento.test/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/">Sign In</a>
+</li>
+<li><a href="https://magento.test/customer/account/create/" id="ida2R4LxEM">Create an Account</a></li></ul></div></div><div class="header content"><span data-action="toggle-nav" class="action nav-toggle"><span>Toggle Nav</span></span>
+<a class="logo" href="https://magento.test/" title="" aria-label="store logo">
+    <img src="https://magento.test/static/version1754991273/frontend/Magento/luma/en_US/images/logo.svg" title="" alt="" width="170">
+</a>
+
+<div data-block="minicart" class="minicart-wrapper">
+    <a class="action showcart" href="https://magento.test/checkout/cart/" data-bind="scope: 'minicart_content'">
+        <span class="text">My Cart</span>
+        <span class="counter qty empty" data-bind="css: { empty: !!getCartParam('summary_count') == false &amp;&amp; !isLoading() },
+               blockLoader: isLoading">
+            <span class="counter-number">
+                <!-- ko if: getCartParam('summary_count') --><!-- /ko -->
+            </span>
+            <span class="counter-label">
+            <!-- ko if: getCartParam('summary_count') --><!-- /ko -->
+            </span>
+        </span>
+    </a>
+            
+        <script>window.checkout = {"shoppingCartUrl":"https:\/\/magento.test\/checkout\/cart\/","checkoutUrl":"https:\/\/magento.test\/checkout\/","updateItemQtyUrl":"https:\/\/magento.test\/checkout\/sidebar\/updateItemQty\/","removeItemUrl":"https:\/\/magento.test\/checkout\/sidebar\/removeItem\/","imageTemplate":"Magento_Catalog\/product\/image_with_borders","baseUrl":"https:\/\/magento.test\/","minicartMaxItemsVisible":5,"websiteId":"1","maxItemsToDisplay":10,"storeId":"1","storeGroupId":"1","payPalBraintreeClientToken":"","customerLoginUrl":"https:\/\/magento.test\/customer\/account\/login\/referer\/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv\/","isRedirectRequired":false,"autocomplete":"off","captcha":{"user_login":{"isCaseSensitive":false,"imageHeight":50,"imageSrc":"","refreshUrl":"https:\/\/magento.test\/captcha\/refresh\/","isRequired":false,"timestamp":1754997685}}}</script>    
+<div tabindex="-1" role="dialog" class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front mage-dropdown-dialog" aria-describedby="ui-id-28" style="display: none;"><div class="block block-minicart ui-dialog-content ui-widget-content" data-role="dropdownDialog" id="ui-id-28" style="display: block;">
+            <div id="minicart-content-wrapper" data-bind="scope: 'minicart_content'">
+                <!-- ko template: getTemplate() -->
+<div class="block-title">
+    <strong>
+        <span class="text" data-bind="i18n: 'My Cart'">My Cart</span>
+        <span class="qty empty" data-bind="css: { empty: !!getCartParam('summary_count') == false },
+                       attr: { title: $t('Items in Cart') }, text: getCartParam('summary_count')" title="Items in Cart"></span>
+    </strong>
+</div>
+
+<div class="block-content">
+    <button type="button" id="btn-minicart-close" class="action close" data-action="close" data-bind="
+                attr: {
+                    title: $t('Close')
+                },
+                click: closeMinicart()
+            " title="Close">
+        <span data-bind="i18n: 'Close'">Close</span>
+    </button>
+
+    <!-- ko if: getCartParam('summary_count') --><!-- /ko -->
+
+    <!-- ko if: getCartParam('summary_count') --><!-- /ko -->
+
+    <!-- ko ifnot: getCartParam('summary_count') -->
+        <strong class="subtitle empty" data-bind="i18n: 'You have no items in your shopping cart.'">You have no items in your shopping cart.</strong>
+        <!-- ko if: getCartParam('cart_empty_message') --><!-- /ko -->
+    <!-- /ko -->
+
+    <!-- ko if: getCartParam('summary_count') --><!-- /ko -->
+
+    <!-- ko if: regionHasElements('promotion') --><div id="minicart-widgets" class="minicart-widgets">
+        <!-- ko foreach: getRegion('promotion') --><!-- ko template: getTemplate() -->
+<!-- ko foreach: {data: elems, as: 'element'} --><!-- /ko -->
+<!-- /ko --><!-- /ko -->
+    </div><!-- /ko -->
+</div>
+<!-- ko foreach: getRegion('sign-in-popup') --><!-- /ko -->
+<!-- /ko -->
+            </div>
+                    </div></div></div>
+<div class="block block-search">
+    <div class="block block-title"><strong>Search</strong></div>
+    <div class="block block-content">
+        <form class="form minisearch" id="search_mini_form" action="https://magento.test/catalogsearch/result/" method="get">
+                        <div class="field search">
+                <label class="label" for="search" data-role="minisearch-label">
+                    <span>Search</span>
+                </label>
+                <div class="control">
+                    <input id="search" type="text" name="q" value="" placeholder="Search entire store here..." class="input-text" maxlength="128" role="combobox" aria-haspopup="false" aria-autocomplete="both" autocomplete="off" aria-expanded="false">
+                    <div id="search_autocomplete" class="search-autocomplete"></div>
+                    <div class="nested">
+    <a class="action advanced" href="https://magento.test/catalogsearch/advanced/" data-action="advanced-search">
+        Advanced Search    </a>
+</div>
+                </div>
+            </div>
+            <div class="actions">
+                <button type="submit" title="Search" class="action search" aria-label="Search" disabled="">
+                    <span>Search</span>
+                </button>
+            </div>
+        <div id="couture-autocomplete-popup" class="couture-autocomplete-popup" style="display: none;"></div></form>
+    </div>
+</div>
+<ul class="compare wrapper"><li class="item link compare" data-bind="scope: 'compareProducts'" data-role="compare-products-link">
+    <a class="action compare no-display" title="Compare Products" data-bind="attr: {'href': compareProducts().listUrl}, css: {'no-display': !compareProducts().count}">
+        Compare Products        <span class="counter qty" data-bind="text: compareProducts().countCaption"></span>
+    </a>
+</li>
+
+</ul></div></header>    <div class="sections nav-sections">
+                <div class="section-items nav-sections-items mage-tabs-disabled" role="tablist">
+                                            <div class="section-item-title nav-sections-item-title active" data-role="collapsible" role="tab" data-collapsible="true" aria-controls="store.menu" aria-selected="false" aria-expanded="true" tabindex="0">
+                    <a class="nav-sections-item-switch" data-toggle="switch" href="#store.menu">
+                        Menu                    </a>
+                </div>
+                <div class="section-item-content nav-sections-item-content" id="store.menu" data-role="content" role="tabpanel" aria-hidden="false">
+                    
+<nav class="navigation" data-action="navigation">
+    <ul id="ui-id-1" role="menu" tabindex="0" class="ui-menu ui-widget ui-widget-content">
+        <li class="level0 nav-1 category-item first level-top ui-menu-item"><a href="https://magento.test/what-is-new.html" class="level-top ui-menu-item-wrapper" id="ui-id-2" tabindex="-1" role="menuitem"><span>What's New</span></a></li><li class="level0 nav-2 category-item level-top parent ui-menu-item"><a href="https://magento.test/women.html" class="level-top ui-menu-item-wrapper" aria-haspopup="true" id="ui-id-3" tabindex="-1" role="menuitem"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span><span>Women</span></a><ul class="level0 submenu ui-menu ui-widget ui-widget-content ui-front" role="menu" aria-hidden="true" aria-expanded="false" style="display: none;"><li class="level1 nav-2-1 category-item first parent ui-menu-item"><a href="https://magento.test/women/tops-women.html" aria-haspopup="true" id="ui-id-4" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span><span>Tops</span></a><ul class="level1 submenu ui-menu ui-widget ui-widget-content ui-front expanded" role="menu" aria-hidden="true" aria-expanded="false" style="display: none;"><li class="level2 nav-2-1-1 category-item first ui-menu-item"><a href="https://magento.test/women/tops-women/jackets-women.html" id="ui-id-5" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span>Jackets</span></a></li><li class="level2 nav-2-1-2 category-item ui-menu-item"><a href="https://magento.test/women/tops-women/hoodies-and-sweatshirts-women.html" id="ui-id-6" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span>Hoodies &amp; Sweatshirts</span></a></li><li class="level2 nav-2-1-3 category-item ui-menu-item"><a href="https://magento.test/women/tops-women/tees-women.html" id="ui-id-7" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span>Tees</span></a></li><li class="level2 nav-2-1-4 category-item last ui-menu-item"><a href="https://magento.test/women/tops-women/tanks-women.html" id="ui-id-8" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span>Bras &amp; Tanks</span></a></li></ul></li><li class="level1 nav-2-2 category-item last parent ui-menu-item"><a href="https://magento.test/women/bottoms-women.html" aria-haspopup="true" id="ui-id-9" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span><span>Bottoms</span></a><ul class="level1 submenu ui-menu ui-widget ui-widget-content ui-front expanded" role="menu" aria-hidden="true" aria-expanded="false" style="display: none;"><li class="level2 nav-2-2-1 category-item first ui-menu-item"><a href="https://magento.test/women/bottoms-women/pants-women.html" id="ui-id-10" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span>Pants</span></a></li><li class="level2 nav-2-2-2 category-item last ui-menu-item"><a href="https://magento.test/women/bottoms-women/shorts-women.html" id="ui-id-11" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span>Shorts</span></a></li></ul></li></ul></li><li class="level0 nav-3 category-item level-top parent ui-menu-item"><a href="https://magento.test/men.html" class="level-top ui-menu-item-wrapper" aria-haspopup="true" id="ui-id-12" tabindex="-1" role="menuitem"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span><span>Men</span></a><ul class="level0 submenu ui-menu ui-widget ui-widget-content ui-front" role="menu" aria-hidden="true" aria-expanded="false" style="display: none;"><li class="level1 nav-3-1 category-item first parent ui-menu-item"><a href="https://magento.test/men/tops-men.html" aria-haspopup="true" id="ui-id-13" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span><span>Tops</span></a><ul class="level1 submenu ui-menu ui-widget ui-widget-content ui-front expanded" role="menu" aria-hidden="true" aria-expanded="false" style="display: none;"><li class="level2 nav-3-1-1 category-item first ui-menu-item"><a href="https://magento.test/men/tops-men/jackets-men.html" id="ui-id-14" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span>Jackets</span></a></li><li class="level2 nav-3-1-2 category-item ui-menu-item"><a href="https://magento.test/men/tops-men/hoodies-and-sweatshirts-men.html" id="ui-id-15" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span>Hoodies &amp; Sweatshirts</span></a></li><li class="level2 nav-3-1-3 category-item ui-menu-item"><a href="https://magento.test/men/tops-men/tees-men.html" id="ui-id-16" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span>Tees</span></a></li><li class="level2 nav-3-1-4 category-item last ui-menu-item"><a href="https://magento.test/men/tops-men/tanks-men.html" id="ui-id-17" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span>Tanks</span></a></li></ul></li><li class="level1 nav-3-2 category-item last parent ui-menu-item"><a href="https://magento.test/men/bottoms-men.html" aria-haspopup="true" id="ui-id-18" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span><span>Bottoms</span></a><ul class="level1 submenu ui-menu ui-widget ui-widget-content ui-front expanded" role="menu" aria-hidden="true" aria-expanded="false" style="display: none;"><li class="level2 nav-3-2-1 category-item first ui-menu-item"><a href="https://magento.test/men/bottoms-men/pants-men.html" id="ui-id-19" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span>Pants</span></a></li><li class="level2 nav-3-2-2 category-item last ui-menu-item"><a href="https://magento.test/men/bottoms-men/shorts-men.html" id="ui-id-20" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span>Shorts</span></a></li></ul></li></ul></li><li class="level0 nav-4 category-item level-top parent ui-menu-item"><a href="https://magento.test/gear.html" class="level-top ui-menu-item-wrapper" aria-haspopup="true" id="ui-id-21" tabindex="-1" role="menuitem"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span><span>Gear</span></a><ul class="level0 submenu ui-menu ui-widget ui-widget-content ui-front" role="menu" aria-hidden="true" aria-expanded="false" style="display: none;"><li class="level1 nav-4-1 category-item first ui-menu-item"><a href="https://magento.test/gear/bags.html" id="ui-id-22" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span>Bags</span></a></li><li class="level1 nav-4-2 category-item ui-menu-item"><a href="https://magento.test/gear/fitness-equipment.html" id="ui-id-23" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span>Fitness Equipment</span></a></li><li class="level1 nav-4-3 category-item last ui-menu-item"><a href="https://magento.test/gear/watches.html" id="ui-id-24" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span>Watches</span></a></li></ul></li><li class="level0 nav-5 category-item level-top parent ui-menu-item"><a href="https://magento.test/training.html" class="level-top ui-menu-item-wrapper" aria-haspopup="true" id="ui-id-25" tabindex="-1" role="menuitem"><span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span><span>Training</span></a><ul class="level0 submenu ui-menu ui-widget ui-widget-content ui-front" role="menu" aria-hidden="true" aria-expanded="false" style="display: none;"><li class="level1 nav-5-1 category-item first last ui-menu-item"><a href="https://magento.test/training/training-video.html" id="ui-id-26" tabindex="-1" role="menuitem" class="ui-menu-item-wrapper"><span>Video Download</span></a></li></ul></li><li class="level0 nav-6 category-item last level-top ui-menu-item"><a href="https://magento.test/sale.html" class="level-top ui-menu-item-wrapper" id="ui-id-27" tabindex="-1" role="menuitem"><span>Sale</span></a></li>            </ul>
+</nav>
+                </div>
+                                            <div class="section-item-title nav-sections-item-title" data-role="collapsible" role="tab" data-collapsible="true" aria-controls="store.links" aria-selected="false" aria-expanded="false" tabindex="0">
+                    <a class="nav-sections-item-switch" data-toggle="switch" href="#store.links">
+                        Account                    </a>
+                </div>
+                <div class="section-item-content nav-sections-item-content" id="store.links" data-role="content" role="tabpanel" aria-hidden="true" style="display: none;">
+                    <!-- Account links -->                <ul class="header links">    <li class="greet welcome" data-bind="scope: 'customer'">
+        <!-- ko if: customer().fullname  --><!-- /ko -->
+        <!-- ko ifnot: customer().fullname  -->
+        <span class="not-logged-in" data-bind="text: 'Default welcome msg!'">Default welcome msg!</span>
+                <!-- /ko -->
+    </li>
+        
+<!-- BLOCK customer --><!-- /BLOCK customer --><li class="link authorization-link" data-label="or">
+    <a href="https://magento.test/customer/account/login/referer/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/">Sign In</a>
+</li>
+<li><a href="https://magento.test/customer/account/create/" id="ida2R4LxEM_mobile">Create an Account</a></li></ul></div>
+                                    </div>
+    </div>
+<main id="maincontent" class="page-main"><a id="contentarea" tabindex="-1"></a>
+<div class="page-title-wrapper">
+    <h1 class="page-title">
+        <span class="base" data-ui-id="page-title-wrapper">Home Page</span>    </h1>
+    </div>
+<div class="page messages"><div data-placeholder="messages"></div>
+<div data-bind="scope: 'messages'">
+    <!-- ko if: cookieMessagesObservable() && cookieMessagesObservable().length > 0 --><!-- /ko -->
+
+    <div aria-atomic="true" role="alert" class="messages" data-bind="foreach: {
+        data: messages().messages, as: 'message'
+    }, afterRender: purgeMessages"></div>
+</div>
+
+
+</div><div class="columns"><div class="column main"><input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl"><div id="authenticationPopup" data-bind="scope:'authenticationPopup', style: {display: 'none'}" style="display: none;">
+        <script>window.authenticationPopup = {"autocomplete":"off","customerRegisterUrl":"https:\/\/magento.test\/customer\/account\/create\/","customerForgotPasswordUrl":"https:\/\/magento.test\/customer\/account\/forgotpassword\/","baseUrl":"https:\/\/magento.test\/","customerLoginUrl":"https:\/\/magento.test\/customer\/ajax\/login\/"}</script>    <!-- ko template: getTemplate() -->
+
+<div class="block-authentication" data-bind="afterRender: setModalElement, blockLoader: isLoading" style="display: none">
+    <div class="block block-new-customer" data-bind="attr: {'data-label': $t('or')}" data-label="or">
+        <div class="block-title">
+            <strong id="block-new-customer-heading" role="heading" aria-level="2" data-bind="i18n: 'Checkout as a new customer'">Checkout as a new customer</strong>
+        </div>
+        <div class="block-content" aria-labelledby="block-new-customer-heading">
+            <p data-bind="i18n: 'Creating an account has many benefits:'">Creating an account has many benefits:</p>
+            <ul>
+                <li data-bind="i18n: 'See order and shipping status'">See order and shipping status</li>
+                <li data-bind="i18n: 'Track order history'">Track order history</li>
+                <li data-bind="i18n: 'Check out faster'">Check out faster</li>
+            </ul>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <a class="action action-register primary" data-bind="attr: {href: registerUrl}" href="https://magento.test/customer/account/create/">
+                        <span data-bind="i18n: 'Create an Account'">Create an Account</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block block-customer-login" data-bind="attr: {'data-label': $t('or')}" data-label="or">
+        <div class="block-title">
+            <strong id="block-customer-login-heading" role="heading" aria-level="2" data-bind="i18n: 'Checkout using your account'">Checkout using your account</strong>
+        </div>
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() -->
+<div data-role="checkout-messages" class="messages" data-bind="visible: isVisible(), click: removeAll">
+    <!-- ko foreach: messageContainer.getErrorMessages() --><!--/ko-->
+    <!-- ko foreach: messageContainer.getSuccessMessages() --><!--/ko-->
+</div>
+<!-- /ko -->
+        <!--/ko-->
+        <!-- ko foreach: getRegion('before') --><!-- /ko -->
+        <div class="block-content" aria-labelledby="block-customer-login-heading">
+            <form class="form form-login" method="post" data-bind="event: {submit: login }" id="login-form">
+                <div class="fieldset login" data-bind="attr: {'data-hasrequired': $t('* Required Fields')}" data-hasrequired="* Required Fields">
+                    <div class="field email required">
+                        <label class="label" for="customer-email"><span data-bind="i18n: 'Email Address'">Email Address</span></label>
+                        <div class="control">
+                            <input name="username" id="customer-email" type="email" class="input-text" data-mage-init="{&quot;mage/trim-input&quot;:{}}" data-bind="attr: {autocomplete: autocomplete}" data-validate="{required:true, 'validate-email':true}" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="field password required">
+                        <label for="pass" class="label"><span data-bind="i18n: 'Password'">Password</span></label>
+                        <div class="control">
+                            <input name="password" type="password" class="input-text" id="pass" data-bind="attr: {autocomplete: autocomplete}" data-validate="{required:true}" autocomplete="off">
+                        </div>
+                    </div>
+                    <!-- ko foreach: getRegion('additional-login-form-fields') -->
+                    <!-- ko template: getTemplate() -->
+<input name="captcha_form_id" type="hidden" data-bind="value: formId,  attr: {'data-scope': dataScope}" value="user_login" data-scope="">
+<!-- ko if: (isRequired() && getIsVisible())--><!-- /ko -->
+<!-- /ko -->
+                    <!-- /ko -->
+                    <div class="actions-toolbar">
+                        <input name="context" type="hidden" value="checkout">
+                        <div class="primary">
+                            <button type="submit" class="action action-login secondary" name="send" id="send2">
+                                <span data-bind="i18n: 'Sign In'">Sign In</span>
+                            </button>
+                        </div>
+                        <div class="secondary">
+                            <a class="action" data-bind="attr: {href: forgotPasswordUrl}" href="https://magento.test/customer/account/forgotpassword/">
+                                <span data-bind="i18n: 'Forgot Your Password?'">Forgot Your Password?</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /ko -->
+        
+</div>
+
+
+
+
+    <script data-role="msrp-popup-template" type="text/x-magento-template">
+    <div id="map-popup-click-for-price" class="map-popup">
+        <div class="popup-header">
+            <strong class="title" id="map-popup-heading-price"></strong>
+        </div>
+        <div class="popup-content">
+            <div class="map-info-price" id="map-popup-content">
+                <div class="price-box">
+                    <div class="map-msrp" id="map-popup-msrp-box">
+                        <span class="label">Price</span>
+                        <span class="old-price map-old-price" id="map-popup-msrp">
+                            <span class="price"></span>
+                        </span>
+                    </div>
+                    <div class="map-price" id="map-popup-price-box">
+                        <span class="label">Actual Price</span>
+                        <span id="map-popup-price" class="actual-price"></span>
+                    </div>
+                </div>
+                <form action="" method="POST" class="map-form-addtocart">
+                    <input type="hidden" name="product" class="product_id" value="" />
+                    <button type="button"
+                            title="Add to Cart"
+                            class="action tocart primary">
+                        <span>Add to Cart</span>
+                    </button>
+                    <div class="additional-addtocart-box">
+                                            </div>
+                </form>
+            </div>
+            <div class="map-text" id="map-popup-text">
+                Our price is lower than the manufacturer&#039;s &quot;minimum advertised price.&quot; As a result, we cannot show you the price in catalog or the product page. <br><br> You have no obligation to purchase the product once you know the price. You can simply remove the item from your cart.            </div>
+        </div>
+    </div>
+    </script>
+    <script data-role="msrp-info-template" type="text/x-magento-template">
+    <div id="map-popup-what-this" class="map-popup">
+        <div class="popup-header">
+            <strong class="title" id="map-popup-heading-what-this"></strong>
+        </div>
+        <div class="popup-content">
+            <div class="map-help-text" id="map-popup-text-what-this">
+                Our price is lower than the manufacturer&#039;s &quot;minimum advertised price.&quot; As a result, we cannot show you the price in catalog or the product page. <br><br> You have no obligation to purchase the product once you know the price. You can simply remove the item from your cart.            </div>
+        </div>
+    </div>
+    </script>
+<div class="widget block block-static-block">
+    <div class="blocks-promo">
+   <a href="https://magento.test/collections/yoga-new.html" class="block-promo home-main">
+       <img src="https://magento.test/media/wysiwyg/home/home-main.jpg" alt="">
+       <span class="content bg-white">
+           <span class="info">New Luma Yoga Collection</span>
+           <strong class="title">Get fit and look fab in new seasonal styles</strong>
+           <span class="action more button">Shop New Yoga</span>
+       </span>
+   </a>
+   <div class="block-promo-wrapper block-promo-hp">
+       <a href="https://magento.test/promotions/pants-all.html" class="block-promo home-pants">
+           <img src="https://magento.test/media/wysiwyg/home/home-pants.jpg" alt="">
+           <span class="content">
+               <strong class="title">20% OFF</strong>
+               <span class="info">Luma pants when you shop today*</span>
+               <span class="action more icon">Shop Pants</span>
+           </span>
+       </a>
+       <a href="https://magento.test/promotions/tees-all.html" class="block-promo home-t-shirts">
+           <span class="image"><img src="https://magento.test/media/wysiwyg/home/home-t-shirts.png" alt=""></span>
+           <span class="content">
+               <strong class="title">Even more ways to mix and match</strong>
+               <span class="info">Buy 3 Luma tees get a 4th free</span>
+               <span class="action more icon">Shop Tees</span>
+           </span>
+       </a>
+       <a href="https://magento.test/collections/erin-recommends.html" class="block-promo home-erin">
+           <img src="https://magento.test/media/wysiwyg/home/home-erin.jpg" alt="">
+           <span class="content">
+               <strong class="title">Take it from Erin</strong>
+               <span class="info">Luma founder Erin Renny shares her favorites!</span>
+               <span class="action more icon">Shop Erin Recommends</span>
+           </span>
+       </a>
+       <a href="https://magento.test/collections/performance-fabrics.html" class="block-promo home-performance">
+           <img src="https://magento.test/media/wysiwyg/home/home-performance.jpg" alt="">
+           <span class="content bg-white">
+               <strong class="title">Science meets performance</strong>
+               <span class="info">Wicking to raingear, Luma covers&nbsp;you</span>
+               <span class="action more icon">Shop Performance</span>
+           </span>
+       </a>
+       <a href="https://magento.test/collections/eco-friendly.html" class="block-promo home-eco">
+           <img src="https://magento.test/media/wysiwyg/home/home-eco.jpg" alt="">
+           <span class="content bg-white">
+               <strong class="title">Twice around, twice as nice</strong>
+               <span class="info">Find conscientious, comfy clothing in our <nobr>eco-friendly</nobr> collection</span>
+               <span class="action more icon">Shop Eco-Friendly</span>
+           </span>
+       </a>
+   </div>
+</div>
+<div class="content-heading">
+   <h2 class="title">Hot Sellers</h2>
+   <p class="info">Here is what`s trending on Luma right now</p>
+</div>
+<div class="block widget block-products-list grid">
+                <div class="block-content">
+            <!-- new_products_content_widget_grid-->            <div class="products-grid grid">
+                <ol class="product-items widget-product-grid">
+                                                                <li class="product-item">                        <div class="product-item-info">
+                            <a href="https://magento.test/radiant-tee.html" class="product-item-photo">
+                                <span class="product-image-container product-image-container-1556">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/w/s/ws12-orange_main_2.jpg" loading="lazy" width="240" height="300" alt="Radiant Tee"></span>
+</span>
+<style>.product-image-container-1556 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-1556 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-1556 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Radiant Tee" href="https://magento.test/radiant-tee.html" class="product-item-link">
+                                        Radiant Tee                                    </a>
+                                </strong>
+                                                                            <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result" id="rating-result_1556" title="60%">
+                <span style="width: 60%;">
+                    <span>60%</span>
+                </span>
+            </div>
+        </div>
+                <div class="reviews-actions">
+            <a class="action view" href="https://magento.test/radiant-tee.html#reviews">3                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="1556" data-price-box="product-id-1556">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="old-price-1556-widget-product-grid" data-price-amount="22" data-price-type="finalPrice" class="price-wrapper "><span class="price">$22.00</span></span>
+        </span>
+</span>
+
+
+</div>
+                                                <div class="swatch-opt-1556" data-role="swatch-option-1556" data-rendered="true"><div class="swatch-attribute size" data-attribute-code="size" data-attribute-id="144"><div aria-activedescendant="" tabindex="0" aria-invalid="false" aria-required="true" role="listbox" aria-label="Size" class="swatch-attribute-options clearfix"><div class="swatch-option text" id="option-label-size-144-item-166" index="0" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="166" data-option-label="XS" aria-label="XS" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="XS">XS</div><div class="swatch-option text" id="option-label-size-144-item-167" index="1" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="167" data-option-label="S" aria-label="S" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="S">S</div><div class="swatch-option text" id="option-label-size-144-item-168" index="2" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="168" data-option-label="M" aria-label="M" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="M">M</div><div class="swatch-option text" id="option-label-size-144-item-169" index="3" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="169" data-option-label="L" aria-label="L" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="L">L</div><div class="swatch-option text" id="option-label-size-144-item-170" index="4" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="170" data-option-label="XL" aria-label="XL" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="XL">XL</div></div></div><div class="swatch-attribute color" data-attribute-code="color" data-attribute-id="93"><div aria-activedescendant="" tabindex="0" aria-invalid="false" aria-required="true" role="listbox" aria-label="Color" class="swatch-attribute-options clearfix"><div class="swatch-option color" id="option-label-color-93-item-50" index="0" aria-checked="false" aria-describedby="option-label-color-93" tabindex="0" data-option-type="1" data-option-id="50" data-option-label="Blue" aria-label="Blue" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="#1857f7" style="background: #1857f7 no-repeat center; background-size: initial;"></div><div class="swatch-option color" id="option-label-color-93-item-56" index="1" aria-checked="false" aria-describedby="option-label-color-93" tabindex="0" data-option-type="1" data-option-id="56" data-option-label="Orange" aria-label="Orange" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="#eb6703" style="background: #eb6703 no-repeat center; background-size: initial;"></div><div class="swatch-option color" id="option-label-color-93-item-57" index="2" aria-checked="false" aria-describedby="option-label-color-93" tabindex="0" data-option-type="1" data-option-id="57" data-option-label="Purple" aria-label="Purple" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="#ef3dff" style="background: #ef3dff no-repeat center; background-size: initial;"></div></div></div></div>
+
+    
+
+    
+
+                                                                    <div class="product-item-inner">
+                                        <div class="product-item-actions">
+                                                                                            <div class="actions-primary">
+                                                                                                                                                                    <form data-role="tocart-form" data-product-sku="WS12" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/1556/" method="post">
+                                                                                                                                                                                    <input type="hidden" name="product" value="1556">
+                                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvMTU1Ni8~">
+                                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        <input class="swatch-input super-attribute-select" name="super_attribute[144]" type="text" value="" data-selector="super_attribute[144]" data-validate="{required: true}" aria-required="true" aria-invalid="false"><input class="swatch-input super-attribute-select" name="super_attribute[93]" type="text" value="" data-selector="super_attribute[93]" data-validate="{required: true}" aria-required="true" aria-invalid="false"></form>
+                                                                                                                
+                                                                                                                                                            </div>
+                                                                                                                                        <div class="actions-secondary" data-role="add-to-links">
+                                                                                                            <a href="#" data-post="{&quot;action&quot;:&quot;https:\/\/magento.test\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:1556,&quot;uenc&quot;:&quot;aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv&quot;}}" class="action towishlist" data-action="add-to-wishlist" title="Add to Wish List">
+                                                            <span>Add to Wish List</span>
+                                                        </a>
+                                                                                                                                                                                                                        <a href="#" class="action tocompare" data-post="{&quot;action&quot;:&quot;https:\/\/magento.test\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;1556&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv&quot;}}" title="Add to Compare">
+                                                            <span>Add to Compare</span>
+                                                        </a>
+                                                                                                    </div>
+                                                                                    </div>
+                                    </div>
+                                                            </div>
+                        </div>
+                                                                    </li><li class="product-item">                        <div class="product-item-info">
+                            <a href="https://magento.test/breathe-easy-tank.html" class="product-item-photo">
+                                <span class="product-image-container product-image-container-1812">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/w/t/wt09-white_main_1.jpg" loading="lazy" width="240" height="300" alt="Breathe-Easy Tank"></span>
+</span>
+<style>.product-image-container-1812 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-1812 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-1812 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Breathe-Easy Tank" href="https://magento.test/breathe-easy-tank.html" class="product-item-link">
+                                        Breathe-Easy Tank                                    </a>
+                                </strong>
+                                                                            <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result" id="rating-result_1812" title="70%">
+                <span style="width: 70%;">
+                    <span>70%</span>
+                </span>
+            </div>
+        </div>
+                <div class="reviews-actions">
+            <a class="action view" href="https://magento.test/breathe-easy-tank.html#reviews">2                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="1812" data-price-box="product-id-1812">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="old-price-1812-widget-product-grid" data-price-amount="34" data-price-type="finalPrice" class="price-wrapper "><span class="price">$34.00</span></span>
+        </span>
+</span>
+
+
+</div>
+                                                <div class="swatch-opt-1812" data-role="swatch-option-1812" data-rendered="true"><div class="swatch-attribute size" data-attribute-code="size" data-attribute-id="144"><div aria-activedescendant="" tabindex="0" aria-invalid="false" aria-required="true" role="listbox" aria-label="Size" class="swatch-attribute-options clearfix"><div class="swatch-option text" id="option-label-size-144-item-166" index="0" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="166" data-option-label="XS" aria-label="XS" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="XS">XS</div><div class="swatch-option text" id="option-label-size-144-item-167" index="1" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="167" data-option-label="S" aria-label="S" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="S">S</div><div class="swatch-option text" id="option-label-size-144-item-168" index="2" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="168" data-option-label="M" aria-label="M" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="M">M</div><div class="swatch-option text" id="option-label-size-144-item-169" index="3" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="169" data-option-label="L" aria-label="L" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="L">L</div><div class="swatch-option text" id="option-label-size-144-item-170" index="4" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="170" data-option-label="XL" aria-label="XL" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="XL">XL</div></div></div><div class="swatch-attribute color" data-attribute-code="color" data-attribute-id="93"><div aria-activedescendant="" tabindex="0" aria-invalid="false" aria-required="true" role="listbox" aria-label="Color" class="swatch-attribute-options clearfix"><div class="swatch-option color" id="option-label-color-93-item-57" index="0" aria-checked="false" aria-describedby="option-label-color-93" tabindex="0" data-option-type="1" data-option-id="57" data-option-label="Purple" aria-label="Purple" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="#ef3dff" style="background: #ef3dff no-repeat center; background-size: initial;"></div><div class="swatch-option color" id="option-label-color-93-item-59" index="1" aria-checked="false" aria-describedby="option-label-color-93" tabindex="0" data-option-type="1" data-option-id="59" data-option-label="White" aria-label="White" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="#ffffff" style="background: #ffffff no-repeat center; background-size: initial;"></div><div class="swatch-option color" id="option-label-color-93-item-60" index="2" aria-checked="false" aria-describedby="option-label-color-93" tabindex="0" data-option-type="1" data-option-id="60" data-option-label="Yellow" aria-label="Yellow" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="#ffd500" style="background: #ffd500 no-repeat center; background-size: initial;"></div></div></div></div>
+
+    
+
+    
+
+                                                                    <div class="product-item-inner">
+                                        <div class="product-item-actions">
+                                                                                            <div class="actions-primary">
+                                                                                                                                                                    <form data-role="tocart-form" data-product-sku="WT09" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/1812/" method="post">
+                                                                                                                                                                                    <input type="hidden" name="product" value="1812">
+                                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvMTgxMi8~">
+                                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        <input class="swatch-input super-attribute-select" name="super_attribute[144]" type="text" value="" data-selector="super_attribute[144]" data-validate="{required: true}" aria-required="true" aria-invalid="false"><input class="swatch-input super-attribute-select" name="super_attribute[93]" type="text" value="" data-selector="super_attribute[93]" data-validate="{required: true}" aria-required="true" aria-invalid="false"></form>
+                                                                                                                
+                                                                                                                                                            </div>
+                                                                                                                                        <div class="actions-secondary" data-role="add-to-links">
+                                                                                                            <a href="#" data-post="{&quot;action&quot;:&quot;https:\/\/magento.test\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:1812,&quot;uenc&quot;:&quot;aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv&quot;}}" class="action towishlist" data-action="add-to-wishlist" title="Add to Wish List">
+                                                            <span>Add to Wish List</span>
+                                                        </a>
+                                                                                                                                                                                                                        <a href="#" class="action tocompare" data-post="{&quot;action&quot;:&quot;https:\/\/magento.test\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;1812&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv&quot;}}" title="Add to Compare">
+                                                            <span>Add to Compare</span>
+                                                        </a>
+                                                                                                    </div>
+                                                                                    </div>
+                                    </div>
+                                                            </div>
+                        </div>
+                                                                    </li><li class="product-item">                        <div class="product-item-info">
+                            <a href="https://magento.test/argus-all-weather-tank.html" class="product-item-photo">
+                                <span class="product-image-container product-image-container-694">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/t/mt07-gray_main_1.jpg" loading="lazy" width="240" height="300" alt="Argus All-Weather Tank"></span>
+</span>
+<style>.product-image-container-694 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-694 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-694 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Argus All-Weather Tank" href="https://magento.test/argus-all-weather-tank.html" class="product-item-link">
+                                        Argus All-Weather Tank                                    </a>
+                                </strong>
+                                                                                                    
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="694" data-price-box="product-id-694">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="old-price-694-widget-product-grid" data-price-amount="22" data-price-type="finalPrice" class="price-wrapper "><span class="price">$22.00</span></span>
+        </span>
+</span>
+
+
+</div>
+                                                <div class="swatch-opt-694" data-role="swatch-option-694" data-rendered="true"><div class="swatch-attribute size" data-attribute-code="size" data-attribute-id="144"><div aria-activedescendant="" tabindex="0" aria-invalid="false" aria-required="true" role="listbox" aria-label="Size" class="swatch-attribute-options clearfix"><div class="swatch-option text" id="option-label-size-144-item-166" index="0" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="166" data-option-label="XS" aria-label="XS" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="XS">XS</div><div class="swatch-option text" id="option-label-size-144-item-167" index="1" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="167" data-option-label="S" aria-label="S" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="S">S</div><div class="swatch-option text" id="option-label-size-144-item-168" index="2" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="168" data-option-label="M" aria-label="M" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="M">M</div><div class="swatch-option text" id="option-label-size-144-item-169" index="3" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="169" data-option-label="L" aria-label="L" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="L">L</div><div class="swatch-option text" id="option-label-size-144-item-170" index="4" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="170" data-option-label="XL" aria-label="XL" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="XL">XL</div></div></div><div class="swatch-attribute color" data-attribute-code="color" data-attribute-id="93"><div aria-activedescendant="" tabindex="0" aria-invalid="false" aria-required="true" role="listbox" aria-label="Color" class="swatch-attribute-options clearfix"><div class="swatch-option color" id="option-label-color-93-item-52" index="0" aria-checked="false" aria-describedby="option-label-color-93" tabindex="0" data-option-type="1" data-option-id="52" data-option-label="Gray" aria-label="Gray" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="#8f8f8f" style="background: #8f8f8f no-repeat center; background-size: initial;"></div></div></div></div>
+
+    
+
+    
+
+                                                                    <div class="product-item-inner">
+                                        <div class="product-item-actions">
+                                                                                            <div class="actions-primary">
+                                                                                                                                                                    <form data-role="tocart-form" data-product-sku="MT07" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/694/" method="post">
+                                                                                                                                                                                    <input type="hidden" name="product" value="694">
+                                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvNjk0Lw~~">
+                                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        <input class="swatch-input super-attribute-select" name="super_attribute[144]" type="text" value="" data-selector="super_attribute[144]" data-validate="{required: true}" aria-required="true" aria-invalid="false"><input class="swatch-input super-attribute-select" name="super_attribute[93]" type="text" value="" data-selector="super_attribute[93]" data-validate="{required: true}" aria-required="true" aria-invalid="false"></form>
+                                                                                                                
+                                                                                                                                                            </div>
+                                                                                                                                        <div class="actions-secondary" data-role="add-to-links">
+                                                                                                            <a href="#" data-post="{&quot;action&quot;:&quot;https:\/\/magento.test\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:694,&quot;uenc&quot;:&quot;aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv&quot;}}" class="action towishlist" data-action="add-to-wishlist" title="Add to Wish List">
+                                                            <span>Add to Wish List</span>
+                                                        </a>
+                                                                                                                                                                                                                        <a href="#" class="action tocompare" data-post="{&quot;action&quot;:&quot;https:\/\/magento.test\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;694&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv&quot;}}" title="Add to Compare">
+                                                            <span>Add to Compare</span>
+                                                        </a>
+                                                                                                    </div>
+                                                                                    </div>
+                                    </div>
+                                                            </div>
+                        </div>
+                                                                    </li><li class="product-item">                        <div class="product-item-info">
+                            <a href="https://magento.test/hero-hoodie.html" class="product-item-photo">
+                                <span class="product-image-container product-image-container-158">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/h/mh07-gray_main_2.jpg" loading="lazy" width="240" height="300" alt="Hero Hoodie"></span>
+</span>
+<style>.product-image-container-158 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-158 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-158 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Hero Hoodie" href="https://magento.test/hero-hoodie.html" class="product-item-link">
+                                        Hero Hoodie                                    </a>
+                                </strong>
+                                                                                                    
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="158" data-price-box="product-id-158">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="old-price-158-widget-product-grid" data-price-amount="54" data-price-type="finalPrice" class="price-wrapper "><span class="price">$54.00</span></span>
+        </span>
+</span>
+
+
+</div>
+                                                <div class="swatch-opt-158" data-role="swatch-option-158" data-rendered="true"><div class="swatch-attribute size" data-attribute-code="size" data-attribute-id="144"><div aria-activedescendant="" tabindex="0" aria-invalid="false" aria-required="true" role="listbox" aria-label="Size" class="swatch-attribute-options clearfix"><div class="swatch-option text" id="option-label-size-144-item-166" index="0" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="166" data-option-label="XS" aria-label="XS" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="XS">XS</div><div class="swatch-option text" id="option-label-size-144-item-167" index="1" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="167" data-option-label="S" aria-label="S" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="S">S</div><div class="swatch-option text" id="option-label-size-144-item-168" index="2" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="168" data-option-label="M" aria-label="M" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="M">M</div><div class="swatch-option text" id="option-label-size-144-item-169" index="3" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="169" data-option-label="L" aria-label="L" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="L">L</div><div class="swatch-option text" id="option-label-size-144-item-170" index="4" aria-checked="false" aria-describedby="option-label-size-144" tabindex="0" data-option-type="0" data-option-id="170" data-option-label="XL" aria-label="XL" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="XL">XL</div></div></div><div class="swatch-attribute color" data-attribute-code="color" data-attribute-id="93"><div aria-activedescendant="" tabindex="0" aria-invalid="false" aria-required="true" role="listbox" aria-label="Color" class="swatch-attribute-options clearfix"><div class="swatch-option color" id="option-label-color-93-item-49" index="0" aria-checked="false" aria-describedby="option-label-color-93" tabindex="0" data-option-type="1" data-option-id="49" data-option-label="Black" aria-label="Black" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="#000000" style="background: #000000 no-repeat center; background-size: initial;"></div><div class="swatch-option color" id="option-label-color-93-item-52" index="1" aria-checked="false" aria-describedby="option-label-color-93" tabindex="0" data-option-type="1" data-option-id="52" data-option-label="Gray" aria-label="Gray" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="#8f8f8f" style="background: #8f8f8f no-repeat center; background-size: initial;"></div><div class="swatch-option color" id="option-label-color-93-item-53" index="2" aria-checked="false" aria-describedby="option-label-color-93" tabindex="0" data-option-type="1" data-option-id="53" data-option-label="Green" aria-label="Green" role="option" data-thumb-width="110" data-thumb-height="90" data-option-tooltip-value="#53a828" style="background: #53a828 no-repeat center; background-size: initial;"></div></div></div></div>
+
+    
+
+    
+
+                                                                    <div class="product-item-inner">
+                                        <div class="product-item-actions">
+                                                                                            <div class="actions-primary">
+                                                                                                                                                                    <form data-role="tocart-form" data-product-sku="MH07" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/158/" method="post">
+                                                                                                                                                                                    <input type="hidden" name="product" value="158">
+                                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvMTU4Lw~~">
+                                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        <input class="swatch-input super-attribute-select" name="super_attribute[144]" type="text" value="" data-selector="super_attribute[144]" data-validate="{required: true}" aria-required="true" aria-invalid="false"><input class="swatch-input super-attribute-select" name="super_attribute[93]" type="text" value="" data-selector="super_attribute[93]" data-validate="{required: true}" aria-required="true" aria-invalid="false"></form>
+                                                                                                                
+                                                                                                                                                            </div>
+                                                                                                                                        <div class="actions-secondary" data-role="add-to-links">
+                                                                                                            <a href="#" data-post="{&quot;action&quot;:&quot;https:\/\/magento.test\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:158,&quot;uenc&quot;:&quot;aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv&quot;}}" class="action towishlist" data-action="add-to-wishlist" title="Add to Wish List">
+                                                            <span>Add to Wish List</span>
+                                                        </a>
+                                                                                                                                                                                                                        <a href="#" class="action tocompare" data-post="{&quot;action&quot;:&quot;https:\/\/magento.test\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;158&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv&quot;}}" title="Add to Compare">
+                                                            <span>Add to Compare</span>
+                                                        </a>
+                                                                                                    </div>
+                                                                                    </div>
+                                    </div>
+                                                            </div>
+                        </div>
+                                                                    </li><li class="product-item">                        <div class="product-item-info">
+                            <a href="https://magento.test/fusion-backpack.html" class="product-item-photo">
+                                <span class="product-image-container product-image-container-6">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/b/mb02-gray-0.jpg" loading="lazy" width="240" height="300" alt="Fusion Backpack"></span>
+</span>
+<style>.product-image-container-6 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-6 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-6 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Fusion Backpack" href="https://magento.test/fusion-backpack.html" class="product-item-link">
+                                        Fusion Backpack                                    </a>
+                                </strong>
+                                                                            <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result" id="rating-result_6" title="67%">
+                <span style="width: 67%;">
+                    <span>67%</span>
+                </span>
+            </div>
+        </div>
+                <div class="reviews-actions">
+            <a class="action view" href="https://magento.test/fusion-backpack.html#reviews">3                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="6" data-price-box="product-id-6">
+    
+
+<span class="price-container price-final_price tax weee">
+        <span id="old-price-6-widget-product-grid" data-price-amount="59" data-price-type="finalPrice" class="price-wrapper "><span class="price">$59.00</span></span>
+        </span>
+
+</div>
+                                
+                                                                    <div class="product-item-inner">
+                                        <div class="product-item-actions">
+                                                                                            <div class="actions-primary">
+                                                                                                                                                                    <form data-role="tocart-form" data-product-sku="24-MB02" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/6/" method="post">
+                                                                                                                                                                                    <input type="hidden" name="product" value="6">
+                                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvNi8~">
+                                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        </form>
+                                                                                                                
+                                                                                                                                                            </div>
+                                                                                                                                        <div class="actions-secondary" data-role="add-to-links">
+                                                                                                            <a href="#" data-post="{&quot;action&quot;:&quot;https:\/\/magento.test\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:6,&quot;uenc&quot;:&quot;aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv&quot;}}" class="action towishlist" data-action="add-to-wishlist" title="Add to Wish List">
+                                                            <span>Add to Wish List</span>
+                                                        </a>
+                                                                                                                                                                                                                        <a href="#" class="action tocompare" data-post="{&quot;action&quot;:&quot;https:\/\/magento.test\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;6&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv&quot;}}" title="Add to Compare">
+                                                            <span>Add to Compare</span>
+                                                        </a>
+                                                                                                    </div>
+                                                                                    </div>
+                                    </div>
+                                                            </div>
+                        </div>
+                                                                    </li><li class="product-item">                        <div class="product-item-info">
+                            <a href="https://magento.test/push-it-messenger-bag.html" class="product-item-photo">
+                                <span class="product-image-container product-image-container-14">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/w/b/wb04-blue-0.jpg" loading="lazy" width="240" height="300" alt="Push It Messenger Bag"></span>
+</span>
+<style>.product-image-container-14 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-14 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-14 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="Push It Messenger Bag" href="https://magento.test/push-it-messenger-bag.html" class="product-item-link">
+                                        Push It Messenger Bag                                    </a>
+                                </strong>
+                                                                            <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result" id="rating-result_14" title="67%">
+                <span style="width: 67%;">
+                    <span>67%</span>
+                </span>
+            </div>
+        </div>
+                <div class="reviews-actions">
+            <a class="action view" href="https://magento.test/push-it-messenger-bag.html#reviews">3                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                
+                                <div class="price-box price-final_price" data-role="priceBox" data-product-id="14" data-price-box="product-id-14">
+    
+
+<span class="price-container price-final_price tax weee">
+        <span id="old-price-14-widget-product-grid" data-price-amount="45" data-price-type="finalPrice" class="price-wrapper "><span class="price">$45.00</span></span>
+        </span>
+
+</div>
+                                
+                                                                    <div class="product-item-inner">
+                                        <div class="product-item-actions">
+                                                                                            <div class="actions-primary">
+                                                                                                                                                                    <form data-role="tocart-form" data-product-sku="24-WB04" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/14/" method="post">
+                                                                                                                                                                                    <input type="hidden" name="product" value="14">
+                                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvMTQv">
+                                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        </form>
+                                                                                                                
+                                                                                                                                                            </div>
+                                                                                                                                        <div class="actions-secondary" data-role="add-to-links">
+                                                                                                            <a href="#" data-post="{&quot;action&quot;:&quot;https:\/\/magento.test\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:14,&quot;uenc&quot;:&quot;aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv&quot;}}" class="action towishlist" data-action="add-to-wishlist" title="Add to Wish List">
+                                                            <span>Add to Wish List</span>
+                                                        </a>
+                                                                                                                                                                                                                        <a href="#" class="action tocompare" data-post="{&quot;action&quot;:&quot;https:\/\/magento.test\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;14&quot;,&quot;uenc&quot;:&quot;aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv&quot;}}" title="Add to Compare">
+                                                            <span>Add to Compare</span>
+                                                        </a>
+                                                                                                    </div>
+                                                                                    </div>
+                                    </div>
+                                                            </div>
+                        </div>
+                        </li>                                    </ol>
+            </div>
+                    </div>
+    </div></div>
+
+
+            
+<style>
+    /* The main wrapper for the entire block now hides any overflow */
+    .product-carousel-block {
+        overflow: hidden;
+    }
+    /* The content block is our scrolling viewport */
+    .product-carousel-block .block-content {
+        overflow-x: auto;
+        padding-bottom: 20px;
+        scrollbar-width: thin;
+        scrollbar-color: #ccc #f1f1f1;
+    }
+    .product-carousel-block .block-content::-webkit-scrollbar { height: 8px; }
+    .product-carousel-block .block-content::-webkit-scrollbar-track { background: #f1f1f1; }
+    .product-carousel-block .block-content::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+    
+    /* The <ol> list is the flex container for the products */
+    .product-carousel-block .product-items-scroller {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 15px;
+        margin: 0;
+        padding: 2px;
+        list-style-type: none;
+    }
+    
+    /* Each product item has a fixed width */
+    .product-carousel-block .product-item {
+        width: 240px;
+        flex-shrink: 0;
+    }
+</style>
+
+<div class="block widget block-products-list product-carousel-block">
+    <div class="block-title content-heading">
+        <h2 class="title">Top Finds For You</h2>
+        <p class="info">Find the recommended Top Finds</p>
+    </div>
+    <div class="block-content">
+        <!-- 
+            REMOVED the intermediate '.products-grid.grid' div and applied a custom class to the <ol>
+            to prevent conflicts with theme styles.
+        -->
+        <ol class="product-items-scroller">
+                            <li class="product-item">
+                    <div class="product-item-info">
+                        <a href="https://magento.test/echo-fit-compression-short.html" class="product-item-photo">
+                            <span class="product-image-container product-image-container-1997">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/w/s/wsh07-black_main_1.jpg" loading="lazy" width="240" height="300" alt="Echo Fit Compression Short"></span>
+</span>
+<style>.product-image-container-1997 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-1997 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-1997 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a title="Echo Fit Compression Short" href="https://magento.test/echo-fit-compression-short.html" class="product-item-link">
+                                    Echo Fit Compression Short                                </a>
+                            </strong>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="1997" data-price-box="product-id-1997">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-1997" data-price-amount="24" data-price-type="finalPrice" class="price-wrapper "><span class="price">$24.00</span></span>
+        </span>
+</span>
+
+
+</div>                                    <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result" id="rating-result_1997" title="67%">
+                <span style="width: 67%;">
+                    <span>67%</span>
+                </span>
+            </div>
+        </div>
+                <div class="reviews-actions">
+            <a class="action view" href="https://magento.test/echo-fit-compression-short.html#reviews">3                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                                        <div class="product-item-actions">
+                                <div class="actions-primary">
+                                                                                                                    <form data-role="tocart-form" data-product-sku="WSH07" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/1997/" method="post">
+                                            <input type="hidden" name="product" value="1997">
+                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvMTk5Ny8~">
+                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </form>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                            <li class="product-item">
+                    <div class="product-item-info">
+                        <a href="https://magento.test/strike-endurance-tee.html" class="product-item-photo">
+                            <span class="product-image-container product-image-container-622">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/s/ms08-black_main_1.jpg" loading="lazy" width="240" height="300" alt="Strike Endurance Tee"></span>
+</span>
+<style>.product-image-container-622 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-622 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-622 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a title="Strike Endurance Tee" href="https://magento.test/strike-endurance-tee.html" class="product-item-link">
+                                    Strike Endurance Tee                                </a>
+                            </strong>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="622" data-price-box="product-id-622">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-622" data-price-amount="39" data-price-type="finalPrice" class="price-wrapper "><span class="price">$39.00</span></span>
+        </span>
+</span>
+
+
+</div>                                    <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result" id="rating-result_622" title="65%">
+                <span style="width: 65%;">
+                    <span>65%</span>
+                </span>
+            </div>
+        </div>
+                <div class="reviews-actions">
+            <a class="action view" href="https://magento.test/strike-endurance-tee.html#reviews">4                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                                        <div class="product-item-actions">
+                                <div class="actions-primary">
+                                                                                                                    <form data-role="tocart-form" data-product-sku="MS08" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/622/" method="post">
+                                            <input type="hidden" name="product" value="622">
+                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvNjIyLw~~">
+                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </form>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                            <li class="product-item">
+                    <div class="product-item-info">
+                        <a href="https://magento.test/deion-long-sleeve-evercool-trade-tee.html" class="product-item-photo">
+                            <span class="product-image-container product-image-container-606">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/s/ms07-green_main_1.jpg" loading="lazy" width="240" height="300" alt="Deion Long-Sleeve EverCool&amp;trade; Tee"></span>
+</span>
+<style>.product-image-container-606 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-606 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-606 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a title="Deion Long-Sleeve EverCool™ Tee" href="https://magento.test/deion-long-sleeve-evercool-trade-tee.html" class="product-item-link">
+                                    Deion Long-Sleeve EverCool™ Tee                                </a>
+                            </strong>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="606" data-price-box="product-id-606">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-606" data-price-amount="39" data-price-type="finalPrice" class="price-wrapper "><span class="price">$39.00</span></span>
+        </span>
+</span>
+
+
+</div>                                    <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result" id="rating-result_606" title="67%">
+                <span style="width: 67%;">
+                    <span>67%</span>
+                </span>
+            </div>
+        </div>
+                <div class="reviews-actions">
+            <a class="action view" href="https://magento.test/deion-long-sleeve-evercool-trade-tee.html#reviews">3                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                                        <div class="product-item-actions">
+                                <div class="actions-primary">
+                                                                                                                    <form data-role="tocart-form" data-product-sku="MS07" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/606/" method="post">
+                                            <input type="hidden" name="product" value="606">
+                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvNjA2Lw~~">
+                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </form>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                            <li class="product-item">
+                    <div class="product-item-info">
+                        <a href="https://magento.test/logan-heattec-reg-tee.html" class="product-item-photo">
+                            <span class="product-image-container product-image-container-590">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/s/ms10-blue_main_1.jpg" loading="lazy" width="240" height="300" alt="Logan  HeatTec&amp;reg; Tee"></span>
+</span>
+<style>.product-image-container-590 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-590 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-590 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a title="Logan  HeatTec® Tee" href="https://magento.test/logan-heattec-reg-tee.html" class="product-item-link">
+                                    Logan  HeatTec® Tee                                </a>
+                            </strong>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="590" data-price-box="product-id-590">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-590" data-price-amount="24" data-price-type="finalPrice" class="price-wrapper "><span class="price">$24.00</span></span>
+        </span>
+</span>
+
+
+</div>                                    <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result" id="rating-result_590" title="60%">
+                <span style="width: 60%;">
+                    <span>60%</span>
+                </span>
+            </div>
+        </div>
+                <div class="reviews-actions">
+            <a class="action view" href="https://magento.test/logan-heattec-reg-tee.html#reviews">3                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                                        <div class="product-item-actions">
+                                <div class="actions-primary">
+                                                                                                                    <form data-role="tocart-form" data-product-sku="MS10" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/590/" method="post">
+                                            <input type="hidden" name="product" value="590">
+                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvNTkwLw~~">
+                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </form>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                            <li class="product-item">
+                    <div class="product-item-info">
+                        <a href="https://magento.test/ryker-lumatech-trade-tee-v-neck.html" class="product-item-photo">
+                            <span class="product-image-container product-image-container-574">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/s/ms02-gray_main_1.jpg" loading="lazy" width="240" height="300" alt="Ryker LumaTech&amp;trade; Tee (V-neck)"></span>
+</span>
+<style>.product-image-container-574 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-574 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-574 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a title="Ryker LumaTech™ Tee (V-neck)" href="https://magento.test/ryker-lumatech-trade-tee-v-neck.html" class="product-item-link">
+                                    Ryker LumaTech™ Tee (V-neck)                                </a>
+                            </strong>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="574" data-price-box="product-id-574">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-574" data-price-amount="28" data-price-type="finalPrice" class="price-wrapper "><span class="price">$28.00</span></span>
+        </span>
+</span>
+
+
+</div>                                    <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result" id="rating-result_574" title="90%">
+                <span style="width: 90%;">
+                    <span>90%</span>
+                </span>
+            </div>
+        </div>
+                <div class="reviews-actions">
+            <a class="action view" href="https://magento.test/ryker-lumatech-trade-tee-v-neck.html#reviews">2                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                                        <div class="product-item-actions">
+                                <div class="actions-primary">
+                                                                                                                    <form data-role="tocart-form" data-product-sku="MS02" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/574/" method="post">
+                                            <input type="hidden" name="product" value="574">
+                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvNTc0Lw~~">
+                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </form>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                            <li class="product-item">
+                    <div class="product-item-info">
+                        <a href="https://magento.test/aero-daily-fitness-tee.html" class="product-item-photo">
+                            <span class="product-image-container product-image-container-558">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/s/ms01-blue_main_1.jpg" loading="lazy" width="240" height="300" alt="Aero Daily Fitness Tee"></span>
+</span>
+<style>.product-image-container-558 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-558 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-558 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a title="Aero Daily Fitness Tee" href="https://magento.test/aero-daily-fitness-tee.html" class="product-item-link">
+                                    Aero Daily Fitness Tee                                </a>
+                            </strong>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="558" data-price-box="product-id-558">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-558" data-price-amount="24" data-price-type="finalPrice" class="price-wrapper "><span class="price">$24.00</span></span>
+        </span>
+</span>
+
+
+</div>                                    <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result" id="rating-result_558" title="80%">
+                <span style="width: 80%;">
+                    <span>80%</span>
+                </span>
+            </div>
+        </div>
+                <div class="reviews-actions">
+            <a class="action view" href="https://magento.test/aero-daily-fitness-tee.html#reviews">3                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                                        <div class="product-item-actions">
+                                <div class="actions-primary">
+                                                                                                                    <form data-role="tocart-form" data-product-sku="MS01" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/558/" method="post">
+                                            <input type="hidden" name="product" value="558">
+                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvNTU4Lw~~">
+                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </form>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                            <li class="product-item">
+                    <div class="product-item-info">
+                        <a href="https://magento.test/zoltan-gym-tee.html" class="product-item-photo">
+                            <span class="product-image-container product-image-container-542">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/s/ms06-blue_main_1.jpg" loading="lazy" width="240" height="300" alt="Zoltan Gym Tee"></span>
+</span>
+<style>.product-image-container-542 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-542 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-542 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a title="Zoltan Gym Tee" href="https://magento.test/zoltan-gym-tee.html" class="product-item-link">
+                                    Zoltan Gym Tee                                </a>
+                            </strong>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="542" data-price-box="product-id-542">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-542" data-price-amount="29" data-price-type="finalPrice" class="price-wrapper "><span class="price">$29.00</span></span>
+        </span>
+</span>
+
+
+</div>                                    <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result" id="rating-result_542" title="70%">
+                <span style="width: 70%;">
+                    <span>70%</span>
+                </span>
+            </div>
+        </div>
+                <div class="reviews-actions">
+            <a class="action view" href="https://magento.test/zoltan-gym-tee.html#reviews">2                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                                        <div class="product-item-actions">
+                                <div class="actions-primary">
+                                                                                                                    <form data-role="tocart-form" data-product-sku="MS06" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/542/" method="post">
+                                            <input type="hidden" name="product" value="542">
+                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvNTQyLw~~">
+                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </form>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                            <li class="product-item">
+                    <div class="product-item-info">
+                        <a href="https://magento.test/argus-all-weather-tank.html" class="product-item-photo">
+                            <span class="product-image-container product-image-container-694">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/t/mt07-gray_main_1.jpg" loading="lazy" width="240" height="300" alt="Argus All-Weather Tank"></span>
+</span>
+<style>.product-image-container-694 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-694 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-694 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a title="Argus All-Weather Tank" href="https://magento.test/argus-all-weather-tank.html" class="product-item-link">
+                                    Argus All-Weather Tank                                </a>
+                            </strong>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="694" data-price-box="product-id-694">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-694" data-price-amount="22" data-price-type="finalPrice" class="price-wrapper "><span class="price">$22.00</span></span>
+        </span>
+</span>
+
+
+</div>                                <div class="product-reviews-summary short empty">
+        <div class="reviews-actions">
+            <a class="action add" href="https://magento.test/argus-all-weather-tank.html#review-form">
+                Be the first to review this product            </a>
+        </div>
+    </div>
+                                                        <div class="product-item-actions">
+                                <div class="actions-primary">
+                                                                                                                    <form data-role="tocart-form" data-product-sku="MT07" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/694/" method="post">
+                                            <input type="hidden" name="product" value="694">
+                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvNjk0Lw~~">
+                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </form>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                            <li class="product-item">
+                    <div class="product-item-info">
+                        <a href="https://magento.test/balboa-persistence-tee.html" class="product-item-photo">
+                            <span class="product-image-container product-image-container-526">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/s/ms03-black_main_1.jpg" loading="lazy" width="240" height="300" alt="Balboa Persistence Tee"></span>
+</span>
+<style>.product-image-container-526 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-526 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-526 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a title="Balboa Persistence Tee" href="https://magento.test/balboa-persistence-tee.html" class="product-item-link">
+                                    Balboa Persistence Tee                                </a>
+                            </strong>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="526" data-price-box="product-id-526">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-526" data-price-amount="29" data-price-type="finalPrice" class="price-wrapper "><span class="price">$29.00</span></span>
+        </span>
+</span>
+
+
+</div>                                    <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result" id="rating-result_526" title="60%">
+                <span style="width: 60%;">
+                    <span>60%</span>
+                </span>
+            </div>
+        </div>
+                <div class="reviews-actions">
+            <a class="action view" href="https://magento.test/balboa-persistence-tee.html#reviews">2                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                                        <div class="product-item-actions">
+                                <div class="actions-primary">
+                                                                                                                    <form data-role="tocart-form" data-product-sku="MS03" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/526/" method="post">
+                                            <input type="hidden" name="product" value="526">
+                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvNTI2Lw~~">
+                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </form>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                            <li class="product-item">
+                    <div class="product-item-info">
+                        <a href="https://magento.test/atomic-endurance-running-tee-crew-neck.html" class="product-item-photo">
+                            <span class="product-image-container product-image-container-510">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/s/ms12-red_main_1.jpg" loading="lazy" width="240" height="300" alt="Atomic Endurance Running Tee (Crew-Neck)"></span>
+</span>
+<style>.product-image-container-510 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-510 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-510 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a title="Atomic Endurance Running Tee (Crew-Neck)" href="https://magento.test/atomic-endurance-running-tee-crew-neck.html" class="product-item-link">
+                                    Atomic Endurance Running Tee (Crew-Neck)                                </a>
+                            </strong>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="510" data-price-box="product-id-510">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-510" data-price-amount="29" data-price-type="finalPrice" class="price-wrapper "><span class="price">$29.00</span></span>
+        </span>
+</span>
+
+
+</div>                                    <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result" id="rating-result_510" title="53%">
+                <span style="width: 53%;">
+                    <span>53%</span>
+                </span>
+            </div>
+        </div>
+                <div class="reviews-actions">
+            <a class="action view" href="https://magento.test/atomic-endurance-running-tee-crew-neck.html#reviews">3                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                                        <div class="product-item-actions">
+                                <div class="actions-primary">
+                                                                                                                    <form data-role="tocart-form" data-product-sku="MS12" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/510/" method="post">
+                                            <input type="hidden" name="product" value="510">
+                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvNTEwLw~~">
+                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </form>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                            <li class="product-item">
+                    <div class="product-item-info">
+                        <a href="https://magento.test/vulcan-weightlifting-tank.html" class="product-item-photo">
+                            <span class="product-image-container product-image-container-688">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/t/mt06-black_main_1.jpg" loading="lazy" width="240" height="300" alt="Vulcan Weightlifting Tank"></span>
+</span>
+<style>.product-image-container-688 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-688 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-688 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a title="Vulcan Weightlifting Tank" href="https://magento.test/vulcan-weightlifting-tank.html" class="product-item-link">
+                                    Vulcan Weightlifting Tank                                </a>
+                            </strong>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="688" data-price-box="product-id-688">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-688" data-price-amount="28" data-price-type="finalPrice" class="price-wrapper "><span class="price">$28.00</span></span>
+        </span>
+</span>
+
+
+</div>                                <div class="product-reviews-summary short empty">
+        <div class="reviews-actions">
+            <a class="action add" href="https://magento.test/vulcan-weightlifting-tank.html#review-form">
+                Be the first to review this product            </a>
+        </div>
+    </div>
+                                                        <div class="product-item-actions">
+                                <div class="actions-primary">
+                                                                                                                    <form data-role="tocart-form" data-product-sku="MT06" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/688/" method="post">
+                                            <input type="hidden" name="product" value="688">
+                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvNjg4Lw~~">
+                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </form>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                            <li class="product-item">
+                    <div class="product-item-info">
+                        <a href="https://magento.test/rocco-gym-tank.html" class="product-item-photo">
+                            <span class="product-image-container product-image-container-682">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/t/mt05-blue_main_1.jpg" loading="lazy" width="240" height="300" alt="Rocco Gym Tank"></span>
+</span>
+<style>.product-image-container-682 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-682 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-682 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a title="Rocco Gym Tank" href="https://magento.test/rocco-gym-tank.html" class="product-item-link">
+                                    Rocco Gym Tank                                </a>
+                            </strong>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="682" data-price-box="product-id-682">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-682" data-price-amount="24" data-price-type="finalPrice" class="price-wrapper "><span class="price">$24.00</span></span>
+        </span>
+</span>
+
+
+</div>                                <div class="product-reviews-summary short empty">
+        <div class="reviews-actions">
+            <a class="action add" href="https://magento.test/rocco-gym-tank.html#review-form">
+                Be the first to review this product            </a>
+        </div>
+    </div>
+                                                        <div class="product-item-actions">
+                                <div class="actions-primary">
+                                                                                                                    <form data-role="tocart-form" data-product-sku="MT05" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/682/" method="post">
+                                            <input type="hidden" name="product" value="682">
+                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvNjgyLw~~">
+                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </form>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                            <li class="product-item">
+                    <div class="product-item-info">
+                        <a href="https://magento.test/helios-endurance-tank.html" class="product-item-photo">
+                            <span class="product-image-container product-image-container-676">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/t/mt04-blue_main_1.jpg" loading="lazy" width="240" height="300" alt="Helios Endurance Tank"></span>
+</span>
+<style>.product-image-container-676 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-676 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-676 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a title="Helios Endurance Tank" href="https://magento.test/helios-endurance-tank.html" class="product-item-link">
+                                    Helios Endurance Tank                                </a>
+                            </strong>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="676" data-price-box="product-id-676">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-676" data-price-amount="32" data-price-type="finalPrice" class="price-wrapper "><span class="price">$32.00</span></span>
+        </span>
+</span>
+
+
+</div>                                    <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result" id="rating-result_676" title="70%">
+                <span style="width: 70%;">
+                    <span>70%</span>
+                </span>
+            </div>
+        </div>
+                <div class="reviews-actions">
+            <a class="action view" href="https://magento.test/helios-endurance-tank.html#reviews">4                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                                        <div class="product-item-actions">
+                                <div class="actions-primary">
+                                                                                                                    <form data-role="tocart-form" data-product-sku="MT04" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/676/" method="post">
+                                            <input type="hidden" name="product" value="676">
+                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvNjc2Lw~~">
+                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </form>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                            <li class="product-item">
+                    <div class="product-item-info">
+                        <a href="https://magento.test/primo-endurance-tank.html" class="product-item-photo">
+                            <span class="product-image-container product-image-container-670">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/t/mt03-red_main_1.jpg" loading="lazy" width="240" height="300" alt="Primo Endurance Tank"></span>
+</span>
+<style>.product-image-container-670 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-670 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-670 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a title="Primo Endurance Tank" href="https://magento.test/primo-endurance-tank.html" class="product-item-link">
+                                    Primo Endurance Tank                                </a>
+                            </strong>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="670" data-price-box="product-id-670">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-670" data-price-amount="29" data-price-type="finalPrice" class="price-wrapper "><span class="price">$29.00</span></span>
+        </span>
+</span>
+
+
+</div>                                    <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result" id="rating-result_670" title="53%">
+                <span style="width: 53%;">
+                    <span>53%</span>
+                </span>
+            </div>
+        </div>
+                <div class="reviews-actions">
+            <a class="action view" href="https://magento.test/primo-endurance-tank.html#reviews">3                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                                        <div class="product-item-actions">
+                                <div class="actions-primary">
+                                                                                                                    <form data-role="tocart-form" data-product-sku="MT03" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/670/" method="post">
+                                            <input type="hidden" name="product" value="670">
+                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvNjcwLw~~">
+                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </form>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                            <li class="product-item">
+                    <div class="product-item-info">
+                        <a href="https://magento.test/tristan-endurance-tank.html" class="product-item-photo">
+                            <span class="product-image-container product-image-container-654">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/t/mt02-white_main_2.jpg" loading="lazy" width="240" height="300" alt="Tristan Endurance Tank"></span>
+</span>
+<style>.product-image-container-654 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-654 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-654 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a title="Tristan Endurance Tank" href="https://magento.test/tristan-endurance-tank.html" class="product-item-link">
+                                    Tristan Endurance Tank                                </a>
+                            </strong>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="654" data-price-box="product-id-654">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-654" data-price-amount="29" data-price-type="finalPrice" class="price-wrapper "><span class="price">$29.00</span></span>
+        </span>
+</span>
+
+
+</div>                                    <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result" id="rating-result_654" title="80%">
+                <span style="width: 80%;">
+                    <span>80%</span>
+                </span>
+            </div>
+        </div>
+                <div class="reviews-actions">
+            <a class="action view" href="https://magento.test/tristan-endurance-tank.html#reviews">3                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                                        <div class="product-item-actions">
+                                <div class="actions-primary">
+                                                                                                                    <form data-role="tocart-form" data-product-sku="MT02" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/654/" method="post">
+                                            <input type="hidden" name="product" value="654">
+                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvNjU0Lw~~">
+                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </form>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                            <li class="product-item">
+                    <div class="product-item-info">
+                        <a href="https://magento.test/erikssen-cooltech-trade-fitness-tank.html" class="product-item-photo">
+                            <span class="product-image-container product-image-container-638">
+    <span class="product-image-wrapper">
+        <img class="product-image-photo" src="https://magento.test/media/catalog/product/cache/2765542505660baab28ecd555e27366e/m/t/mt01-red_main_1.jpg" loading="lazy" width="240" height="300" alt="Erikssen CoolTech&amp;trade; Fitness Tank"></span>
+</span>
+<style>.product-image-container-638 {
+    width: 240px;
+    height: auto;
+    aspect-ratio: 240 / 300;
+}
+.product-image-container-638 span.product-image-wrapper {
+    height: 100%;
+    width: 100%;
+}
+@supports not (aspect-ratio: auto) { 
+    .product-image-container-638 span.product-image-wrapper {
+        padding-bottom: 125%;
+    }
+}</style>                        </a>
+                        <div class="product-item-details">
+                            <strong class="product-item-name">
+                                <a title="Erikssen CoolTech™ Fitness Tank" href="https://magento.test/erikssen-cooltech-trade-fitness-tank.html" class="product-item-link">
+                                    Erikssen CoolTech™ Fitness Tank                                </a>
+                            </strong>
+                            <div class="price-box price-final_price" data-role="priceBox" data-product-id="638" data-price-box="product-id-638">    <span class="normal-price">
+
+
+<span class="price-container price-final_price tax weee">
+        <span id="product-price-638" data-price-amount="29" data-price-type="finalPrice" class="price-wrapper "><span class="price">$29.00</span></span>
+        </span>
+</span>
+
+
+</div>                                    <div class="product-reviews-summary short">
+                <div class="rating-summary">
+            <span class="label"><span>Rating:</span></span>
+            <div class="rating-result" id="rating-result_638" title="55%">
+                <span style="width: 55%;">
+                    <span>55%</span>
+                </span>
+            </div>
+        </div>
+                <div class="reviews-actions">
+            <a class="action view" href="https://magento.test/erikssen-cooltech-trade-fitness-tank.html#reviews">4                &nbsp;<span>Reviews                </span>
+            </a>
+        </div>
+    </div>
+                                                        <div class="product-item-actions">
+                                <div class="actions-primary">
+                                                                                                                    <form data-role="tocart-form" data-product-sku="MT01" action="https://magento.test/checkout/cart/add/uenc/aHR0cHM6Ly9tYWdlbnRvLnRlc3Qv/product/638/" method="post">
+                                            <input type="hidden" name="product" value="638">
+                                            <input type="hidden" name="uenc" value="aHR0cHM6Ly9tYWdlbnRvLnRlc3QvY2hlY2tvdXQvY2FydC9hZGQvdWVuYy9hSFIwY0hNNkx5OXRZV2RsYm5SdkxuUmxjM1F2L3Byb2R1Y3QvNjM4Lw~~">
+                                            <input name="form_key" type="hidden" value="22bzvLjfFEwgxbzl">                                            <button type="submit" title="Add to Cart" class="action tocart primary">
+                                                <span>Add to Cart</span>
+                                            </button>
+                                        </form>
+                                                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                    </ol>
+    </div>
+</div>
+    </div></div></main><footer class="page-footer"><div class="footer content"><div class="block newsletter">
+    <div class="title"><strong>Newsletter</strong></div>
+    <div class="content">
+        <form class="form subscribe" novalidate="novalidate" action="https://magento.test/newsletter/subscriber/new/" method="post" id="newsletter-validate-detail">
+            <div class="field newsletter">
+                <div class="control">
+                    <label for="newsletter">
+                        <span class="label">
+                            Sign Up for Our Newsletter:                        </span>
+                        <input name="email" type="email" id="newsletter" placeholder="Enter your email address" data-validate="{required:true, 'validate-email':true}">
+                    </label>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="action subscribe primary" title="Subscribe" type="submit" aria-label="Subscribe">
+                    <span>Subscribe</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="links"><div class="widget block block-static-block">
+    <ul class="footer links">
+    <li class="nav item"><a href="https://magento.test/about-us/">About us</a></li>
+    <li class="nav item"><a href="https://magento.test/customer-service/">Customer Service</a></li>
+</ul>
+</div>
+</div><ul class="footer links"><li class="nav item"><a href="https://magento.test/privacy-policy-cookie-restriction-mode/">Privacy and Cookie Policy</a></li><li class="nav item"><a href="https://magento.test/search/term/popular/">Search Terms</a></li><li class="nav item"><a href="https://magento.test/catalogsearch/advanced/" data-action="advanced-search">Advanced Search</a></li><li class="nav item"><a href="https://magento.test/sales/guest/form/">Orders and Returns</a></li><li class="nav item"><a href="https://magento.test/contact/">Contact Us</a></li></ul></div></footer>
+<small class="copyright">
+    <span>Copyright © 2013-present Magento, Inc. All rights reserved.</span>
+</small>
+</div>    
+
+<div class="swatch-option-tooltip"><div class="image"></div><div class="title"></div><div class="corner"></div></div></body>

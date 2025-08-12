@@ -8,13 +8,13 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Framework\Model\ResourceModel\AbstractResource;
 use Magento\Framework\Data\Collection\AbstractDb;
-use CoutureSearch\SearchAPI\Model\ResourceModel\BannerConfig\CollectionFactory;
+use CoutureSearch\SearchAPI\Model\ResourceModel\RecoConfig\CollectionFactory;
 use Psr\Log\LoggerInterface;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Backend\Model\Session;
 
-class Banners extends Value
+class Recos extends Value
 {
     protected $collectionFactory;
     protected $logger;
@@ -40,19 +40,14 @@ class Banners extends Value
         $this->logger = $logger;
         $this->configWriter = $configWriter;
         $this->request = $request;
-        $this->session = $session; 
-
+        $this->session = $session;
         parent::__construct($context, $registry, $config, $cacheTypeList, $resource, $resourceCollection, $data);
     }
 
-    /**
-     * This method is called after the config data is loaded.
-     * It sets the values for the form fields.
-     */
     protected function _afterLoad()
     {
-        $this->logger->info('--- Backend Model: _afterLoad triggered ---');
-        $banners = $this->collectionFactory->create();
+        $this->logger->info('--- Recos Backend Model: _afterLoad triggered ---');
+        $recos = $this->collectionFactory->create();
         $values = [];
 
         $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT;
@@ -65,45 +60,41 @@ class Banners extends Value
             $scopeId = $this->request->getParam('store');
         }
 
-        foreach ($banners as $banner) {
-            $bannerCode = $banner->getBannerCode();
-            $configPath = 'couture_dynamic_banners/marketing_settings/' . $bannerCode . '_enabled';
-            
+        foreach ($recos as $reco) {
+            $recoCode = $reco->getRecoCode();
+            $configPath = 'couture_dynamic_banners/settings/' . $recoCode . '_enabled';
+
             $savedValue = $this->_config->getValue($configPath, $scope, $scopeId);
 
             if ($savedValue !== null) {
-                $values[$bannerCode . '_enabled'] = $savedValue;
-                $this->logger->info("Found saved value for {$bannerCode}: " . $savedValue);
+                $values[$recoCode . '_enabled'] = $savedValue;
+                $this->logger->info("Found saved value for {$recoCode}: " . $savedValue);
             } else {
-                $values[$bannerCode . '_enabled'] = $banner->getIsEnabledDefault();
-                $this->logger->info("No saved value for {$bannerCode}, using default: " . $banner->getIsEnabledDefault());
+                $values[$recoCode . '_enabled'] = $reco->getIsEnabledDefault();
+                $this->logger->info("No saved value for {$recoCode}, using default from API: " . $reco->getIsEnabledDefault());
             }
         }
         
         $this->setValue($values);
     }
 
-    /**
-     * This is the key fix. This method is called before the config data is saved.
-     * We manually save each of our dynamic fields.
-     */
     public function beforeSave()
     {
+        // This check prevents the race condition after a sync
         if ($this->session->getIsBannerSyncJustCompleted()) {
             $this->session->unsIsBannerSyncJustCompleted();
-            $this->logger->info('--- Backend Model: Skipping beforeSave due to recent sync completion. ---');
+            $this->logger->info('--- Recos Backend Model: Skipping beforeSave due to recent sync completion. ---');
             return $this;
         }
 
-        $this->logger->info('--- Backend Model: beforeSave triggered ---');
-        $values = $this->getData('groups/marketing_settings/fields/banner_visibility/value');
+        $this->logger->info('--- Recos Backend Model: beforeSave triggered by user action. ---');
+        
+        $values = $this->getData('groups/settings/fields/reco_visibility/value');
 
         if (is_array($values)) {
             foreach ($values as $key => $value) {
-                $configPath = 'couture_dynamic_banners/marketing_settings/' . $key;
-                $this->logger->info("Saving Banners config value. Path: {$configPath}, Value: {$value}");
-                
-                // Use the config writer to save each value individually
+                $configPath = 'couture_dynamic_banners/settings/' . $key;
+                $this->logger->info("Saving config value. Path: {$configPath}, Value: {$value}");
                 $this->configWriter->save(
                     $configPath,
                     $value,
@@ -113,7 +104,6 @@ class Banners extends Value
             }
         }
         
-        // We don't call the parent::beforeSave() because we are handling the save ourselves.
         return $this;
     }
 }

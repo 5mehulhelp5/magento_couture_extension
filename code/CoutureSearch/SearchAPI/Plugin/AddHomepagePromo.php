@@ -31,32 +31,27 @@ class AddHomepagePromo
             return $result;
         }
 
-        // Use our new, smart container block
-        // $promoBlock = $this->layout->createBlock(
-        //     \CoutureSearch\SearchAPI\Block\Promo\Banners::class, // <-- Use the new block class
-        //     'couturesearch.recommendations.container.from.plugin'
-        // )->setTemplate('CoutureSearch_SearchAPI::promo/recommendations.phtml');
-        
-        // self::$blockCreated = true;
+        $finalHtml = $result;
 
-        // return $result . $promoBlock->toHtml();
-
-
-        
-
-        // Create an instance of our new, smart container block
+        // --- 1. Render the Dynamic Marketing Banners ---
         $dynamicBannersBlock = $this->layout->createBlock(
             \CoutureSearch\SearchAPI\Block\Promo\DynamicBanners::class,
             'couturesearch.dynamic.banners.from.plugin'
         )->setTemplate('CoutureSearch_SearchAPI::promo/dynamic_banners.phtml');
         
-        $dynamicBannersHtml = $dynamicBannersBlock->toHtml();
-        // --- END: DYNAMIC BANNERS INJECTION ---
+        $finalHtml .= $dynamicBannersBlock->toHtml();
 
+        // --- 2. Render the new Dynamic Product Carousels ---
+        $dynamicCarouselsBlock = $this->layout->createBlock(
+            \CoutureSearch\SearchAPI\Block\Promo\DynamicCarousels::class, // <-- Use the new block class
+            'couturesearch.dynamic.carousels.from.plugin'
+        )->setTemplate('CoutureSearch_SearchAPI::promo/dynamic_carousels.phtml'); // <-- Use the new container template
+
+        $finalHtml .= $dynamicCarouselsBlock->toHtml();
+        
         self::$blockCreated = true;
 
-        // Append the new dynamic banners HTML to the page content
-        return $result . $dynamicBannersHtml;
+        return $finalHtml;
 
     }
 }

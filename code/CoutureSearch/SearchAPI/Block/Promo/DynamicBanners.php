@@ -31,6 +31,11 @@ class DynamicBanners extends Template
         parent::__construct($context, $data);
     }
 
+    public function getLogger()
+    {
+        return $this->_logger;
+    }
+
     public function getVisibleBanners(): array
     {
         $visibleBanners = [];
@@ -38,7 +43,7 @@ class DynamicBanners extends Template
 
         foreach ($allBanners as $banner) {
             $bannerCode = $banner->getBannerCode();
-            $configPath = 'couture_dynamic_banners/settings/' . $bannerCode . '_enabled';
+            $configPath = 'couture_dynamic_banners/marketing_settings/' . $bannerCode . '_enabled';
 
             $isEnabled = $this->scopeConfig->isSetFlag(
                 $configPath,

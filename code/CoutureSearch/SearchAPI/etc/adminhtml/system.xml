@@ -64,10 +64,17 @@
 			<label>Recommendations Banners</label>
 			<tab>couturesearch</tab>
 			<resource>CoutureSearch_SearchAPI::config</resource>
-			<group id="settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-				<label>Banner Visibility</label>
+			<group id="sync_actions" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Configuration Sync</label>
+                <field id="sync_button" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sync Button</label>
+                    <frontend_model>CoutureSearch\SearchAPI\Block\Adminhtml\System\Config\SyncBanners</frontend_model>
+                </field>
+			</group>
+			<group id="marketing_settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Marketing Banner Visibility</label>
 				<field id="banner_visibility" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-					<label>Enable Banners</label>
+					<label>Enable Marketing Banners</label>
 					<frontend_model>CoutureSearch\SearchAPI\Block\Adminhtml\System\Config\Banners</frontend_model>
 					<backend_model>CoutureSearch\SearchAPI\Model\Config\Backend\Banners</backend_model>
 				</field>
@@ -79,6 +86,14 @@
                     <comment>The API endpoint to fetch the list of available banners.</comment>
                 </field>
 			</group>
+			<group id="settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Carousel Banners Visibility</label>
+                <field id="reco_visibility" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Product Carousels</label>
+                    <frontend_model>CoutureSearch\SearchAPI\Block\Adminhtml\System\Config\Recos</frontend_model>
+                    <backend_model>CoutureSearch\SearchAPI\Model\Config\Backend\Recos</backend_model>
+                </field>
+            </group>
 		</section>
 	</system>
 </config>

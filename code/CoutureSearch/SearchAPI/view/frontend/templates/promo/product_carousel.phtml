@@ -11,48 +11,119 @@ $_productCollection = $block->getData('product_collection');
 
 <?php if ($_productCollection && $_productCollection->count()): ?>
 <style>
-    /* The main wrapper for the entire block now hides any overflow */
+    :root {
+        --card-width: 240px;        /* width of each product card - change to show more/less items */
+        --card-gap: 24px;          /* gap between cards */
+        --container-max: 1180px;   /* visual width of the block on large viewports */
+        --img-height: 240px;       /* product image height */
+    }
+
+    /* Ensure outer block won't allow children to push page to the right */
     .product-carousel-block {
+        overflow-x: hidden;   /* key: hide any accidental overflow from the page */
+        padding: 0 16px;
+        box-sizing: border-box;
+    }
+
+    .product-carousel-block .block-title {
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    /* This is the horizontal scrolling viewport */
+    .product-carousel-block .block-content {
+        max-width: var(--container-max);
+        margin: 0 auto;
+        padding: 20px 8px; 
+        border: 1px solid #eee;
+        border-radius: 6px;
+        background: #fff;
+        overflow-x: auto;              /* horizontal scroll only inside this box */
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        position: relative;
+        /* Prevent vertical scrollbar from appearing: keep height flexible */
+        white-space: nowrap;
+    }
+
+    /* nice thin horizontal scrollbar */
+    .product-carousel-block .block-content::-webkit-scrollbar { height: 10px; }
+    .product-carousel-block .block-content::-webkit-scrollbar-track { background: #f1f1f1; border-radius:6px; }
+    .product-carousel-block .block-content::-webkit-scrollbar-thumb { background: #ccc; border-radius:6px; }
+
+    /* The scroller list: allow it to grow horizontally but keep it inside block-content */
+    .product-carousel-block .product-items-scroller {
+        display: inline-flex;         /* inline-flex + width: max-content keeps it from forcing page width */
+        width: -moz-max-content;      /* firefox */
+        width: max-content;           /* ensures it can be wider than viewport and be scrolled */
+        gap: var(--card-gap);
+        margin: 0;
+        padding: 6px;
+        list-style: none;
+        align-items: flex-start;
+    }
+
+    /* Each card: fixed width, won't shrink, and lays out vertically */
+    .product-carousel-block .product-item {
+        box-sizing: border-box;
+        flex: 0 0 auto;               /* do not grow or shrink */
+        width: var(--card-width);
+        min-width: var(--card-width);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: left;
+        padding: 6px;
+        background: transparent;
+    }
+
+    /* image area */
+    .product-carousel-block .product-item-photo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: var(--img-height);
         overflow: hidden;
     }
-    /* The content block is our scrolling viewport */
-    .product-carousel-block .block-content {
-        overflow-x: auto;
-        padding-bottom: 20px;
-        scrollbar-width: thin;
-        scrollbar-color: #ccc #f1f1f1;
+    .product-carousel-block .product-item-photo img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        display: block;
     }
-    .product-carousel-block .block-content::-webkit-scrollbar { height: 8px; }
-    .product-carousel-block .block-content::-webkit-scrollbar-track { background: #f1f1f1; }
-    .product-carousel-block .block-content::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
-    
-    /* The <ol> list is the flex container for the products */
-    .product-carousel-block .product-items-scroller {
+
+    /* details + CTA */
+    .product-carousel-block .product-item-details {
+        width: 100%;
+        margin-top: 10px;
         display: flex;
-        flex-wrap: nowrap;
-        gap: 15px;
-        margin: 0;
-        padding: 2px;
-        list-style-type: none;
+        flex-direction: column;
+        gap: 6px;
     }
-    
-    /* Each product item has a fixed width */
-    .product-carousel-block .product-item {
-        width: 240px;
-        flex-shrink: 0;
+
+    .product-carousel-block .product-item-name { font-weight: 500; line-height: 1.25; }
+    .product-carousel-block .product-item .price { font-weight: 700; margin-top: 4px; }
+
+    .product-carousel-block .product-item-actions { margin-top: auto; }
+
+    /* responsive: reduce card width on small screens */
+    @media (max-width: 900px) {
+        :root { --card-width: 210px; --img-height: 200px; }
+    }
+    @media (max-width: 560px) {
+        :root { --card-width: 180px; --img-height: 170px; --card-gap: 16px; }
+        .product-carousel-block .block-content { padding-bottom: 14px; }
     }
 </style>
 
-<div class="block widget block-products-list product-carousel-block">
+<div class="block widget block-products-list product-carousel-block" role="region" aria-label="<?= $escaper->escapeHtmlAttr($title) ?>">
     <div class="block-title content-heading">
         <h2 class="title"><?= $escaper->escapeHtml($title) ?></h2>
         <p class="info"><?= $escaper->escapeHtml($caption) ?></p>
     </div>
+
     <div class="block-content">
-        <!-- 
-            REMOVED the intermediate '.products-grid.grid' div and applied a custom class to the <ol>
-            to prevent conflicts with theme styles.
-        -->
         <ol class="product-items-scroller">
             <?php foreach ($_productCollection as $_product): ?>
                 <li class="product-item">
@@ -60,6 +131,7 @@ $_productCollection = $block->getData('product_collection');
                         <a href="<?= $escaper->escapeUrl($renderer->getProductUrl($_product)) ?>" class="product-item-photo">
                             <?= $renderer->getImage($_product, 'category_page_grid')->toHtml() ?>
                         </a>
+
                         <div class="product-item-details">
                             <strong class="product-item-name">
                                 <a title="<?= $escaper->escapeHtml($_product->getName()) ?>"
@@ -68,9 +140,11 @@ $_productCollection = $block->getData('product_collection');
                                     <?= $escaper->escapeHtml($_product->getName()) ?>
                                 </a>
                             </strong>
+
                             <?= $renderer->getProductPriceHtml($_product, \Magento\Catalog\Pricing\Price\FinalPrice::PRICE_CODE) ?>
                             <?= $renderer->getReviewsSummaryHtml($_product, 'short', true) ?>
                             <?= $renderer->getProductDetailsHtml($_product) ?>
+
                             <div class="product-item-actions">
                                 <div class="actions-primary">
                                     <?php if ($_product->isSaleable()): ?>
