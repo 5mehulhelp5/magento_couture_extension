@@ -31,7 +31,7 @@
                     <td>
                         <?php
                             // The name must match the key our backend model expects
-                            $fieldName = 'groups[settings][fields][banner_visibility][value][' . $banner->getBannerCode() . '_enabled]';
+                            $fieldName = 'groups[marketing_settings][fields][banner_visibility][value][' . $banner->getBannerCode() . '_enabled]';
                             $fieldId = 'banner_' . $banner->getBannerCode();
                             $isEnabled = $block->getBannerValue($banner->getBannerCode());
                         ?>

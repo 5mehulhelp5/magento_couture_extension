@@ -1,7 +1,6 @@
 <?php
 namespace CoutureSearch\SearchAPI\Model\Config\Backend;
 
-use Magento\Framework\App\Config\Value;
 use Magento\Framework\Model\Context;
 use Magento\Framework\Registry;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -14,14 +13,8 @@ use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Backend\Model\Session;
 
-class Banners extends Value
+class Banners extends AbstractDynamicConfig
 {
-    protected $collectionFactory;
-    protected $logger;
-    protected $configWriter;
-    protected $request;
-    protected $session;
-
     public function __construct(
         Context $context,
         Registry $registry,
@@ -37,83 +30,26 @@ class Banners extends Value
         array $data = []
     ) {
         $this->collectionFactory = $collectionFactory;
-        $this->logger = $logger;
-        $this->configWriter = $configWriter;
-        $this->request = $request;
-        $this->session = $session; 
-
-        parent::__construct($context, $registry, $config, $cacheTypeList, $resource, $resourceCollection, $data);
+        parent::__construct($context, $registry, $config, $cacheTypeList, $logger, $configWriter, $request, $session, $resource, $resourceCollection, $data);
     }
 
-    /**
-     * This method is called after the config data is loaded.
-     * It sets the values for the form fields.
-     */
-    protected function _afterLoad()
+    protected function getConfigSectionPath(): string
     {
-        $this->logger->info('--- Backend Model: _afterLoad triggered ---');
-        $banners = $this->collectionFactory->create();
-        $values = [];
-
-        $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT;
-        $scopeId = 0;
-        if ($this->request->getParam('website')) {
-            $scope = 'websites';
-            $scopeId = $this->request->getParam('website');
-        } elseif ($this->request->getParam('store')) {
-            $scope = 'stores';
-            $scopeId = $this->request->getParam('store');
-        }
-
-        foreach ($banners as $banner) {
-            $bannerCode = $banner->getBannerCode();
-            $configPath = 'couture_dynamic_banners/marketing_settings/' . $bannerCode . '_enabled';
-            
-            $savedValue = $this->_config->getValue($configPath, $scope, $scopeId);
-
-            if ($savedValue !== null) {
-                $values[$bannerCode . '_enabled'] = $savedValue;
-                $this->logger->info("Found saved value for {$bannerCode}: " . $savedValue);
-            } else {
-                $values[$bannerCode . '_enabled'] = $banner->getIsEnabledDefault();
-                $this->logger->info("No saved value for {$bannerCode}, using default: " . $banner->getIsEnabledDefault());
-            }
-        }
-        
-        $this->setValue($values);
+        return 'couture_dynamic_banners/marketing_settings';
     }
 
-    /**
-     * This is the key fix. This method is called before the config data is saved.
-     * We manually save each of our dynamic fields.
-     */
-    public function beforeSave()
+    protected function getFormDataPath(): string
     {
-        if ($this->session->getIsBannerSyncJustCompleted()) {
-            $this->session->unsIsBannerSyncJustCompleted();
-            $this->logger->info('--- Backend Model: Skipping beforeSave due to recent sync completion. ---');
-            return $this;
-        }
+        return 'groups/marketing_settings/fields/banner_visibility/value';
+    }
 
-        $this->logger->info('--- Backend Model: beforeSave triggered ---');
-        $values = $this->getData('groups/marketing_settings/fields/banner_visibility/value');
+    protected function getCodeField(): string
+    {
+        return 'banner_code';
+    }
 
-        if (is_array($values)) {
-            foreach ($values as $key => $value) {
-                $configPath = 'couture_dynamic_banners/marketing_settings/' . $key;
-                $this->logger->info("Saving Banners config value. Path: {$configPath}, Value: {$value}");
-                
-                // Use the config writer to save each value individually
-                $this->configWriter->save(
-                    $configPath,
-                    $value,
-                    $this->getScope(),
-                    $this->getScopeId()
-                );
-            }
-        }
-        
-        // We don't call the parent::beforeSave() because we are handling the save ourselves.
-        return $this;
+    protected function getDefaultEnabledField(): string
+    {
+        return 'is_enabled_default';
     }
 }
