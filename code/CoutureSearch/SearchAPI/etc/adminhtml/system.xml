@@ -55,6 +55,11 @@
 					<label>Actions</label>
 					<frontend_model>CoutureSearch\SearchAPI\Block\Adminhtml\System\Config\Sync</frontend_model>
 				</field>
+
+				<field id="cron_schedule_display" translate="label" type="label" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+					<label>Automated Sync Schedule</label>
+					<comment>The catalogue sync is scheduled to run automatically every 2 minutes with the expression: */2 * * * *</comment>
+				</field>
 			</group>
 		</section>
 
