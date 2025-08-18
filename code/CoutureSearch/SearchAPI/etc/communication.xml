@@ -1,9 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Communication/etc/communication.xsd">
-    <!-- 
-    This file formally declares our topic.
-    The 'request' type specifies the type of data the topic carries.
-    For our use case, we are just sending the integer ID of the sync history record.
-    -->
-    <topic name="couture.catalogue.sync" request="string"/>
+    <!-- for catalogue sync -->
+    <topic name="couture.catalogue.sync" request="string"/> 
+    <!-- for order history sync -->
+    <topic name="couture.order.sync" request="string"/>
 </config>

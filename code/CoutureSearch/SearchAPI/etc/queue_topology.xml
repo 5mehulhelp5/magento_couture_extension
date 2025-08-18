@@ -14,5 +14,9 @@
                  topic="couture.catalogue.sync"
                  destinationType="queue"
                  destination="couture.catalogue.sync.queue"/>
+        <binding id="coutureOrderSyncBinding"
+                 topic="couture.order.sync"
+                 destinationType="queue"
+                 destination="couture.order.sync.queue"/>
     </exchange>
 </config>

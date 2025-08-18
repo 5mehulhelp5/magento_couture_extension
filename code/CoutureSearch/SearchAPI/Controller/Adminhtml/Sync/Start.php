@@ -11,7 +11,9 @@ use Magento\Framework\Exception\LocalizedException;
 
 class Start extends Action
 {
-    const TOPIC_NAME = 'couture.catalogue.sync';
+    // Define both topic names
+    const CATALOGUE_TOPIC = 'couture.catalogue.sync';
+    const ORDER_TOPIC = 'couture.order.sync';
 
     /** @var JsonFactory */
     protected $resultJsonFactory;
@@ -41,7 +43,7 @@ class Start extends Action
         $result = $this->resultJsonFactory->create();
 
         // --- START: VALIDATION LOGIC ---
-        // Check if a sync is already in progress
+        // Check if any sync is already in progress or queued
         $activeSyncCollection = $this->collectionFactory->create();
         $activeSyncCollection->addFieldToFilter(
             'status',
@@ -52,29 +54,35 @@ class Start extends Action
             // If an active sync is found, return an error message.
             return $result->setData([
                 'error' => true,
-                'message' => __('A catalogue sync is already in progress. Please wait for it to complete before starting a new one.')
+                'message' => __('A sync is already in progress. Please wait for it to complete before starting a new one.')
             ]);
         }
         // --- END: VALIDATION LOGIC ---
 
         try {
-            // Create a new record in our history table
-            $syncHistory = $this->syncHistoryFactory->create();
-            $syncHistory->setData([
-                'request_id' => uniqid('SYNC-'),
+            // --- 1. Queue the Catalogue Sync ---
+            $catalogueSync = $this->syncHistoryFactory->create();
+            $catalogueSync->setData([
+                'request_id' => uniqid('MANUAL-CATALOG-'),
                 'status' => 'Queued',
-                'message' => 'Sync request has been added to the queue.'
+                'message' => 'Manual sync request added to the queue.'
             ]);
-            $syncHistory->save();
+            $catalogueSync->save();
+            $this->publisher->publish(self::CATALOGUE_TOPIC, $catalogueSync->getId());
 
-            // Publish the ID of the new record to the message queue
-            $this->publisher->publish(self::TOPIC_NAME, $syncHistory->getId());
+            // --- 2. Queue the Order History Sync ---
+            $orderSync = $this->syncHistoryFactory->create();
+            $orderSync->setData([
+                'request_id' => uniqid('MANUAL-ORDER-'),
+                'status' => 'Queued',
+                'message' => 'Manual sync request added to the queue.'
+            ]);
+            $orderSync->save();
+            $this->publisher->publish(self::ORDER_TOPIC, $orderSync->getId());
 
-            return $result->setData(['message' => 'Sync request successfully queued. Check status with Refresh.']);
-        } catch (LocalizedException $e) {
-            return $result->setData(['error' => true, 'message' => $e->getMessage()]);
+            return $result->setData(['message' => 'Both Catalogue and Order History sync requests have been successfully queued.']);
         } catch (\Exception $e) {
-            return $result->setData(['error' => true, 'message' => 'An unexpected error occurred while queueing the sync.']);
+            return $result->setData(['error' => true, 'message' => 'An error occurred: ' . $e->getMessage()]);
         }
     }
 }

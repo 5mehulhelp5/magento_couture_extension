@@ -5,4 +5,10 @@
               queue="couture.catalogue.sync.queue"
               connection="amqp"
               handler="CoutureSearch\SearchAPI\Model\Queue\Consumer::process"/>
+    
+    <consumer name="couture.order.sync.consumer"
+              queue="couture.order.sync.queue"
+              connection="amqp"
+              handler="CoutureSearch\SearchAPI\Model\Queue\OrderConsumer::process"/>
+
 </config>
