@@ -27,7 +27,7 @@ graph TD
     %% Styling
     style A fill:#6a5acd,stroke:#333,stroke-width:2px
     style B fill:#1e90ff,stroke:#333,stroke-width:2px
-    style D fill:#f9f,stroke:#333,stroke-width:2px
-    style G fill:#f9f,stroke:#333,stroke-width:2px
-    style J fill:#c2f0c2,stroke:#333,stroke-width:2px
-    style H fill:#ffad33,stroke:#333,stroke-width:2px
+    style D fill:#6a5acd,stroke:#333,stroke-width:2px
+    style G fill:#6a5acd,stroke:#333,stroke-width:2px
+    style J fill:#6a5acd,stroke:#333,stroke-width:2px
+    style H fill:#6a5acd,stroke:#333,stroke-width:2px
